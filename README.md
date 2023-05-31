@@ -9,7 +9,9 @@ the open source version of the same book. This work is licensed under
 [Creative Commons Attribution-ShareAlike 4.0 International][by-sa].
 
 You can download the PDF, MOBI, and EPUB formats of the [book from GitHub releases][download].
+The book is available for purchase from [Amazon][amazon].
 
 [book-blog]: https://muthukadan.net/golang/book/a-comprehensive-guide-to-go-programming/
 [by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
 [download]: https://github.com/baijum/essential-go/releases/latest
+[amazon]: https://www.amazon.com/dp/B0C52D41B7
