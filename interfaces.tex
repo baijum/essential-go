@@ -1,0 +1,348 @@
+\cleardoublepage
+\phantomsection
+\chapter{Interfaces}
+
+\begin{quote}
+\textit{Program to an interface, not an implementation.} -- Design Patterns by Gang of Four
+\end{quote}
+
+
+In the chapter on functions, we have also learned about methods.  A
+method is a function associated with a type, more specifically a
+concrete type.  As you know, an object is an instance of a type.  In
+general, methods define the behavior of an object.
+
+Interfaces\index{interface} in Go provide a formal way to specify the
+behavior of an object.  In layman's terms, Interface is like a
+blueprint which describes an object.  So, Interface is considered as
+an abstract type, commonly referred to as interface type.
+
+Small interfaces with one or two methods are common in Go.
+
+Here is a \texttt{Geometry} interface which defines two methods:
+
+\begin{lstlisting}[numbers=none]
+type Geometry interface {
+    Area() float64
+    Perimeter() float64
+}
+\end{lstlisting}
+
+If any type satisfy this interface - that is define these two methods
+which returns float64 - then, we can say that type is implementing
+this interface.  One difference with many other languages with
+interface support and Go is that, in Go implementing an interface
+happens implicitly.  So, no need to explicitly declare a type is
+implementing a particular interface.
+
+To understand this idea, consider this \texttt{Rectangle} struct type:
+
+\begin{lstlisting}[numbers=none]
+type Rectangle struct {
+    Width float64
+    Height float64
+}
+
+func (r Rectangle) Area() float64 {
+    return r.Width * r.Height
+}
+
+func (r Rectangle) Perimeter() float64 {
+    return 2*(r.width + r.height)
+}
+\end{lstlisting}
+
+As you can see above, the above Rectangle type has two methods named
+Area and Perimeter which returns float64.  So, we can say Rectangle is
+implementing the \texttt{Geometry} interface.  To elaborate the
+example further, we will create one more implementation:
+
+\begin{lstlisting}[numbers=none]
+type Circle struct {
+    Radius float64
+}
+
+func (c Circle) Area() float64 {
+    return 3.14 * c.Radius * c.Radius
+}
+
+func (c Circle) Perimeter() float64 {
+    return 2 * 3.14 * c.Radius
+}
+\end{lstlisting}
+
+Now we have two separate implementations for the \texttt{Geometry}
+interface.  So, if anywhere the \texttt{Geometry} interface type is
+expected, you can use any of these implementations.
+
+Let's define a function which accepts a \texttt{Geometry} type and
+prints area and perimeter.
+
+\begin{lstlisting}[numbers=none]
+func Measure(g Geometry) {
+    fmt.Println("Area:", g.Area())
+    fmt.Println("Perimeter:", g.Perimeter())
+}
+\end{lstlisting}
+
+When you call the above function, you can pass the argument as an
+object of \texttt{Geometry} interface type.  Since both
+\texttt{Rectangle} and \texttt{Circle} satisfy that interface, you can
+use either one of them.
+
+Here is a code which call \texttt{Measure} function with
+\texttt{Rectangle} and \texttt{Circle} objects:
+
+\begin{lstlisting}[numbers=none]
+r := Rectangle{Width: 2.5, Height: 4.0}
+c := Circle{Radius: 6.5}
+Measure(r)
+Measure(c)
+\end{lstlisting}
+
+\section{Type with Multiple Interfaces}
+
+In Go, a type can implement more than one interface.  If a type has
+methods that satisfy different interfaces, we can say that that type
+is implementing those interfaces.
+
+Consider this interface:
+
+\begin{lstlisting}[numbers=none]
+type Stringer interface {
+     String() string
+}
+\end{lstlisting}
+
+In previous section, there was a Rectangle type declared with two
+methods.  In the same package, if you declare one more method like
+below, it makes that type implementing Stringer interface in addition
+to the Geometry interface.
+
+\begin{lstlisting}[numbers=none]
+func (r Rectangle) String() string {
+    return fmt.Sprintf("Rectangle %vx%v", r.Width * r.Height)
+}
+\end{lstlisting}
+
+Now the \texttt{Rectangle} type conforms to both \texttt{Geometry}
+interface and \texttt{Stringer} interface.
+
+\section{Empty Interface}
+
+The empty interface\index{interface!empty} is the interface type that
+has no methods.  Normally the empty interface will be used in the
+literal form: \texttt{interface{}}.  All types satisfy empty interface.
+A function which accepts empty interface, can receive any type as the
+argument.  Here is an example:
+
+\begin{lstlisting}[numbers=none]
+func blackHole(v interface{}) {
+}
+
+blackHole(1)
+blackHole("Hello")
+blackHole(struct{})
+\end{lstlisting}
+
+In the above code, the \texttt{blackHole} functions accepts an empty
+interface. So, when you are calling the function, any type of argument
+can be passed.
+
+The \texttt{Println} function in the \texttt{fmt} package is variadic
+function which accepts empty interfaces.  This is how the function
+signature looks like:
+
+\begin{lstlisting}[numbers=none]
+func Println(a ...interface{}) (n int, err error) {
+\end{lstlisting}
+
+Since the \texttt{Println} accepts empty interfaces, you could pass
+any type arguments like this:
+
+\begin{lstlisting}[numbers=none]
+fmt.Println(1, "Hello", struct{})
+\end{lstlisting}
+
+\section{Pointer Receiver}
+
+In the chapter on Functions, you have seen that the methods can use a
+pointer receiver\index{method!pointer receiver}.  Also we understood
+that the pointer receivers are required when the object attributes
+need be to modified or when passing large size data.
+
+Consider the implementation of \texttt{Stringer} interface here:
+
+\begin{lstlisting}[numbers=none]
+type Temperature struct {
+     Value float64
+     Location string
+}
+
+func (t *Temperature) String() string {
+     o := fmt.Sprintf("Temp: %.2f Loc: %s", t.Value, t.Location)
+     return o
+}
+\end{lstlisting}
+
+In the above example, the \texttt{String} method is implemented using
+a pointer receiver.  Now if you define a function which accepts the
+\texttt{fmt.Stringer} interface, and want the \texttt{Temperature}
+object, it should be a pointer to \texttt{Temperature}.
+
+\begin{lstlisting}[numbers=none]
+func cityTemperature(v fmt.Stringer) {
+    fmt.Println(v.String())
+}
+
+func main() {
+    v := Temperature{35.6, "Bangalore"}
+    cityTemperature(&v)
+}
+\end{lstlisting}
+
+As you can see, the \texttt{cityTemperature} function is called with a
+pointer.  If you modify the above code and pass normal value, you will
+get an error.  The below code will produce an error as pointer is not
+passed.
+
+\begin{lstlisting}[numbers=none]
+func main() {
+    v := Temperature{35.6, "Bangalore"}
+    cityTemperature(v)
+}
+\end{lstlisting}
+
+The error message will be something like this:
+
+\begin{lstlisting}[numbers=none]
+cannot use v (type Temperature) as type fmt.Stringer in argument to
+cityTemperature: Temperature does not implement fmt.Stringer (String
+method has pointer receiver)
+\end{lstlisting}
+
+\section{Type Assertions}
+
+In some cases, you may want to access the underlying concrete value
+from the interface value.  Let's say you define a function which
+accepts an interface value and want access attribute of the concrete
+value.  Consider this example:
+
+\begin{lstlisting}[numbers=none]
+type Geometry interface {
+    Area() float64
+    Perimeter() float64
+}
+
+type Rectangle struct {
+    Width float64
+    Height float64
+}
+
+func (r Rectangle) Area() float64 {
+    return r.Width * r.Height
+}
+
+func (r Rectangle) Perimeter() float64 {
+    return 2*(r.width + r.height)
+}
+
+func Measure(g Geometry) {
+    fmt.Println("Area:", g.Area())
+    fmt.Println("Perimeter:", g.Perimeter())
+}
+\end{lstlisting}
+
+In the above example, if you want to print the width and and height
+from the \texttt{Measure} function, you can use type assertions.
+
+Type assertion\index{type!assertion} gives the underlying concrete
+value of an interface type.  In the above example, you can access the
+rectangle object like this:
+
+\begin{lstlisting}[numbers=none]
+    r := g.(Rectangle)
+    fmt.Println("Width:", r.Width)
+    fmt.Println("Height:", r.Height)
+\end{lstlisting}
+
+If the assertion fail, it will trigger a panic.
+
+Type assertion has an alternate syntax where it will not panic if
+assertion fail, but gives one more return value of boolean type.  The
+second return value will be \texttt{true} if assertion succeeds
+otherwise it will give \texttt{false}.
+
+\begin{lstlisting}[numbers=none]
+    r, ok := g.(Rectangle)
+    if ok {
+        fmt.Println("Width:", r.Width)
+        fmt.Println("Height:", r.Height)
+    }
+\end{lstlisting}
+
+If there are many types that need to be asserted like this, Go
+provides a type switches which is explained in the next section.
+
+\section{Type Switches}
+
+As you have seen in the previous section, type assertions gives access
+to the underlying value.  But if there any many assertions need to be
+made, there will be lots \texttt{if} blocks.  To avoid this, Go
+provides type switches\index{switch!type}.
+
+\begin{lstlisting}[numbers=none]
+    switch v := g.(type) {
+    case Rectangle:
+        fmt.Println("Width:", v.Width)
+        fmt.Println("Height:", v.Height)
+    case Circle:
+        fmt.Println("Width:", v.Radius)
+    case default:
+        fmt.Println("Unknown:")
+    }
+\end{lstlisting}
+
+In the above example, type assertion is used with switch cases.  Based
+on the type of \texttt{g}, the case is executed.
+
+Note that the \textit{fallthrough} statement does not work in type
+switch.
+
+\section{Exercises}
+
+\textbf{Exercise 1:} Using the \texttt{Marshaller} interface, make the marshalled output of the
+\texttt{Person} object given here all in upper case.
+
+\begin{lstlisting}[numbers=none]
+type Person struct {
+    Name  string
+    Place string
+}
+\end{lstlisting}
+
+\textbf{Solution:}
+
+\lstinputlisting[numbers=none]{code/interfaces/marshal.go}
+
+\subsection{Additional Exercises}
+
+Answers to these additional exercises are given in the Appendix A.
+
+\textbf{Problem 1:} Implement the built-in \texttt{error} interface for a custom data type.
+This is how the \texttt{error} interface is defined:
+
+\begin{lstlisting}[numbers=none]
+type error interface {
+    Error() string
+}
+\end{lstlisting}
+
+
+\section*{Summary}
+
+This chapter explained the concept of interfaces and it's uses.
+Interface is an important concept in Go.  Understanding interfaces and
+properly using it makes the design robust.  The chapter covered empty
+interface.  Also, briefly explained about pointer receiver and its
+significance.  Type assertions and type switches are also explained.

@@ -1,0 +1,266 @@
+\documentclass[10pt, a4paper]{book}
+
+\def\myauthor{Baiju Muthukadan}
+\def\mytitle{Essentials of Go Programming}
+\def\mycopyright{\myauthor}
+\def\mykeywords{Baiju, Muthukadan, Go, Golang, Programming, Book}
+\def\mybibliostyle{plain}
+\def\mybibliocommand{}
+\def\mysubtitle{}
+\def\myaffiliation{}
+\def\myaddress{}
+\def\myemail{baiju.m.mail@gmail.com}
+\def\myweb{https://muthukadan.net}
+\def\myphone{+91 9945973441}
+\def\myversion{}
+\def\myrevision{}
+
+\usepackage[paperwidth=6.69in, paperheight=9.61in]{geometry}
+\usepackage[none]{hyphenat}
+\usepackage{listings}
+\usepackage{listings-golang}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{imakeidx}
+\usepackage{tabularx}
+\usepackage{hologo}
+\usepackage{caption}
+\usepackage{framed}
+\usepackage{fancybox}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage[xetex,
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    plainpages=false,
+    pdfpagelabels,
+    bookmarksnumbered,
+    pdftitle={\mytitle},
+    pagebackref,
+    pdfauthor={\myauthor},
+    pdfkeywords={\mykeywords}
+]{hyperref}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{upquote}
+\usepackage{textcomp}
+\usepackage{afterpage}
+\usepackage{sectsty}
+\usepackage[all]{nowidow}
+\usepackage{etoolbox,environ}
+
+\newtoggle{ebook}
+\toggletrue{ebook}
+\NewEnviron{ebookr}
+  {\iftoggle{ebook}{\BODY}{}}
+
+\makeatletter
+\@ifpackageloaded{tex4ht}{%
+\togglefalse{ebook}
+% Packages for tex4ht
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+}{%
+% Packages for xelatex
+\usepackage{fontspec}
+\usepackage{xunicode}
+
+\setmainfont[ Path = fonts/,
+UprightFont = DejaVuSerif.ttf,
+ItalicFont = DejaVuSerif-Italic.ttf,
+BoldFont = DejaVuSerif-Bold.ttf,
+BoldItalicFont = DejaVuSerif-BoldItalic.ttf,
+Numbers={Lining, Monospaced},
+] {DejaVu Serif}
+
+\setsansfont[ Path = fonts/,
+UprightFont = DejaVuSans.ttf,
+ItalicFont = DejaVuSans-Oblique.ttf,
+BoldFont = DejaVuSans-Bold.ttf,
+BoldItalicFont = DejaVuSans-BoldOblique.ttf,
+Numbers={Lining, Monospaced},
+] {DejaVu Sans}
+
+\setmonofont[ Path = fonts/,
+UprightFont = SourceCodePro-Semibold.ttf,
+BoldFont = SourceCodePro-Bold.ttf,
+Numbers={Lining, Monospaced},
+] {Source Code Pro}
+
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+
+}
+
+
+\makeatother
+
+\date{}
+
+%% \renewcommand\contentsname{Table Of Contents}
+
+% Do not indent first line of paragraph.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 2pt minus 1pt}
+
+\newlength{\admonitionwidth}
+\setlength{\admonitionwidth}{0.9\textwidth}
+\newlength{\docinfowidth}
+\setlength{\docinfowidth}{0.9\textwidth}
+
+
+% Less strict (opposite to default fussy) space size between words.
+% Therefore less hyphenation.
+\sloppy
+
+\makeindex
+
+\lstset{linewidth=\textwidth}
+\lstset{ %
+  basicstyle=\ttfamily\small, % the size of the fonts that are used for the code
+  showstringspaces=false, % underline spaces within strings
+  numbers=left, % where to put the line-numbers
+  numberstyle=\footnotesize, % the size of the fonts that are used for the line-numbers
+  stepnumber=1, % the step between two line-numbers. If it's 1 each line will be numbered
+  numbersep=8pt, % how far the line-numbers are from the code
+  numberblanklines=false,
+  tabsize=4,
+}
+
+\DeclareCaptionFont{white}{ \color{white} }
+\DeclareCaptionFormat{listing}{
+  \colorbox[cmyk]{0.43, 0.35, 0.35, 0.01 }{
+    \parbox{\textwidth}{\hspace{15pt}#1#2#3}
+  }
+}
+\captionsetup[lstlisting]{
+  format=listing,
+  labelfont=white,
+  textfont=white,
+  singlelinecheck=false,
+  margin=0pt,
+  font={bf,footnotesize} }
+
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\lhead[Essentials of Go Programming]{Essentials of Go Programming}
+%\chead[<even output>]{<odd output>}
+\rhead{}
+
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
+
+\renewcommand{\chaptermark}[1]{%
+\markboth{\chaptername
+  \ \thechapter.\ #1}{}}
+
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+\vspace*{\fill}
+\begin{center}
+\end{center}
+\vspace{\fill}
+\thispagestyle{plain}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+\hypersetup{
+    pdfborder = {0 0 0}
+}
+
+\widowpenalty10000
+\clubpenalty10000
+
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+
+\makeatletter
+\renewcommand*{\numberline}[1]{\hb@xt@3em{#1\hfil}}
+\makeatother
+
+\newcommand\blankpage{%
+  \null
+  \thispagestyle{empty}%
+  \addtocounter{page}{-1}%
+  \newpage}
+
+\urldef{\effgo}\url{https://go.dev/doc/effective_go#constants}
+
+\begin{document}
+
+\frontmatter
+\setcounter{page}{0}
+\pagenumbering{roman}
+
+\input{./title.tex}
+
+\thispagestyle{plain}
+\input{./copyright.tex}
+
+\cleardoublepage
+\thispagestyle{empty} %% Remove header and footer.
+\vspace*{2in}
+\begin{center}
+{\it To my mother Sulochana M.I.}
+\end{center}
+
+\newpage
+\thispagestyle{plain}
+
+\tableofcontents
+
+\newpage
+\thispagestyle{plain}
+
+\input{./preface.tex}
+\input{./acknowledgements.tex}
+
+\newpage
+\thispagestyle{plain}
+
+\mainmatter
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\input{./introduction.tex}
+\input{./quickstart.tex}
+\input{./control-structures.tex}
+\input{./data-structures.tex}
+\input{./functions.tex}
+\input{./interfaces.tex}
+\input{./concurrency.tex}
+\input{./packages.tex}
+\input{./io.tex}
+\input{./testing.tex}
+\input{./tooling.tex}
+
+%% \appendix
+
+\input{./answers.tex}
+%% \input{./vim-config.tex}
+%% \input{./edition2/securing-api.tex}
+
+\input{./biblio.tex}
+
+\begin{ebookr}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+\end{ebookr}
+
+\input{./colophon.tex}
+%% \blankpage
+%% \blankpage
+\backmatter
+\end{document}

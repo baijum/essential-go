@@ -1,0 +1,908 @@
+\cleardoublepage
+\phantomsection
+\chapter{Data Structures}
+
+\begin{quote}
+\textit{Bad programmers worry about the code.  Good programmers
+worry about data structures and their relationships.} --- Linus
+Torvalds
+\end{quote}
+
+In the last last few chapters we have seen some of the primitive data
+data types.  We also introduced few other advanced data types without
+going to the details.  In this chapter, we are going to look into more
+data structures.
+
+\section{Primitive Data Types}
+
+Advanced data structures are built on top of primitive data types. This section
+is going to cover the primitive data types in Go.
+
+\subsection{Zero Value}
+
+In the Quickstart chapter, you have learned various ways to declare a variable.
+When you declare a variable using the \texttt{var}
+\index{var keyword} statement without assigning a value, a default Zero value
+\index{zero value} will be assigned for certain types. The Zero value is 0 for
+integers and floats, empty string for strings, and false for boolean. To
+demonstrate this, here is an example:
+
+\begin{lstlisting}[caption=Zero values]
+package main
+
+import "fmt"
+
+func main() {
+    var name string
+    var age int
+    var tall bool
+    var weight float64
+    fmt.Printf("%#v, %#v, %#v, %#v\n", name, age, tall, weight)
+}
+\end{lstlisting}
+
+This is the output:
+
+\begin{lstlisting}[numbers=none]
+"", 0, false, 0
+\end{lstlisting}
+
+\subsection{Variable}
+
+In the quick start chapter, we have discussed about variables and its
+usage.  The variable declared outside the function (package level) can
+access anywhere within the same package.
+
+Here is an example:
+
+\begin{lstlisting}[caption=Package level variable]
+package main
+
+import (
+    "fmt"
+)
+
+var name string
+var country string = "India"
+
+func main() {
+    name = "Jack"
+    fmt.Println("Name:", name)
+    fmt.Println("Country:", country)
+}
+\end{lstlisting}
+
+In the above example, the \texttt{name} and \texttt{country} are two
+package level variables.  As we have seen above the \texttt{name} gets
+zero value, where as value for \texttt{country} variable is explicitly
+initialized.
+
+If the variable has been defined using the \texttt{:=} syntax, and the
+user wants to change the value of that variable, they need to
+use \texttt{=} instead of \texttt{:=} syntax.
+
+If you run the below program, it's going to throw an error:
+
+\begin{lstlisting}[caption=Changing value with wrong syntax]
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    age := 25
+    age := 35
+    fmt.Println(age)
+}
+\end{lstlisting}
+
+\begin{lstlisting}[numbers=none]
+$ go run update.go
+# command-line-arguments
+./update.go:9:6: no new variables on left side of :=
+\end{lstlisting}
+
+The above can be fixed like this:
+
+\begin{lstlisting}[caption=Changing value with wrong syntax]
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    age := 25
+    age = 35
+    fmt.Println(age)
+}
+\end{lstlisting}
+
+Now you should see the output:
+
+\begin{lstlisting}[numbers=none]
+$ go run update.go
+35
+\end{lstlisting}
+
+Using the \textit{reflect} package\index{reflect}, you can identify
+the type of a variable:
+
+\begin{lstlisting}[caption=Identifying type of a variable]
+package main
+
+import (
+       "fmt"
+       "reflect"
+)
+
+func main() {
+     var pi = 3.41
+     fmt.Println("type:", reflect.TypeOf(pi))
+}
+\end{lstlisting}
+
+Using one or two letter variable names inside a function is common
+practice.  If the variable name is multi-word, use lower camelCase
+(initial letter lower and subsequent words capitalized) for unexported
+variables.  If the variable is an exported one, use upper CamelCase
+(all the words capitalized).  If the variable name contains any
+abbreviations like ID, use capital letters.  Here are few examples:
+pi, w, r, ErrorCode, nodeToDaemonPods, DB, InstanceID.
+
+\subsubsection{Unused variables and imports}
+
+If you declare a variable inside a function, use that variable
+somewhere in the same function where it is declared.  Otherwise, you
+are going to get a compile error.  Whereas a global variable declared
+but unused is not going to throw compile time error.
+
+Any package that is getting imported should find a place to use.
+Unused import also throws compile time error.
+
+\subsection{Boolean Type}
+
+A boolean type represents a pair of truth values.  The truth values
+are denoted by the constants \textit{true} and \textit{false}.  These
+are the three logical operators that can be used with boolean values:
+
+\begin{itemize}
+\item \texttt{\&\&} -- Logical AND
+\item \texttt{||} -- Logical OR
+\item \texttt{!} -- Logical NOT
+\end{itemize}
+
+Here is an example:
+
+\lstinputlisting[caption=Logical operators]{code/chapter4/logical.go}
+
+The output of the above logical operators are like this:
+
+\begin{lstlisting}[numbers=none]
+$ go run logical.go
+false
+true
+false
+true
+\end{lstlisting}
+
+\subsection{Numeric Types}
+
+The numeric type includes both integer types and floating-point types.
+The allowed values of numeric types are same across all the CPU
+architectures.
+
+These are the unsigned integers: 
+
+\begin{itemize}
+\item  uint8 -- the set of all unsigned  8-bit integers (0 to 255)
+\item  uint16 -- the set of all unsigned 16-bit integers (0 to 65535)
+\item  uint32 -- the set of all unsigned 32-bit integers (0 to 4294967295)
+\item  uint64 -- the set of all unsigned 64-bit integers (0 to 18446744073709551615)
+\end{itemize}
+
+These are the signed integers:
+
+\begin{itemize}
+\item int8 -- the set of all signed  8-bit integers (-128 to 127)
+\item int16 -- the set of all signed 16-bit integers (-32768 to 32767)
+\item int32 -- the set of all signed 32-bit integers (-2147483648 to 2147483647)
+\item int64 -- the set of all signed 64-bit integers (-9223372036854775808 to 9223372036854775807)
+\end{itemize}
+
+These are the two floating-point numbers:
+
+\begin{itemize}
+\item float32 -- the set of all IEEE-754 32-bit floating-point numbers
+\item float64 -- the set of all IEEE-754 64-bit floating-point numbers
+\end{itemize}
+
+These are the two complex numbers:
+
+\begin{itemize}
+\item complex64 -- the set of all complex numbers with float32 real and imaginary parts
+\item complex128 -- the set of all complex numbers with float64 real and imaginary parts
+\end{itemize}
+
+These are the two commonly used used aliases:
+
+\begin{itemize}
+\item byte -- alias for uint8
+\item rune -- alias for int32
+\end{itemize}
+
+\subsection{String Type}
+
+A string type is another most import primitive data type.  String type
+represents string values.
+
+\section{Constants}
+
+A constant\index{constant} is an unchanging value.  Constants are
+declared like variables, but with the \textit{const} keyword.
+Constants can be character, string, boolean, or numeric values.
+Constants cannot be declared using the \texttt{:=} syntax.
+
+In Go, \textit{const} is a keyword introducing a name for a scalar
+value such as 2 or 3.14159 or "scrumptious".  Such values, named or
+otherwise, are called constants in Go.  Constants can also be created
+by expressions built from constants, such as 2+3 or 2+3i or math.Pi/2
+or ("go"+"pher").  Constants can be declared are at package level or
+function level.
+
+This is how to declare constants:
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import (
+    "fmt"
+)
+
+const Freezing = true
+const Pi = 3.14
+const Name = "Tom"
+
+func main() {
+    fmt.Println(Pi, Freezing, Name)
+}
+\end{lstlisting}
+
+You can also use the factored style declaration:
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import (
+    "fmt"
+)
+
+const (
+      Freezing = true
+      Pi = 3.14
+      Name = "Tom"
+)
+
+func main() {
+    fmt.Println(Pi, Freezing, Name)
+}
+
+const (
+      Freezing = true
+      Pi = 3.14
+      Name = "Tom"
+)
+\end{lstlisting}
+
+Compiler throws an error if the constant is tried to assign a new
+value:
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    const Pi = 3.14
+    Pi = 6.86
+    fmt.Println(Pi)
+}
+\end{lstlisting}
+
+The above program throws an error like this:
+
+\begin{lstlisting}[numbers=none]
+$ go run constants.go
+constants:9:5: cannot assign to Pi
+\end{lstlisting}
+
+\subsection{iota}
+
+The \textit{iota} keyword is used to define constants of incrementing
+numbers.  This simplify the defining many constants.  The values of
+iota is reset to \textit{0} whenever the reserved word const appears.
+The value increments by one after each line.
+
+Consider this example:
+
+\begin{lstlisting}[numbers=none]
+// Token represents a lexical token.
+type Token int
+
+const (
+    // Illegal represents an illegal/invalid character
+    Illegal Token = iota
+
+    // Whitespace represents a white space
+    // (" ", \t, \r, \n) character
+    Whitespace
+
+    // EOF represents end of file
+    EOF
+
+    // MarkerID represents '\id' or '\id1' marker
+    MarkerID
+
+    // MarkerIde represents '\ide' marker
+    MarkerIde
+)
+\end{lstlisting}
+
+In the above example, the \texttt{Token} is custom type defined using
+the primitive \textit{int} type.  The constants are defined using the
+factored syntax (many constants within parenthesis).  There are
+comments for each constant values.  Each constant value is be
+incremented starting from \texttt{0}.  In the above
+example, \texttt{Illegal} is \texttt{0}, Whitespace
+is \texttt{1}, \texttt{EOF} is \texttt{2} and so on.
+
+The \texttt{iota} can be used with expressions.  The expression will
+be repeated.  Here is a good example taken from \textit{Effective
+Go}\footnote{\effgo}:
+
+\begin{lstlisting}[numbers=none]
+type ByteSize float64
+
+const (
+    // ignore first value (0) by assigning to blank identifier
+    _           = iota
+    KB ByteSize = 1 << (10 * iota)
+    MB
+    GB
+    TB
+    PB
+    EB
+    ZB
+    YB
+)
+\end{lstlisting}
+
+Using \texttt{\_} (blank identifier) you can ignore a value,
+but \textit{iota} increments the value.  This can be used to skip
+certain values.  As you can see in the above example, you can use an
+expression with \textit{iota}.
+
+
+\subsubsection{Blank Identifier}
+
+Sometimes you may need to ignore the value returned by a function.  Go
+provides a special identifier called blank identifier\index{blank
+identifier}\index{\_} to ignore any types of values. In Go,
+underscore \texttt{\_} is the blank identifier.
+
+Here is an example usage of blank identifier where the second value
+returned by the function is discarded.
+
+\begin{lstlisting}[numbers=none]
+x, _ := someFunc()
+\end{lstlisting}
+
+Blank identifier can be used as import alias to invoke init function
+without using the package.
+
+\begin{lstlisting}[numbers=none]
+import (
+       "database/sql"
+
+       _ "github.com/lib/pq"
+)
+\end{lstlisting}
+
+In the above example, the \texttt{pq} package has some code which need
+to be invoked to initialize the database driver provided by that
+package.  And the exported functions within the above package is
+supposed to be not used.
+
+We have already seen another example where blank identifier if used
+with \textit{iota} to ignore certain constants.
+
+\section{Arrays}
+\label{sec:arrays}
+
+An array\index{array} is an ordered container type with a fixed number
+of data.  In fact, the arrays are the foundation where slice is built.
+We will study about slices in the next section.  Most of the time, you
+can use slice instead of an array.
+
+The number of values in the array is called the length of that array.
+The array type \texttt{[n]T} is an array of \texttt{n} values of
+type \texttt{T}.  Here are two example arrays:
+
+\begin{lstlisting}[numbers=none]
+colors := [3]string{"Red", "Green", "Blue"}
+heights := [4]int{153, 146, 167, 170}
+\end{lstlisting}
+
+In the above example, the length of first array is \texttt{3} and the
+array values are string data.  The second array contains \texttt{int}
+values.  An array's length is part of its type, so arrays cannot be
+re-sized.  So, if the length is different for two arrays, those are
+distinct incompatible types. The built-in \texttt{len} function gives
+the length of array.
+
+Array values can be accessed using the index syntax, so the expression
+\texttt{s[n]} accesses the nth element, starting from zero.
+
+An array values can be read like this:
+
+\begin{lstlisting}[numbers=none]
+colors := [3]string{"Red", "Green", "Blue"}
+i := colors[1]
+fmt.Println(i)
+\end{lstlisting}
+
+Similarly array values can be set using index syntax.  Here is an
+example:
+
+\begin{lstlisting}[numbers=none]
+colors := [3]string{"Red", "Green", "Blue"}
+colors[1] = "Yellow"
+\end{lstlisting}
+
+Arrays need not be initialized explicitly. The zero value of an
+array is a usable array with all elements zeroed.
+
+\begin{lstlisting}[numbers=none]
+var colors [3]string
+colors[1] = "Yellow"
+\end{lstlisting}
+
+In this example, the values of colors will be empty strings (zero
+value).  Later we can assign values using the index syntax.
+
+There is a way to declare array literal without specifying the length.
+When using this syntax variant, the compiler will count and set the
+array length.
+
+\begin{lstlisting}[numbers=none]
+colors := [...]string{"Red", "Green", "Blue"}
+\end{lstlisting}
+
+In the chapter on control structures, we have seen how to use For loop
+for iterating over slices.  In the same way, you can iterate over
+array.
+
+Consider this complete example:
+
+\lstinputlisting[caption=Array example]{code/chapter4/colors.go}
+
+If you save the above program in a file named \texttt{colors.go} and
+run it, you will get output like this:
+
+\begin{lstlisting}[numbers=none]
+$ go run colors.go
+Length: 3
+0 Red
+1 Green
+2 Blue
+\end{lstlisting}
+
+In the above program, a string array is declared and initialized with
+three string values.  In the 7th line, the length is printed and it
+gives 3. The \texttt{range} clause gives index and value, where the
+index starts from zero.
+
+\section{Slices}
+
+Slice\index{slice} is one of most important data structure in Go.
+Slice is more flexible than an array.  It is possible to add and
+remove values from a slice.  There will be a length for slice at any
+time.  Though the length vary dynamically as the content value
+increase or decrease.
+
+The number of values in the slice is called the length of that slice.
+The slice type \texttt{[]T} is a slice of type \texttt{T}.  Here are
+two example slices:
+
+\begin{lstlisting}[numbers=none]
+colors := []string{"Red", "Green", "Blue"}
+heights := []int{153, 146, 167, 170}
+\end{lstlisting}
+
+The first one is a slice of strings and the second slice is a slice of
+integers.  The syntax is similar to array except the length of slice
+is not explicitly specified.  You can use built-in \texttt{len}
+function to see the length of slice.
+
+Slice values can be accessed using the index syntax, so the expression
+\texttt{s[n]} accesses the nth element, starting from zero.
+
+A slice values can be read like this:
+
+\begin{lstlisting}[numbers=none]
+colors := []string{"Red", "Green", "Blue"}
+i := colors[1]
+fmt.Println(i)
+\end{lstlisting}
+
+Similary slice values can be set using index syntax.  Here is an
+example:
+
+\begin{lstlisting}[numbers=none]
+colors := []string{"Red", "Green", "Blue"}
+colors[1] = "Yellow"
+\end{lstlisting}
+
+Slices should be initialized with a length more than zero to access or
+set values.  In the above examples, we used slice literal syntax for
+that.  If you define a slice using \texttt{var} statement without
+providing default values, the slice will be have a special zero value
+called \texttt{nil}.
+
+Consider this complete example:
+
+\lstinputlisting[caption=Nil slice example]{code/chapter4/nilslice.go}
+
+In the above example, the value of slice \texttt{v} is \texttt{nil}.
+Since the slice is nil, values cannot be accessed or set using the
+index.  These operations are going to raise runtime error (index out
+of range).
+
+Sometimes it may not be possible to initialize a slice with some value
+using the literal slice syntax given above.  Go provides a built-in
+function named \texttt{make} to initialize a slice with a given length
+and zero values for all items.  For example, if you want a slice with
+3 items, the syntax is like this:
+
+\begin{lstlisting}[numbers=none]
+colors := make([]string, 3)
+\end{lstlisting}
+
+In the above example, a slice will be initialized with 3 empty strings
+as the items.  Now it is possible to set and get values using the
+index as given below:
+
+\begin{lstlisting}[numbers=none]
+colors[0] = "Red"
+colors[1] = "Green"
+colors[2] = "Blue"
+i := colors[1]
+fmt.Println(i)
+\end{lstlisting}
+
+If you try to set value at 3rd index (\texttt{colors[3]}), it's going
+to raise runtime error with a message like this: "index out of range".
+Go has a built-in function named \texttt{append} to add additional
+values.  The append function will increase the length of the slice.
+
+Consider this example:
+
+\lstinputlisting[caption=Append to slice]{code/chapter4/appendslice.go}
+
+In the above example, the slice length is increased by one after
+append.  It is possible to add more values using \texttt{append}.  See
+this example:
+
+\lstinputlisting[caption=Append more values to slice]{code/chapter4/appendslicemore.go}
+
+The above example append two values.  Though you can provide any
+number of values to append.
+
+You can use the "..." operator to expand a slice.  This can be used to
+append one slice to another slice.  See this example:
+
+\lstinputlisting[caption=Append a slice to another]{code/chapter4/appendsliceanother.go}
+
+In the above example, the first slice is appended by all items in another slice.
+
+\subsection{Slice Append Optimization}
+
+If you append\index{slide!append} too many values to a slice using a
+for loop, there is one optimization related that you need to be aware.
+
+Consider this example:
+
+\lstinputlisting[caption=Append to a slice inside a loop]{code/chapter4/appendfor.go}
+
+If you run the above program, it's going to take few seconds to
+execute.  To explain this, some understanding of internal structure of
+slice is required.  Slice is implemented as a struct and an array
+within.  The elements in the slice will be stored in the underlying
+array.  As you know, the length of array is part of the array type.
+So, when appending an item to a slice the a new array will be created.
+To optimize, the \texttt{append} function actually created an array
+with double length.
+
+In the above example, the underlying array must be changed many times.
+This is the reason why it's taking few seconds to execute.  The length
+of underlying array is called the capacity of the slice.  Go provides
+a way to initialize the underlying array with a particular length.
+The \texttt{make} function has a fourth argument to specify the
+capacity.
+
+In the above example, you can specify the capacity like this:
+
+\begin{lstlisting}[numbers=none]
+v := make([]string, 0, 9000000)
+\end{lstlisting}
+
+If you make this change and run the program again, you can see that it
+run much faster than the earlier code.  The reason for faster code is
+that the slice capacity had already set with maximum required length.
+
+\section{Maps}
+
+Map\index{map} is another important data structure in Go.  We have
+briefly discussed about maps in the Quickstart chapter.  As you know,
+map is an implementation of hash table.  The hash table is available
+in many very high level languages.  The data in map is organized like
+key value pairs.
+
+A variable of map can be declared like this:
+
+\begin{lstlisting}[numbers=none]
+var fruits map[string]int
+\end{lstlisting}
+
+\section{Custom Data Types}
+
+Apart from the built-in data types, you can create your own custom
+data types\index{type!custom}.  The type keyword\index{type keyword}
+can be used to create custom types.  Here is an example.
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import "fmt"
+
+type age int
+
+func main() {
+     a := age(2)
+     fmt.Println(a)
+     fmt.Printf("Type: %T\n", a)
+}
+\end{lstlisting}
+
+If you run the above program, the output will be like this::
+
+\begin{lstlisting}[numbers=none]
+$ go run age.go
+2
+Type: age
+\end{lstlisting}
+
+\subsection{Structs}
+
+Struct\index{struct} is a composite type with multiple fields of
+different types within the struct.  For example, if you want to
+represent a person with name and age, the \texttt{struct} type will be
+helpful.  The \texttt{Person} struct definition will look like this:
+
+\begin{lstlisting}[numbers=none]
+type Person struct {
+    Name string
+    Age  int
+}
+\end{lstlisting}
+
+As you can see above, the \texttt{Person} struct is defined
+using \texttt{type} and \texttt{struct} keywords.  Within the curly
+brace, attributes with other types are defined.  If you avoid
+attributes, it will become an empty struct.
+
+Here is an example empty struct:
+
+\begin{lstlisting}[numbers=none]
+type Empty struct {
+}
+\end{lstlisting}
+
+Alternatively, the curly brace can be in the same line.
+
+\begin{lstlisting}[numbers=none]
+type Empty struct {}
+\end{lstlisting}
+
+A struct can be initialized various ways.  Using a \texttt{var}
+statement:
+
+\begin{lstlisting}[numbers=none]
+var p1 Person
+p1.Name = "Tom"
+p1.Age = 10
+\end{lstlisting}
+
+You can give a literal form with all attribute values:
+
+\begin{lstlisting}[numbers=none]
+p2 := Person{"Polly", 50}
+\end{lstlisting}
+
+You can also use named attributes.  In the case of named attributes,
+if you miss any values, the default zero value will be initialized.
+
+\begin{lstlisting}[numbers=none]
+p3 := Person{Name: "Huck"}
+p4 := Person{Age: 10}
+\end{lstlisting}
+
+In the next, we are going to learn about funtions and methods.  That
+chapter expands the discussion about custom types bevior changes
+through funtions associated with custom types called strcuts.
+
+It is possible to embed structs inside other
+structs\index{struct!embedding}.  Here is an example:
+
+\begin{lstlisting}[numbers=none]
+type Person struct {
+     Name string
+}
+
+type Member struct {
+     Person
+     ID int
+}
+\end{lstlisting}
+
+\section{Pointers}
+
+When you are passing a variable as an argument to a function, Go
+creates a copy of the value and send it.  In some situations, creating
+a copy will be expensive when the size of object is large.  Another
+scenario where pass by value is not feasible is when you need to
+modify the original object inside the function.  In the case of pass
+by value, you can modify it as you are getting a new object every
+time.  Go supports another way to pass a reference to the original
+value using the memory location or address of the
+object\index{pointer}.
+
+To get address of a variable, you can use \texttt{\&} as a prefix for
+the variable.  Here in an example usage:
+
+\begin{lstlisting}[numbers=none]
+a := 7
+fmt.Printf("%v\n", &a)
+\end{lstlisting}
+
+To get the value back from the address, you can use \texttt{\*} as a
+prefix for the variable.  Here in an example usage:
+
+\begin{lstlisting}[numbers=none]
+a := 7
+b := &a
+fmt.Printf("%v\n", *b)
+\end{lstlisting}
+
+Here is a complete example:
+
+\lstinputlisting[caption=Pass by value vs reference]{code/chapter4/pointervalue.go}
+
+A typical output will be like this:
+
+\begin{lstlisting}[numbers=none]
+0xc42000a340
+0xc42000a348
+0xc42000a340
+\end{lstlisting}
+
+As you can see above, the second output is different from the first
+and third.  This is because a value is passed instead of a pointer.
+And so when we are printing the address, it's printing the address of
+the new variable.
+
+In the functions chapter, the section about methods
+(section~\ref{sec:methods}) explains the pointer receiver.
+
+\subsection{new}
+
+The built-in function \textit{new} can be used to allocate memory.  It
+allocates zero values and returns the address of the given data type.
+
+Here is an example:
+
+\begin{lstlisting}[numbers=none]
+name := new(string)
+\end{lstlisting}
+
+In this example, a \textit{string} pointer value is allocated with
+zero value, in this case empty string, and assigned to a variable.
+
+This above example is same as this:
+
+\begin{lstlisting}[numbers=none]
+var name *string
+name = new(string)
+\end{lstlisting}
+
+In this one \textit{string} pointer variable is declared, but it's not
+allocated with zeror value.  It will have \textit{nil} value and so it
+cannot be dereferenced.  If you try to deference, without allocating
+using the \textit{new} function, you will get an error like this:
+
+\begin{lstlisting}[numbers=none]
+panic: runtime error: invalid memory address or nil pointer
+dereference
+\end{lstlisting}
+
+Here is another example using a custom type defined using a primitive
+type:
+
+\begin{lstlisting}[numbers=none]
+type Temperature float64
+name := new(Temperature)
+\end{lstlisting}
+
+\section{Exercises}
+
+\textbf{Exercise 1:} Create a custom type for circle using float64
+and define \texttt{Area} and \texttt{Perimeter}.
+
+\textbf{Solution:}
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import "fmt"
+
+type Circle float64
+
+func (r Circle) Area() float64 {
+    return float64(3.14 * r * r)
+}
+
+func (r Circle) Perimeter() float64 {
+    return float64(2 * 3.14 * r)
+}
+
+func main() {
+    c := Circle(4.0)
+    fmt.Println(c.Area())
+    fmt.Println(c.Perimeter())
+}
+\end{lstlisting}
+
+The custom \texttt{Circle} type is created using the
+built-in \texttt{float64} type.  It would be better if the circle is
+defined using a struct.  Using struct helps to change the structure
+later with additional attributes.  The struct will look like this:
+
+\begin{lstlisting}[numbers=none]
+type Circle struct {
+    Radius float64
+}
+\end{lstlisting}
+
+\subsection{Additional Exercises}
+
+Answers to these additional exercises are given in the Appendix A.
+
+\textbf{Problem 1:} A program to record temperatures
+in different locations and functionality to check whether its freezing
+or not.
+
+\section*{Summary}
+
+This chapter introduced various data structures in Go.  These data
+structures will be helpful for organizing data.  The chapter started
+with a section about zero values.  Then constants explained in detail
+including \textit{iota} keyword for defining incrementing constants.
+Next, the chapter briefly explained about arrays. Then slices, the
+more useful data structure built on top of array is explained.  Then we
+looked at how to define custom data types using existing primitive
+types.  The struct was introduced which is more useful to create custom
+data types.  Pointer is also covered.  The next chapter will explain
+more about functions and methods.

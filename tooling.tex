@@ -1,0 +1,507 @@
+\cleardoublepage
+\phantomsection
+\chapter{Tooling}
+
+\begin{quote}
+\textit{We become what we behold. We shape our tools, and thereafter our tools shape us.} --- Marshall McLuhan
+\end{quote}
+
+Good support for lots of useful tools is another strength of Go.
+Apart from the built-in tools, there any many other community-built
+tools.  This chapter covers the built-in Go tools and few other
+external tools.
+
+The built-in Go tools can access through the \texttt{go} command.
+When you install the Go compiler (\texttt{gc}); the \texttt{go} tool
+is available in the path.  The \texttt{go} tool has many commands.
+You can use the \texttt{go} tool to compile Go programs, run test
+cases, and format source files among other things.
+
+\section{Getting Help}
+
+The go tool is self-documented\index{tool!help}.  You can get help
+about any commands easily.  To see the list of all commands, you can
+run the \texttt{"help"} command.  For example, to see help
+for \texttt{build} command, you can run like this:
+
+\begin{lstlisting}[numbers=none]
+go help build
+\end{lstlisting}
+
+The help command also provides help for specific topics like
+"buildmode", "cache", "filetype", and "environment" among other
+topics.  To see help for a specific topic, you can run the command
+like this:
+
+\begin{lstlisting}[numbers=none]
+go help environment
+\end{lstlisting}
+
+\section{Basic Information}
+
+\subsection{Version}
+
+When reporting bugs, it is essential to specify the Go version\index{version}
+number and environment details. The Go tool gives access to this information
+through the following commands.
+
+To get version information, run this command\index{tool!version}:
+
+\begin{lstlisting}[numbers=none]
+go version
+\end{lstlisting}
+
+The output should look something like this:
+
+\begin{lstlisting}[numbers=none]
+go version go1.20.4 linux/amd64
+\end{lstlisting}
+
+As you can see, it shows the version number followed by operating
+system and CPU architecture.
+
+\subsection{Environment}
+
+To get environment variables, you can run this command\index{tool!env}:
+
+\begin{lstlisting}[numbers=none]
+go env
+\end{lstlisting}
+
+The output should display all the environment variables used by the Go
+tool when running different commands.
+
+A typical output will look like this:
+
+\begin{lstlisting}[numbers=none]
+GO111MODULE=""
+GOARCH="amd64"
+GOBIN=""
+GOCACHE="/home/baiju/.cache/go-build"
+GOENV="/home/baiju/.config/go/env"
+GOEXE=""
+GOEXPERIMENT=""
+GOFLAGS=""
+GOHOSTARCH="amd64"
+GOHOSTOS="linux"
+GOINSECURE=""
+GOMODCACHE="/home/baiju/go/pkg/mod"
+GONOPROXY=""
+GONOSUMDB=""
+GOOS="linux"
+GOPATH="/home/baiju/go"
+GOPRIVATE=""
+GOPROXY="https://proxy.golang.org,direct"
+GOROOT="/usr/local/go"
+GOSUMDB="sum.golang.org"
+GOTMPDIR=""
+GOTOOLDIR="/usr/local/go/pkg/tool/linux_amd64"
+GOVCS=""
+GOVERSION="go1.20.4"
+GCCGO="gccgo"
+GOAMD64="v1"
+AR="ar"
+CC="gcc"
+CXX="g++"
+CGO_ENABLED="1"
+GOMOD="/dev/null"
+GOWORK=""
+CGO_CFLAGS="-O2 -g"
+CGO_CPPFLAGS=""
+CGO_CXXFLAGS="-O2 -g"
+CGO_FFLAGS="-O2 -g"
+CGO_LDFLAGS="-O2 -g"
+PKG_CONFIG="pkg-config"
+GOGCCFLAGS="-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0
+  -fdebug-prefix-map=/tmp/go-build1378738152=/tmp/go-build
+  -gno-record-gcc-switches"
+\end{lstlisting}
+
+\subsection{List}
+
+The \textit{list} command provides meta information about packages.
+Running without any arguments shows the current packages import path.
+The \textit{-f} helps to extract more information, and it can specify
+a format.  The \textit{text/template} package syntax can be used to
+specify the format.
+
+The struct used to format has many attributes, here is a subset:
+
+\begin{itemize}
+\item \textit{Dir} -- directory containing package sources
+\item \textit{ImportPath} -- import path of package in dir
+\item \textit{ImportComment} -- path in import comment on package statement
+\item \textit{Name} -- package name
+\item \textit{Doc} -- package documentation string
+\item \textit{Target} -- install path
+\item \textit{GoFiles} -- list of \texttt{.go} source files
+\end{itemize}
+
+Here is an example usage:
+
+\begin{lstlisting}[numbers=none]
+$ go list -f '{{.GoFiles}}' text/template
+[doc.go exec.go funcs.go helper.go option.go template.go]
+\end{lstlisting}
+
+\section{Building and Running}
+
+To compile a program, you can use the \texttt{build}
+command\index{tool!build}.  To compile a package, first change to the
+directory where the program is located and run the \texttt{build}
+command:
+
+\begin{lstlisting}[numbers=none]
+go build
+\end{lstlisting}
+
+You can also compile Go programs without changing the directory.  To
+do that, you are required to specify the package location in the
+command line.  For example, to
+compile \texttt{github.com/baijum/introduction} package run the
+command given below:
+
+\begin{lstlisting}[numbers=none]
+go build github.com/baijum/introduction
+\end{lstlisting}
+
+If you want to set the executable binary file name, use
+the \texttt{-o} option:
+
+\begin{lstlisting}[numbers=none]
+go build -o myprog
+\end{lstlisting}
+
+If you want to build and run at once, you can use the \texttt{"run"}
+command:
+
+\begin{lstlisting}[numbers=none]
+go run program.go
+\end{lstlisting}
+
+You can specify more that one Go source file in the command line
+arguments:
+
+\begin{lstlisting}[numbers=none]
+go run file1.go file2.go file3.go
+\end{lstlisting}
+
+Of course, when you specify more than one file names, only one "main"
+function should be defined among all of the files.
+
+\subsection{Conditional Compilation}
+
+Sometimes you need to write code specific to a particular operating
+system.  In some other case the code for a particular CPU
+architecture.  It could be code optimized for that particular
+combination.  The Go build tool supports conditional compilation using
+build constraints.  The Build constraint is also known as build tag.
+There is another approach for conditional compilation using a naming
+convention for files names.  This section is going to discuss both
+these approaches.
+
+The build tag should be given as comments at the top of the source
+code.  The build tag comment should start like this:
+
+\begin{lstlisting}[numbers=none]
+// +build
+\end{lstlisting}
+
+The comment should be before package documentation and there should be
+a line in between.
+
+The space is \textit{OR} and comma is \textit{AND}.  The exclamation
+character is stands for negation.
+
+Here is an example:
+
+\begin{lstlisting}[numbers=none]
+// +build linux,386
+\end{lstlisting}
+
+In the above example, the file will compile on 32-bit x86 Linux
+system.
+
+\begin{lstlisting}[numbers=none]
+// +build linux darwin
+\end{lstlisting}
+
+The above one compiles on Linux or Darwin (Mac OS).
+
+\begin{lstlisting}[numbers=none]
+// +build !linux
+\end{lstlisting}
+
+The above runs on anything that is not Linux.
+
+The other approach uses file naming convention for conditional
+compilation.  The files are ignore if it doesn't match the target OS
+and CPU architecture, if any.
+
+This compiles only on Linux:
+
+\begin{lstlisting}[numbers=none]
+stat_linux.go
+\end{lstlisting}
+
+This one on 64 bit ARM linux:
+
+\begin{lstlisting}[numbers=none]
+os_linux_arm64.go
+\end{lstlisting}
+
+\section{Running Test}
+
+The Go tool has a built-in test runner\index{tool!test}.  To run tests
+for the current package, run this command:
+
+\begin{lstlisting}[numbers=none]
+go test
+\end{lstlisting}
+
+To demonstrate the remaining commands, consider packages organized
+like this:
+
+\begin{lstlisting}[numbers=none]
+.
+|-- hello.go
+|-- hello_test.go
+|-- sub1
+|   |-- sub1.go
+|   `-- sub1_test.go
+`-- sub2
+    |-- sub2.go
+    `-- sub2_test.go
+\end{lstlisting}
+
+If you run \texttt{go test} from the top-level directory, it's going
+to run tests in that directory, and not any sub directories.  You can
+specify directories as command line arguments to \texttt{go test}
+command to run tests under multiple packages simultaneously.
+In the above listed case, you can run all tests like this:
+
+\begin{lstlisting}[numbers=none]
+go test . ./sub1 ./sub2
+\end{lstlisting}
+
+Instead of listing each packages separates, you can use the ellipsis
+syntax:
+
+\begin{lstlisting}[numbers=none]
+go test ./...
+\end{lstlisting}
+
+The above command run tests under current directory and its child
+directories.
+
+By default \texttt{go test} shows very few details about the tests.
+
+\begin{lstlisting}[numbers=none]
+$ go test ./...
+ok      _/home/baiju/code/mypkg   0.001s
+ok      _/home/baiju/code/mypkg/sub1      0.001s
+--- FAIL: TestSub (0.00s)
+FAIL
+FAIL    _/home/baiju/code/mypkg/sub2      0.003s
+\end{lstlisting}
+
+In the above results, it shows the name of failed test.  But details
+about other passing tests are not available.  If you want to see
+verbose results, use the \texttt{-v} option.
+
+\begin{lstlisting}[numbers=none]
+$ go test ./... -v
+=== RUN   TestHello
+--- PASS: TestHello (0.00s)
+PASS
+ok      _/home/baiju/code/mypkg   0.001s
+=== RUN   TestSub
+--- PASS: TestSub (0.00s)
+PASS
+ok      _/home/baiju/code/mypkg/sub1      0.001s
+=== RUN   TestSub
+--- FAIL: TestSub (0.00s)
+FAIL
+FAIL    _/home/baiju/code/mypkg/sub2      0.002s
+\end{lstlisting}
+
+If you need to filter tests based on the name, you can use
+the \texttt{-run} option.
+
+\begin{lstlisting}[numbers=none]
+$ go test ./... -v -run Sub
+testing: warning: no tests to run
+PASS
+ok      _/home/baiju/code/mypkg   0.001s [no tests to run]
+=== RUN   TestSub
+--- PASS: TestSub (0.00s)
+PASS
+ok      _/home/baiju/code/mypkg/sub1      0.001s
+=== RUN   TestSub
+--- FAIL: TestSub (0.00s)
+FAIL
+FAIL    _/home/baiju/code/mypkg/sub2      0.002s
+\end{lstlisting}
+
+As you can see above, the \texttt{TestHello} test was skipped as it
+doesn't match "Sub" pattern.
+
+The chapter on testing has more details about writing test cases.
+
+\textit{golangci-lint}\index{lint} is a handy program to run various lint tools and
+normalize their output. This program is useful to run through continuous
+integration. You can download the program from here:
+\url{https://github.com/golangci/golangci-lint}\\
+
+The supported lint tools include Vet, Golint, Varcheck, Errcheck, Deadcode,
+Gocyclo among others. \textit{golangci-lint} allows to enable/disable the lint
+tools through a configuration file.
+
+\section{Formatting Code}
+
+Go has a recommended source code formatting\index{tool!format}.  To
+format any Go source file to conform to that format, it's just a
+matter of running one command.  Normally you can integrate this
+command with your text editor or IDE.  But if you really want to
+invoke this program from command line, this is how you do it:
+
+\begin{lstlisting}[numbers=none]
+go fmt myprogram.go
+\end{lstlisting}
+
+In the above command, the source file name is explicitly specified.
+You can also give package name:
+
+\begin{lstlisting}[numbers=none]
+go fmt github.com/baijum/introduction
+\end{lstlisting}
+
+The command will format source files and write it back to the same
+file. Also it will list the files that is formatted.
+
+\section{Displaying Documentation}
+
+Go has good support for writing documentation along with source
+code\index{tool!doc}.  You can write documentation for packages,
+functions and custom defined types.  The Go tool can be used to
+display those documentation.
+
+To see the documentation for the current packages, run this command:
+
+\begin{lstlisting}[numbers=none]
+go doc
+\end{lstlisting}
+
+To see documentation for a specific package:
+
+\begin{lstlisting}[numbers=none]
+go doc strings
+\end{lstlisting}
+
+The above command shows documentation for the "strings" package.
+
+\begin{lstlisting}[numbers=none]
+go doc strings
+\end{lstlisting}
+
+If you want to see documentation for a particular function within that
+package:
+
+\begin{lstlisting}[numbers=none]
+go doc strings.ToLower
+\end{lstlisting}
+
+or a type:
+
+\begin{lstlisting}[numbers=none]
+go doc strings.Reader
+\end{lstlisting}
+
+Or a method:
+
+\begin{lstlisting}[numbers=none]
+go doc strings.Reader.Size
+\end{lstlisting}
+
+\section{Find Suspicious Code Using Vet}
+
+There is a handy tool named \textit{vet}\index{tool!vet} to find
+suspicious code in your program.  Your program might compile and
+run. But some of the results may not be desired output.
+
+Consider this program:
+
+\lstinputlisting[caption=Suspicious code]{code/tooling/suspicious/suspicious.go}
+
+If you compile and run it.  It's going to be give some output.  But if
+you observe the code, there is an unnecessary \texttt{\%s} format
+string.
+
+If you run \texttt{vet} command, you can see the issue:
+
+%% TODO: Change the font size back to \small and change filename to
+%% suspicious.go (Probably this can be changed after moving the
+%% content to next page}
+
+\begin{lstlisting}[numbers=none]
+$ go vet susp.go
+# command-line-arguments
+./susp.go:9: Printf format %s reads arg #2,
+but call has only 1 arg
+\end{lstlisting}
+
+Note: The \textit{vet} command is automatically run along with
+the \textit{test} command.
+
+\section{Exercises}
+
+\textbf{Exercise 1:} Create a program with function to return "Hello, world!" and
+write test and run it.
+
+\textit{hello.go}:
+
+\begin{lstlisting}[numbers=none]
+package hello
+
+// SayHello returns a "Hello word!" message
+func SayHello() string {
+     return "Hello, world!"
+}
+\end{lstlisting}
+
+\textit{hello\_test.go}:
+
+\begin{lstlisting}[numbers=none]
+package hello
+
+import "testing"
+
+func TestSayHello(t *testing.T) {
+     out := SayHello()
+     if out != "Hello, world!" {
+        t.Error("Incorrect message", out)
+     }
+}
+\end{lstlisting}
+
+To run the test:
+
+\begin{lstlisting}[numbers=none]
+go test . -v
+\end{lstlisting}
+
+\subsection{Additional Exercises}
+
+Answers to these additional exercises are given in the Appendix A.
+
+{\bfseries Problem 1:} Write a program with exported type and methods
+with documentation strings.  Then print the documentation
+using \texttt{go doc} command.
+
+\section*{Summary}
+
+This chapter introduced the Go tool.  All the Go commands were
+explained in detail.  Practical example usage was also given for each
+command.  The chapter coverd how to build and run programs, running
+tests, formatting code, and displaying documentation.  It also touched
+upon few other handy tools.

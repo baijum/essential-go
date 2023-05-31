@@ -1,0 +1,304 @@
+\cleardoublepage
+\phantomsection
+\chapter{Testing}
+
+\begin{quote}
+\textit{Test as You Fly, Fly as You Test.} --- NASA
+\end{quote}
+
+Writing automated tests helps you to improve the quality and
+reliability of software.  This chapter is about writing automated
+tests in Go.  The standard library contains a package
+named \textit{testing} to write tests\index{test}.  Also, the built-in
+Go tool has a test runner to run tests.
+
+Consider this test for a \texttt{Hello} function which takes a string
+as input and returns another string.  The expected output string
+should start with "Hello," and ends with the input value followed by
+an exclamation.
+
+\lstinputlisting[caption=Test for Hello]{code/testing/hello/hello_test.go}
+
+In the first line, the package name is \texttt{hello} which is the
+same as the package where the function is going to be defined.  Since
+both test and actual code is in the same package, the test can access
+any name within that package irrespective whether it is an exported
+name or not.  At the same, when the actual problem is compiled using
+the \texttt{go build} command, the test files are ignored.  The build
+ignores all files with the name ending \texttt{\_test.go}.  Sometimes
+these kinds of tests are called white-box test as it is accessing both
+exported and unexported names within the package.  If you only want to
+access exported names within the test, you can declare the name of the
+test package with \texttt{\_test} suffix.  In this case, that would
+be \texttt{hello\_test}, which should work in this case as we are only
+testing the exported function directly.  However, to access those
+exported names -- in this case, a function -- the package should
+import explicitly.
+
+The line no. 5 starts the test function declaration.  As per the test
+framework, the function name should start with \texttt{Test} prefix.
+The prefix is what helps the test runner to identify the tests that
+should be running.
+
+The input parameter \texttt{t} is a pointer of
+type \texttt{testing.T}. The \texttt{testing.T} type provides
+functions to make the test pass or fail.  It also gives functions to
+log messages.
+
+In the line no. 6 the \texttt{Hello} function is called with "Tom" as
+the input string.  The return value is assigning to a variable
+named \texttt{out}.
+
+In line no. 7 the actual output value is checked against the expected
+output value.  If the values are not matching, the \texttt{Fail}
+function is getting called.  The particular function state is going to
+be marked as a failure when the \texttt{Fail} function is getting
+called.
+
+The test is going to pass or fail based on the implementation of
+the \texttt{Hello} function.  Here is an implementation of the
+function to satisfy the test:
+
+\lstinputlisting[caption=Hello function]{code/testing/hello/hello.go}
+
+As you can see in the above function definition, it takes a string as
+an input argument.  A new string is getting constructed as per the
+requirement, and it returns that value.
+
+Now you can run the test like this:
+
+\begin{lstlisting}[numbers=none]
+$ go test
+PASS
+ok      _/home/baiju/hello     0.001s
+\end{lstlisting}
+
+If you want to see the verbose output, use the \texttt{-v} option:
+
+\begin{lstlisting}[numbers=none]
+$ go test -v
+=== RUN   TestHello
+--- PASS: TestHello (0.00s)
+PASS
+ok      _/home/baiju/hello     0.001s
+\end{lstlisting}
+
+\section{Failing a Test}
+
+To fail a test, you need to explicitly call \texttt{Fail} function
+provided by the value of \texttt{testing.T} type.  As we have seen
+before, every test function has access to a \texttt{testing.T} object.
+Usually, the name of that value is going to write as \texttt{t}. To
+fail a test, you can call the \texttt{Fail} function like this:
+
+\begin{lstlisting}[numbers=none]
+t.Fail()
+\end{lstlisting}
+
+The test is going be a failure when the \texttt{Fail} function is
+getting called.  However, the remaining code in the same test function
+continue to execute.  If you want to stop executing the further lines
+immediately, you can call \texttt{FailNow} function.
+
+\begin{lstlisting}[numbers=none]
+t.FailNow()
+\end{lstlisting}
+
+Alternatively, there are other convenient functions which give similar
+behavior along with logging message.  The next section discusses
+logging messages.
+
+\section{Logging Message}
+
+The \texttt{testing.T} has two functions for logging, one with default
+formatting and the other with the user-specified format.  Both
+functions accept an arbitrary number of arguments.
+
+The \texttt{Log} function formats its arguments using the default
+formats available for any type.  The behavior is similar
+to \texttt{fmt.Println} function.  So, you can change the formatted
+value by implementing the \texttt{fmt.Stringer} interface:
+
+\begin{lstlisting}[numbers=none]
+type Stringer interface {
+        String() string
+}
+\end{lstlisting}
+
+You need to create a method named \texttt{String} which returns a
+string for your custom types.
+
+Here is an example calling \texttt{Log} with two arguments:
+
+\begin{lstlisting}[numbers=none]
+t.Log("Some message", someValue)
+\end{lstlisting}
+
+In the above function call, there are only two arguments given, but
+you can pass any number of arguments.
+
+The log message going to print if the test is failing.  The verbose
+mode, the \texttt{-v} command-line option, also log the message
+irrespective of whether a test fails or not.
+
+The \texttt{Logf} function takes a string format followed by arguments
+expected by the given string format.  Here is an example:
+
+\begin{lstlisting}[numbers=none]
+t.Logf("%d no. of lines: %s", 34, "More number of lines")
+\end{lstlisting}
+
+The \texttt{Logf} formats the values based on the given format.
+The \texttt{Logf} is similar to \texttt{fmt.Printf} function.
+
+\section{Failing with Log Message}
+
+Usually, logging and marking a test as failure happens simultaneously.
+The \texttt{testing.T} has two functions for logging with failing, one
+with default formatting and the other with the user-specified format.
+Both functions accept an arbitrary number of arguments.
+
+The \texttt{Error} function is equivalent to calling \texttt{Log}
+followed by \texttt{Fail}.  The function signature is similar
+to \texttt{Log} function.
+
+Here is an example calling \texttt{Error} with two arguments:
+
+\begin{lstlisting}[numbers=none]
+t.Error("Some message", someValue)
+\end{lstlisting}
+
+Similar to \texttt{Error} function, the \texttt{Errorf} function is
+equivalent to calling \texttt{Logf} followed by \texttt{Fail}.  The
+function signature is similar to \texttt{Logf} function.
+
+The \texttt{Errorf} function takes a string format followed by
+arguments expected by the given string format.  Here is an example:
+
+\begin{lstlisting}[numbers=none]
+t.Errorf("%d no. of lines: %s", 34, "More number of lines")
+\end{lstlisting}
+
+The \texttt{Errorf} formats the values based on the given format.
+
+\section{Skipping Test}
+
+When writing tests, there are situations where particular tests need
+not run.  Some tests might have written for a specific environment.
+The criteria for running tests could be CPU architecture, operating
+system or any other parameter.  The \textit{testing} package has
+functions to mark test for skipping.
+
+The \texttt{SkipNow} function call marks the test as having been
+skipped.  It stops the current test execution.  If the test has marked
+as failed before skipping, that particular test is yet considered to
+have failed.  The \texttt{SkipNow} function doesn't accept any
+argument.  Here is a simple example:
+
+\lstinputlisting[caption=Skipping test]{code/testing/skip/hello_skip_test.go}
+
+If you run the above code on a Linux system, you can see the test has
+skipped.  The output is going to be something like this:
+
+\begin{lstlisting}[numbers=none]
+$ go test . -v
+=== RUN   TestHello
+--- SKIP: TestHello (0.00s)
+PASS
+ok      _/home/baiju/skip      0.001s
+\end{lstlisting}
+
+As you can see from the output, the test has skipped execution.
+
+There are two more convenient functions similar to \texttt{Error}
+and \texttt{Errorf}.  Those functions are \texttt{Skip}
+and \texttt{Skipf}.  These functions help you to log a message before
+skipping.  The message could be the reason for skipping the test.
+
+Here is an example:
+
+\begin{lstlisting}[numbers=none]
+t.Skip("Some reason message", someValue)
+\end{lstlisting}
+
+The \texttt{Skipf} function takes a string format followed by
+arguments expected by the given string format.  Here is an example:
+
+\begin{lstlisting}[numbers=none]
+t.Skipf("%d no. of lines: %s", 34, "More number of lines")
+\end{lstlisting}
+
+The \texttt{Skipf} formats the values based on the given format.
+
+\section{Parallel Running}
+
+You can mark a test to run in parallel. To do so, you can call the
+\texttt{t.Parallel} function.  The test is going to run in parallel to other
+tests marked parallel.
+
+\section{Sub Tests}
+
+The Go testing package allows you to group related tests together in a
+hierarchical form. You can define multiple related tests under a single-parent
+test using the `Run` method.
+
+To create a subtest, you use the \texttt{t.Run()} method. The \texttt{t.Run()} method takes
+two arguments: the name of the subtest and the body of the subtest. The body of
+the subtest is a regular Go function.
+
+For example, the following code creates a subtest called \texttt{foo}:
+
+\begin{lstlisting}[numbers=none]
+func TestBar(t *testing.T) {
+  t.Run("foo", func(t *testing.T) {
+    // This is the body of the subtest.
+  })
+}
+\end{lstlisting}
+
+Subtests are reported separately from each other. This means that if a subtest
+fails, the test runner will report the failure for that subtest only. The parent
+test will still be considered to have passed.
+
+Subtests can be used to test different aspects of a function or method. For
+example, you could use subtests to test different input values, different output
+values, or different error conditions.
+
+Subtests can also be used to test different implementations of a function or
+method. For example, you could use subtests to test a function that is
+implemented in Go and a function that is implemented in C.
+
+Subtests are a powerful feature of the Go testing package. They can be used to
+organize your tests, make them easier to read and maintain, and test different
+aspects of your code.
+
+%% \section{TestMain}
+%% \section{Test Runner}
+%% \section{Test Flags}
+
+\section{Exercises}
+
+{\bfseries Exercise 1:} Create a package with a function to return the
+sum of two integers and write a test for the same.
+
+\textbf{Solution:}
+
+\textit{sum.go}:
+
+\lstinputlisting[numbers=none]{code/testing/sum/sum.go}
+
+\textit{sum\_test.go}:
+
+\lstinputlisting[numbers=none]{code/testing/sum/sum_test.go}
+
+\subsection{Additional Exercises}
+
+Answers to these additional exercises are given in the Appendix A.
+
+\textbf{Problem 1:} Write a program to fail test and not continue with remaining tests.
+
+\section*{Summary}
+
+This chapter explained writing tests using the \textit{testing} package. It
+covered how to mark a test as a failure, logging, skipping, and parallel
+running. Also, it briefly touched upon sub-tests.

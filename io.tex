@@ -1,0 +1,340 @@
+\cleardoublepage
+\phantomsection
+\chapter{Input/Output}
+
+\begin{quote}
+\textit{for out of the abundance of the heart the mouth speaketh.} -- Bible
+\end{quote}
+
+Users interact with software systems through various input/output
+\index{input/output} mechanisms.  Some of the commonly used mechanisms are these:
+
+\begin{itemize}
+  \item web browser for web applications using various controllers/widgets
+  \item mobile for mobile applications
+  \item shell for command line applications
+  \item desktop application with native controllers/widgets
+\end{itemize}
+
+To provide these kind of user interactions, you will be required to use
+specialized libraries. If the standard library doesn't provide what you are
+looking for, you may need to use third party libraries. This chapter cover basic
+mechanisms provided at the language level which you can use for input/output.
+
+We have already seen some of the basic input/output techniques in the last few
+chapters. This chapter will go though more input/output mechanisms available in
+Go.
+
+\section{Command Line Arguments}
+
+The command line\index{command line} arguments as user input and
+console for output is the way command line programs are designed.
+Sometimes output will be other files and devices.  You can access all
+the command line arguments using the \texttt{Args} array/slice
+attribute available in \texttt{os} package.  Here is an example:
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import (
+    "fmt"
+    "os"
+)
+
+func main() {
+    fmt.Println(os.Args)
+    fmt.Println(os.Args[0])
+    fmt.Println(os.Args[1])
+    fmt.Println(os.Args[2])
+}
+\end{lstlisting}
+
+You can run this program with minimum two additional arguments:
+
+\begin{lstlisting}[numbers=none]
+$ go build cmdline.go
+$ ./cmdline one -two
+[cmdline one -two]
+./cmdline
+one
+-two
+\end{lstlisting}
+
+As you can see, it's difficult to parse command line arguments like this. Go
+standard library has a package named \textit{flag} which helps to easily parse
+command line arguments. This chapter has a section to explain the \textit{flag}
+package.
+
+\section{Files}
+
+Reading and writing data to files is a common I/O operation in computer
+programming. You can manipulate files using the \textit{os} and \textit{io}
+packages. It works with both text files and binary files. For the simplicity of
+this section, all the examples given here works with text files.
+
+Consider there exists a file named \texttt{poem.txt} with this text:
+
+\lstinputlisting[numbers=none]{code/io/readpoem/poem.txt}
+
+Here is a program to read the the whole file and print:
+
+\lstinputlisting[caption=Read whole file]{code/io/readpoem/readpoem.go}
+
+When you run this program, you will get the whole text as output. In the line
+number 10, the \texttt{Open} function from the \texttt{os} package is called to open
+the file for reading. It returns a file
+descriptor\footnote{\url{https://en.wikipedia.org/wiki/File_descriptor}} and
+error. In the line number 14, an infinite loop is stared to read the content.
+Line 15 initialize a slice of bytes of length 50. The \texttt{fd.Read} method
+reads the given length of characters and writes to the given slice. It returns
+the number of characters read and error. The \texttt{io.EOF} error is returned
+when end of file is reached. This is used as the condition to break the loop.
+
+Here is a program to write some text to a file:
+
+\lstinputlisting[caption=Write to file]{code/io/writefile/writefile.go}
+
+In th line number 9, the \textit{Create} function from the \textit{os} package
+is called open the file for writing. It returns a file descriptor and error. In
+the line number 14, the \textit{Write} method is give a slice of bytes to write.
+After running the program you can see the text in the \texttt{hello.txt} file.
+
+\begin{lstlisting}[numbers=none]
+$ go run writefile.go
+$ cat hello.txt
+Hello, World!
+\end{lstlisting}
+
+\section{Standard Streams}
+
+Standard streams\footnote{\url{https://en.wikipedia.org/wiki/Standard_streams}}
+are input and output communication channels between a computer program and its
+environment. The three input/output connections are called standard input
+(stdin), standard output (stdout) and standard error (stderr).
+
+Stdin, Stdout, and Stderr are open files pointing to the standard input,
+standard output, and standard error file descriptors.
+
+The \textit{fmt} package has functions to read values
+interactively\index{input!scanf}.
+
+Here is an example:
+
+\lstinputlisting[caption=Read name and print]{code/io/readprint.go}
+
+The \textit{Scanf} function reads the standard input. The first argument is the
+format and the second one is the pointer variable. The value read from standard
+input cab be accessed using the given variable.
+
+You can run the above program in different ways:
+
+\begin{lstlisting}[numbers=none]
+$ go run code/io/readprint.go
+Enter your name: Baiju
+Your name: Baiju
+$ echo "Baiju" |go run code/io/readprint.go
+Enter your name: Your name: Baiju
+$ go run code/io/readprint.go << EOF
+> Baiju
+> EOF
+Enter your name: Your name: Baiju
+$ echo "Baiju" > /tmp/baiju.txt
+$ go run code/io/readprint.go < /tmp/baiju.txt
+Enter your name: Your name: Baiju
+\end{lstlisting}
+
+As you can see from this program, the \textit{Printf} function writes to
+standard output and the \textit{Scanf} reads the standard input. Go can also
+writes to standard error output stream. This is explained in the section about
+the \textit{io} package later in this chapter.
+
+\section{Using flag Package}
+
+As you have noticed before \texttt{os.Args} attribute in the \textit{os} package
+provides access to all command line arguments.
+The \textit{flag}\index{input!flag} package provides an easy way to parse
+command line arguments.
+
+You can define string, boolean, and integer flags among others using
+the \textit{flag} package..
+
+Here is an integer flag declaration:
+
+\begin{lstlisting}[numbers=none]
+var pageCount = flag.Int("count", 240, "number of pages")
+\end{lstlisting}
+
+The above code snippet defines an integer flag with name
+as \texttt{count} and it is stored in a variable with the name
+as \texttt{pageCount}.  The type of the variable is \textit{*int}.
+Similar to this integer flag, you can defines flags of other types.
+
+Once all the flags are defined, you can parse it like this:
+
+\begin{lstlisting}[numbers=none]
+flag.Parse()
+\end{lstlisting}
+
+The above \texttt{Parse} function call parse the command line
+arguments and store the values in the given variables.
+
+Once the flags are parsed, you can dereference it like this:
+
+\begin{lstlisting}[numbers=none]
+fmt.Println("pageCount: ", *pageCount)
+\end{lstlisting}
+
+To access non-flag arguments:
+
+\begin{lstlisting}[numbers=none]
+flag.Args()
+\end{lstlisting}
+
+The above call returns a the arguments as a slice of strings.  It
+contains arguments not parsed as flags.
+
+Cobra is a third party package providing a simple interface to create
+command line interfaces.  Cobra also helps to generate applications
+and command files.  Many of the most widely used Go projects are built
+using Cobra.  This is the Cobra
+website: \url{https://github.com/spf13/cobra}
+
+\section{String Formatting}
+
+Go supports many string format\index{string!format} options.  To
+get the default format of any value, you can use \texttt{\%v} as the
+format string.  Here is an example which print formatted values
+using \texttt{\%v}:
+
+\lstinputlisting[caption=Default format]{code/io/formatting/default.go}
+
+The \texttt{\%T} shows the type of the value.  The output of the above
+program will be like this.
+
+\begin{lstlisting}[numbers=none]
+Value: Baiju, Type: string
+Value: 7, Type: int
+Value: 7, Type: uint
+Value: 7, Type: int8
+Value: true, Type: bool
+Value: 7, Type: float64
+Value: (1+6i), Type: complex128
+\end{lstlisting}
+
+If you use a \texttt{\%+v} as the format string for struct it shows
+the field names.  See this example:
+
+\lstinputlisting[caption=Default format for struct]{code/io/formatting/defaultstruct.go}
+
+If you run the above program, the output is going to be like this:
+
+\begin{lstlisting}[numbers=none]
+Value: {76.45 blue}
+Value with fields: {radius:76.45 color:blue}
+Type: main.Circle
+\end{lstlisting}
+
+As you can see from the output, in the first line \texttt{\%v} doesn't
+show the fields.  But in the second line, \texttt{\%+v} shows the
+struct fields.
+
+The \texttt{\%\#v} shows the representation of the value. Here is a
+modified version of above program to print few values of primitive
+type.
+
+\lstinputlisting[caption=Representation format]{code/io/formatting/defaultrepr.go}
+
+\begin{lstlisting}[numbers=none]
+Value: "Baiju", Type: string
+Value: 7, Type: int
+Value: 0x7, Type: uint
+Value: 7, Type: int8
+Value: true, Type: bool
+Value: 7, Type: float64
+Value: (1+6i), Type: complex128
+\end{lstlisting}
+
+As you can see in the representation, strings are written within
+quotes.  You can also see representation of few other primitive types.
+
+If you want a literal \texttt{\%} sign, use two \texttt{\%} signs next
+to each other.  Here is a code snippet:
+
+\begin{lstlisting}[numbers=none]
+        fmt.Println("Tom scored 92%% marks")
+\end{lstlisting}
+
+The default string representation of custom types can be changed by
+implementing \texttt{fmt.Stringer} interafce.  The interface
+definition is like this:
+
+\begin{lstlisting}[numbers=none]
+type Stringer interface {
+        String() string
+}
+\end{lstlisting}
+
+As per the \texttt{Stringer} interface, you need to create
+a \texttt{String} function which return a string.  Now the value
+printed will be whatever returned by that function.  Here is an
+example:
+
+\lstinputlisting[caption=Representation format]{code/io/custom/custom.go}
+
+The output of the above program will be like this:
+
+\begin{lstlisting}[numbers=none]
+30.46 degree Celsius
+30.46 degree Celsius
+30.46 degree Celsius
+main.Temperature{Value:30.456, Unit:"Celsius"}
+\end{lstlisting}
+
+\section{Using io Package}
+
+The \textit{io} package provides a set of interfaces and functions that allow
+developers to work with different types of input and output streams.
+
+TODO
+
+\section{Exercises}
+
+{\bfseries Exercise 1:} Write a program to read length and width of a
+rectangle through command line arguments and print the area.
+Use \texttt{-length} switch to get length and \texttt{-width} switch
+to get width.  Represent the rectangle using a struct.
+
+\textbf{Solution:}
+
+\lstinputlisting[numbers=none]{code/io/rectangle/rectangle.go}
+
+You can run the program like this:
+
+\begin{lstlisting}[numbers=none]
+$ go run rectangle.go -length 2.5 -width 3.4
+Area:  8.5
+\end{lstlisting}
+
+\subsection{Additional Exercises}
+
+Answers to these additional exercises are given in the Appendix A.
+
+\textbf{Problem 1:} Write a program to format a complex number as used in mathematics.  Example: \texttt{2 + 5i}
+
+Use a struct like this to define the complex number:
+
+\begin{lstlisting}[numbers=none]
+type Complex struct {
+    Real float64
+    Imaginary float64
+}
+\end{lstlisting}
+
+
+\section*{Summary}
+
+This chapter discussed about various input/output related
+functionalities in Go.  The chapter explained using command line
+arguments and interactive input.  The chaptered using \textit{flag}
+package.  It also explained about various string formatting
+techniques.
