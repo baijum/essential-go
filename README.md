@@ -8,5 +8,8 @@ I started writing this book with a [different title in 2015][book-blog]. This is
 the open source version of the same book. This work is licensed under
 [Creative Commons Attribution-ShareAlike 4.0 International][by-sa].
 
+You can download the PDF, MOBI, and EPUB formats of the [book from GitHub releases][download].
+
 [book-blog]: https://muthukadan.net/golang/book/a-comprehensive-guide-to-go-programming/
 [by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
+[download]: https://github.com/baijum/essential-go/releases/latest
