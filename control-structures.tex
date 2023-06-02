@@ -825,29 +825,7 @@ so it can be ignored.  To access the 1st command argument
 use \texttt{os.Args[1]}.  The values will be of type string which can
 be converted later.
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import (
-    "fmt"
-    "os"
-    "strconv"
-)
-
-func main() {
-    n := os.Args[1]
-    number, err := strconv.Atoi(n)
-    if err != nil {
-        fmt.Println("Not a number:", n)
-        os.Exit(1)
-    }
-    if number%2 == 0 {
-        fmt.Printf("%d is even\n", number)
-    } else {
-        fmt.Printf("%d is odd\n", number)
-    }
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/control-structures/exercise1/evenodd.go}
 
 \subsection{Additional Exercises}
 
