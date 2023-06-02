@@ -15,6 +15,10 @@ ebook: cover
 	ebook-convert essential-go-new.epub essential-go.epub --remove-first-image --cover cover/cover.png --authors "Baiju Muthukadan" --title "Essentials of Go Programming"
 	ebook-convert essential-go-new.epub essential-go.mobi --remove-first-image --cover cover/cover.png --authors "Baiju Muthukadan" --title "Essentials of Go Programming"
 
+.PHONY: html
+html: html
+	make4ht -x -d html essential-go.tex
+
 .PHONY: cover
 cover:
 	cd cover && xelatex cover.tex
