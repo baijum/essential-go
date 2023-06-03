@@ -321,10 +321,10 @@ constants:9:5: cannot assign to Pi
 
 \subsection{iota}
 
-The \textit{iota} keyword is used to define constants of incrementing
-numbers.  This simplify the defining many constants.  The values of
-iota is reset to \textit{0} whenever the reserved word const appears.
-The value increments by one after each line.
+The \textit{iota} keyword is used to define constants of incrementing numbers.
+This simplify defining many constants. The values of iota is reset to \textit{0}
+whenever the reserved word const appears. The value increments by one after each
+line.
 
 Consider this example:
 
@@ -361,7 +361,7 @@ is \texttt{1}, \texttt{EOF} is \texttt{2} and so on.
 
 The \texttt{iota} can be used with expressions.  The expression will
 be repeated.  Here is a good example taken from \textit{Effective
-Go}\footnote{\effgo}:
+Go} (\url{https://go.dev/doc/effective_go#constants}):
 
 \begin{lstlisting}[numbers=none]
 type ByteSize float64
@@ -385,6 +385,13 @@ but \textit{iota} increments the value.  This can be used to skip
 certain values.  As you can see in the above example, you can use an
 expression with \textit{iota}.
 
+Iota is reset to \texttt{0} whenever the \textit{const} keyword appears in the
+source code. This means that if you have multiple \textit{const} declarations in
+a single file, \textit{iota} will start at \texttt{0} for each declaration. Iota
+can only be used in \textit{const} declarations. It cannot be used in other
+types of declarations, such as \textit{var} declarations. The value
+of \textit{iota} is only available within the const declaration in which it is
+used. It cannot be used outside of that declaration.
 
 \subsubsection{Blank Identifier}
 
@@ -657,6 +664,185 @@ A variable of map can be declared like this:
 var fruits map[string]int
 \end{lstlisting}
 
+To make use that variable, it needs to be initialized using \textit{make}
+function.
+
+\begin{lstlisting}[numbers=none]
+fruits = make(map[string]int)
+\end{lstlisting}
+
+You can also initialize using the \textit{:=} syntax:
+
+\begin{lstlisting}[numbers=none]
+fruits := map[string]int{}
+\end{lstlisting}
+
+or with \textit{var} keywod:
+
+\begin{lstlisting}[numbers=none]
+var fruits = map[string]int{}
+\end{lstlisting}
+
+You can initialize map with values like this:
+
+\begin{lstlisting}[numbers=none]
+var fruits = map[string]int{
+      "Apple":  45,
+      "Mango":  24,
+      "Orange": 34,
+  }
+\end{lstlisting}
+
+After initializing, you can add new key value pairs like this:
+
+\begin{lstlisting}[numbers=none]
+fruits["Grape"] = 15
+\end{lstlisting}
+
+If you try to add values to maps without initializing, you will get an error
+like this:
+
+\begin{lstlisting}[numbers=none]
+panic: assignment to entry in nil map
+\end{lstlisting}
+
+Here is an example that's going to produce panic error:
+
+\begin{lstlisting}[numbers=none]
+package main
+
+func main() {
+	var m map[string]int
+	m["k"] = 7
+}
+\end{lstlisting}
+
+To access a value corresponding to a key, you can use this syntax:
+
+\begin{lstlisting}[numbers=none]
+mangoCount := fruits["Mango"]
+\end{lstlisting}
+
+Here is an example:
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import "fmt"
+
+func main() {
+  var fruits = map[string]int{
+      "Apple":  45,
+      "Mango":  24,
+      "Orange": 34,
+  }
+  fmt.Println(fruits["Apple"])
+}
+\end{lstlisting}
+
+If the key doesn't exist, a zero value will be returned. For example, in the
+below example, value of \texttt{pineappleCount} is going be \texttt{0}.
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import "fmt"
+
+func main() {
+  var fruits = map[string]int{
+      "Apple":  45,
+      "Mango":  24,
+      "Orange": 34,
+  }
+  pineappleCount := fruits["Pineapple"]
+  fmt.Println(pineappleCount)
+}
+\end{lstlisting}
+
+If you need to check if the key exist, the above syntax can be modified to
+return two values. The first one would be the actual value or zero value and the
+second one would be a boolean indicating if the key exists.
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import "fmt"
+
+func main() {
+  var fruits = map[string]int{
+      "Apple":  45,
+      "Mango":  24,
+      "Orange": 34,
+  }
+  _, ok := fruits["Pineapple"]
+  fmt.Println(ok)
+}
+\end{lstlisting}
+
+In the above program, the first returned value is ignored using a blank
+identifier. And the value of \texttt{ok} variable is \texttt{false}. Normally,
+you can use if condition to check if the key exists like this:
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import "fmt"
+
+func main() {
+	var fruits = map[string]int{
+		"Apple":  45,
+		"Mango":  24,
+		"Orange": 34,
+	}
+	if _, ok := fruits["Pineapple"]; ok {
+		fmt.Println("Key exists.")
+	} else {
+		fmt.Println("Key doesn't exist.")
+	}
+}
+\end{lstlisting}
+
+To see the number of key/value pairs, you can use the built-in \textit{len}
+function.
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import "fmt"
+
+func main() {
+	var fruits = map[string]int{
+		"Apple":  45,
+		"Mango":  24,
+		"Orange": 34,
+	}
+	fmt.Println(len(fruits))
+}
+\end{lstlisting}
+
+The above program should print \texttt{3} as the number of items in the map.
+
+To remove an item from the map, use the built-in \textit{delete} function.
+
+\begin{lstlisting}[numbers=none]
+package main
+
+import "fmt"
+
+func main() {
+	var fruits = map[string]int{
+		"Apple":  45,
+		"Mango":  24,
+		"Orange": 34,
+	}
+	delete(fruits, "Orange")
+	fmt.Println(len(fruits))
+}
+\end{lstlisting}
+
+The above program should print \texttt{2} as the number of items in the map
+after deleting one item.
+
 \section{Custom Data Types}
 
 Apart from the built-in data types, you can create your own custom
@@ -830,7 +1016,7 @@ name = new(string)
 
 In this one \textit{string} pointer variable is declared, but it's not
 allocated with zeror value.  It will have \textit{nil} value and so it
-cannot be dereferenced.  If you try to deference, without allocating
+cannot be dereferenced.  If you try to reference, without allocating
 using the \textit{new} function, you will get an error like this:
 
 \begin{lstlisting}[numbers=none]
@@ -853,27 +1039,7 @@ and define \texttt{Area} and \texttt{Perimeter}.
 
 \textbf{Solution:}
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import "fmt"
-
-type Circle float64
-
-func (r Circle) Area() float64 {
-    return float64(3.14 * r * r)
-}
-
-func (r Circle) Perimeter() float64 {
-    return float64(2 * 3.14 * r)
-}
-
-func main() {
-    c := Circle(4.0)
-    fmt.Println(c.Area())
-    fmt.Println(c.Perimeter())
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/data-structures/exercise1/circle.go}
 
 The custom \texttt{Circle} type is created using the
 built-in \texttt{float64} type.  It would be better if the circle is
@@ -886,23 +1052,32 @@ type Circle struct {
 }
 \end{lstlisting}
 
+\textbf{Exercise 2:} Create a slice of structs where the struct represents
+a person with name and age.
+
+\textbf{Solution:}
+
+\lstinputlisting[numbers=none]{code/data-structures/exercise2/persons.go}
+
 \subsection{Additional Exercises}
 
 Answers to these additional exercises are given in the Appendix A.
 
-\textbf{Problem 1:} A program to record temperatures
-in different locations and functionality to check whether its freezing
-or not.
+\textbf{Problem 1:} Write a program to record temperatures
+in different locations and functionality to check whether its freezing or not.
+
+\textbf{Problem 1:} Create a map of world nations and details.
+They key could be the country name and value could be an object with details
+including capital, currency, and population.
 
 \section*{Summary}
 
-This chapter introduced various data structures in Go.  These data
-structures will be helpful for organizing data.  The chapter started
-with a section about zero values.  Then constants explained in detail
-including \textit{iota} keyword for defining incrementing constants.
-Next, the chapter briefly explained about arrays. Then slices, the
-more useful data structure built on top of array is explained.  Then we
-looked at how to define custom data types using existing primitive
-types.  The struct was introduced which is more useful to create custom
-data types.  Pointer is also covered.  The next chapter will explain
-more about functions and methods.
+This chapter introduced various data structures in Go. These data structures
+will be helpful for organizing data. The chapter started with a section about
+zero values. Then constants explained in detail including \textit{iota} keyword
+for defining incrementing constants. Next, the chapter briefly explained about
+arrays. Then slices, the more useful data structure built on top of array is
+explained. Then we looked at how to define custom data types using existing
+primitive types. The struct was introduced which is more useful to create custom
+data types. Pointer is also covered. The next chapter will explain more about
+functions and methods.

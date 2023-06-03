@@ -839,6 +839,19 @@ var fruits = map[string]int{
   }
 \end{lstlisting}
 
+To access a value corresponding to a key, you can use this syntax:
+
+\begin{lstlisting}[numbers=none]
+mangoCount := fruits["Mango"]
+\end{lstlisting}
+
+If the key doesn't exist, a zero value will be returned. For example, in the
+below example, value of \texttt{pineappleCount} is going be \texttt{0}.
+
+\begin{lstlisting}[numbers=none]
+pineappleCount := fruits["Pineapple"]
+\end{lstlisting}
+
 More about maps will be explained in the data structure chapter.
 
 \section{Exercises}
