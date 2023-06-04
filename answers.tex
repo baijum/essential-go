@@ -96,37 +96,15 @@ in different locations and functionality to check whether its freezing or not.
 
 \textbf{Solution:}
 
-\begin{lstlisting}[numbers=none]
-package main
+\lstinputlisting[numbers=none]{code/answers/data-structures/temperature.go}
 
-import "fmt"
+\textbf{Problem 2:} Create a map of world nations and details. They key could
+be the country name and value could be an object with details including capital,
+currency, and population.
 
-type Temperature float64
+\textbf{Solution:}
 
-func (t Temperature) Freezing() bool {
-    if t < Temperature(0.0) {
-        return true
-    }
-    return false
-}
-
-func main() {
-
-    temperatures := map[string]Temperature{
-        "New York":  9.3,
-        "London":    13.5,
-        "New Delhi": 31.5,
-        "Montreal":  -9.0,
-    }
-
-    location := "New Delhi"
-    fmt.Println(location, temperatures[location].Freezing())
-
-    location = "Montreal"
-    fmt.Println(location, temperatures[location].Freezing())
-
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/data-structures/nations.go}
 
 \section*{Chapter 5: Functions \& Methods}
 
