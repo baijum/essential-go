@@ -379,6 +379,70 @@ go fmt github.com/baijum/introduction
 The command will format source files and write it back to the same
 file. Also it will list the files that is formatted.
 
+\section{Generating Code}
+
+If you have use case to generate Go code from a grammar, you may consider
+the \textit{go generate}. In fact, you can add any command to be run before
+compiling the code. You can add a special comment in your Go code with this
+syntax:
+
+\begin{lstlisting}[numbers=none]
+//go:generate command arguments
+\end{lstlisting}
+
+For example, if you want to use \textit{peg}
+(\url{https://github.com/pointlander/peg}), a Parsing Expression Grammar
+implementation, you can add the command like this:
+
+\begin{lstlisting}[numbers=none]
+//go:generate peg -output=parser.peg.go grammar.peg
+\end{lstlisting}
+
+When you build the program, the parser will be generated and will be part of the
+code that compiles.
+
+\section{Embedding Code}
+
+Go programs are normally distributed as a single binary. What if your program
+need some files to run. Go has a feature to embed files in the binary. You can
+embed any type of files, including text files and binary files. Some of the
+commonly embedded files are SQL, HTML, CSS, JavaScript, and images. You can
+embed individual files or diectories including nested sub-directories.
+
+You need to import the \textit{embed} package and use the \texttt{//go:embed}
+compiler directive to embed. Here is an example to embed an SQL file:
+
+\begin{lstlisting}[numbers=none]
+import _ "embed"
+
+//go:embed database-schema.sql
+var dbSchema string
+\end{lstlisting}
+
+As you can see, the "embed" package is imported with a blank identifier as it is
+not directly used in the code. This is required to initialize the package to
+embed files. The variable must be at package level and not at function or method
+level.
+
+The variable could be slice of bytes. This is useful for binary files. Here is
+an example:
+
+\begin{lstlisting}[numbers=none]
+import _ "embed"
+
+//go:embed logo.jpg
+var logo []byte
+\end{lstlisting}
+
+If you need an entire directory, you can use the \texttt{embed.FS} as the type:
+
+\begin{lstlisting}[numbers=none]
+import "embed"
+
+//go:embed static
+var content embed.FS
+\end{lstlisting}
+
 \section{Displaying Documentation}
 
 Go has good support for writing documentation along with source
