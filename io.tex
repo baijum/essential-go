@@ -145,8 +145,31 @@ Enter your name: Your name: Baiju
 
 As you can see from this program, the \textit{Printf} function writes to
 standard output and the \textit{Scanf} reads the standard input. Go can also
-writes to standard error output stream. This is explained in the section about
-the \textit{io} package later in this chapter.
+writes to standard error output stream.
+
+The \textit{io} package provides a set of interfaces and functions that allow
+developers to work with different types of input and output streams.
+
+Consider a use case to convert everything that comes to standard input to
+convert to upper case. This can be achieved by reading all standard input
+using \texttt{io.ReadAll} and converting to upper case.  Here is code:
+
+\lstinputlisting[caption=Convert standard input to upper case]{code/io/uppercase/uppercase.go}
+
+You can run this program similar to how you did with the previous program.
+
+You can use \textit{fmt.Fprintf} with \textit{os.Stderr} as the first argument
+to write to standard error.
+
+\begin{lstlisting}[numbers=none]
+fmt.Fprintf(os.Stderr, "This goes to standard error: %s", "OK")
+\end{lstlisting}
+
+Alternatively, you can call \textit{WriteString} method of \textit{os.Stderr}:
+
+\begin{lstlisting}[numbers=none]
+os.Stderr.WriteString("This goes to standard error")
+\end{lstlisting}
 
 \section{Using flag Package}
 
@@ -279,7 +302,7 @@ a \texttt{String} function which return a string.  Now the value
 printed will be whatever returned by that function.  Here is an
 example:
 
-\lstinputlisting[caption=Representation format]{code/io/custom/custom.go}
+\lstinputlisting[caption=Custom representation using Stringer]{code/io/custom/custom.go}
 
 The output of the above program will be like this:
 
@@ -289,13 +312,6 @@ The output of the above program will be like this:
 30.46 degree Celsius
 main.Temperature{Value:30.456, Unit:"Celsius"}
 \end{lstlisting}
-
-\section{Using io Package}
-
-The \textit{io} package provides a set of interfaces and functions that allow
-developers to work with different types of input and output streams.
-
-TODO
 
 \section{Exercises}
 
