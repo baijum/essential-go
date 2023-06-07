@@ -16,10 +16,6 @@ Creativce Commons `CC BY
 The type faces used for cover design includes Cabin, CabinCondensed, and
 DejaVuSans.
 
-The eBook is creeated from the LaTeX source using *tex4ebook* and
-*Calibre*. The *tex4ebook* is built on top of
-`tex4ht <http://www.tug.org/tex4ht>`__ system.
-
 I am grateful to all these free/open source projects. Thanks to all the
 contributors of these projects.
 
