@@ -6,6 +6,10 @@
 Essentials of Go Programming
 ============================
 
+:Author: `Baiju Muthukadan <https://muthukadan.net>`_
+:License: This book is licensed under
+  `Creative Commons Attribution-ShareAlike 4.0 International License <http://creativecommons.org/licenses/by-sa/4.0/>`_.
+
 .. image:: _static/cover-small.png
 
 .. toctree::
