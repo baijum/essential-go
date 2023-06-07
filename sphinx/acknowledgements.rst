@@ -1,0 +1,15 @@
+Acknowledgements
+================
+
+First and foremost, I thank my God for enabling me to write this book. I
+want to thank my wife, Nithya and our two sons, Aadidev & Aarav for
+their love, care, and support. I also want to thank my colleagues and
+friends for all the help.
+
+I have received much feedback from my colleagues, friends, and fellow Go
+community members, including Satish V.J., Nurali Virani, Preeti
+Chandrashekar, Parvathy V.R., Sunil Malagi, Bilal M.K, Iliyas Shirol,
+Pratik Shah, and Andrei Tudor Călin.
+
+The encouragement I received from the Go community is terrific. I am
+grateful for being part of the Go community.

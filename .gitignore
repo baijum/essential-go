@@ -325,3 +325,6 @@ tmp/
 
 # cover outputs
 cover/*.png
+
+# Sphinx
+sphinx/_build

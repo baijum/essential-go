@@ -26,3 +26,21 @@ cover:
 	cd cover && pdftoppm cover.pdf cover -png
 	cd cover && convert cover-1.png -gravity West -chop 1132x0 cover.png
 	convert cover/cover.png -resize "30%" cover/images/cover-small.png
+
+.PHONY: sphinx
+sphinx:
+	pandoc -o sphinx/introduction.rst introduction.tex
+	pandoc -o sphinx/quickstart.rst quickstart.tex
+	pandoc -o sphinx/control-structures.rst control-structures.tex
+	pandoc -o sphinx/data-structures.rst data-structures.tex
+	pandoc -o sphinx/functions.rst functions.tex
+	pandoc -o sphinx/interfaces.rst interfaces.tex
+	pandoc -o sphinx/concurrency.rst concurrency.tex
+	pandoc -o sphinx/packages.rst packages.tex
+	pandoc -o sphinx/io.rst io.tex
+	pandoc -o sphinx/testing.rst testing.tex
+	pandoc -o sphinx/tooling.rst tooling.tex
+	pandoc -o sphinx/answers.rst answers.tex
+	pandoc -o sphinx/acknowledgements.rst acknowledgements.tex
+	pandoc -o sphinx/colophon.rst colophon.tex
+	pandoc -o sphinx/preface.rst preface.tex
