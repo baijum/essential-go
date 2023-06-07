@@ -12,6 +12,14 @@ Essentials of Go Programming
 
 .. image:: _static/cover-small.png
 
+.. note::
+
+   I typeset this book in the TeX system for printing paperback editions. The
+   target `output format is PDF
+   <https://github.com/baijum/essential-go/releases/latest/download/essential-go.pdf>`_,
+   which I used to `self-publish through Amazon <https://www.amazon.com/dp/B0C52D41B7>`_. I created this HTML version for
+   the convenience of online reading.
+
 .. toctree::
    :numbered:
    :maxdepth: 2
