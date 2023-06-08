@@ -923,8 +923,8 @@ Answers to these additional exercises are given in the Appendix A.
 **Problem 1:** Write a program to print greetings based on time.
 Possible greetings are Good morning, Good afternoon and Good evening.
 
-**Problem 2:** Write a program to check if a given number is a multiple
-of 2, 3, or 5.
+**Problem 2:** Write a program to check if the given number is divisible
+by 2, 3, or 5.
 
 Summary
 -------

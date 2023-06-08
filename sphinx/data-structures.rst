@@ -1227,10 +1227,10 @@ Additional Exercises
 
 Answers to these additional exercises are given in the Appendix A.
 
-**Problem 1:** Write a program to record temperatures in different
-locations and functionality to check whether its freezing or not.
+**Problem 1:** Write a program to record temperatures for different
+locations and check if it’s freezing for a given place.
 
-**Problem 2:** Create a map of world nations and details. They key could
+**Problem 2:** Create a map of world nations and details. The key could
 be the country name and value could be an object with details including
 capital, currency, and population.
 

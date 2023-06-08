@@ -575,7 +575,7 @@ Additional Exercises
 Answers to these additional exercises are given in the Appendix A.
 
 **Problem 1:** Write a program with exported type and methods with
-documentation strings. Then print the documentation using ``go doc``
+documentation strings. Then print the documentation using the ``go doc``
 command.
 
 Summary

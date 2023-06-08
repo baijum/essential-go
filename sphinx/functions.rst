@@ -512,8 +512,8 @@ Additional Exercises
 
 Answers to these additional exercises are given in the Appendix A.
 
-**Problem 1:** Write a program with a function to calculate perimeter of
-a circle.
+**Problem 1:** Write a program with a function to calculate the
+perimeter of a circle.
 
 Summary
 -------

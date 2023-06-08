@@ -82,8 +82,8 @@ Possible greetings are Good morning, Good afternoon and Good evening.
    	}
    }
 
-**Problem 2:** Write a program to check if a given number is a multiple
-of 2, 3, or 5.
+**Problem 2:** Write a program to check if the given number is divisible
+by 2, 3, or 5.
 
 **Solution:**
 
@@ -112,8 +112,8 @@ of 2, 3, or 5.
 Chapter 4: Data Structures
 --------------------------
 
-**Problem 1:** Write a program to record temperatures in different
-locations and functionality to check whether its freezing or not.
+**Problem 1:** Write a program to record temperatures for different
+locations and check if it’s freezing for a given place.
 
 **Solution:**
 
@@ -149,7 +149,7 @@ locations and functionality to check whether its freezing or not.
 
    }
 
-**Problem 2:** Create a map of world nations and details. They key could
+**Problem 2:** Create a map of world nations and details. The key could
 be the country name and value could be an object with details including
 capital, currency, and population.
 
@@ -177,8 +177,8 @@ capital, currency, and population.
 Chapter 5: Functions & Methods
 ------------------------------
 
-**Problem 1:** Write a program with a function to calculate perimeter of
-a circle.
+**Problem 1:** Write a program with a function to calculate the
+perimeter of a circle.
 
 **Solution:**
 
@@ -410,8 +410,8 @@ Use a struct like this to define the complex number:
 Chapter 10: Testing
 -------------------
 
-**Problem 1:** Write a program to fail test and not continue with
-remaining tests.
+**Problem 1:** Write a test case program to fail the test and not
+continue with the remaining tests.
 
 **Solution:**
 
@@ -431,7 +431,7 @@ Chapter 11: Tooling
 -------------------
 
 **Problem 1:** Write a program with exported type and methods with
-documentation strings. Then print the documentation using ``go doc``
+documentation strings. Then print the documentation using the ``go doc``
 command.
 
 **Solution:**

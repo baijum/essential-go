@@ -351,8 +351,8 @@ Additional Exercises
 
 Answers to these additional exercises are given in the Appendix A.
 
-**Problem 1:** Write a program to fail test and not continue with
-remaining tests.
+**Problem 1:** Write a test case program to fail the test and not
+continue with the remaining tests.
 
 Summary
 -------
