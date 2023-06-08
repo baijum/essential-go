@@ -44,3 +44,4 @@ sphinx:
 	pandoc -o sphinx/acknowledgements.rst acknowledgements.tex
 	pandoc -o sphinx/colophon.rst colophon.tex
 	pandoc -o sphinx/preface.rst preface.tex
+	python3 scripts/code_block.py

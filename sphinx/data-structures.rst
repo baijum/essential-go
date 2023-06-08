@@ -961,7 +961,7 @@ example.
         fmt.Printf("Type: %T\n", a)
    }
 
-If you run the above program, the output will be like this::
+If you run the above program, the output will be like this:
 
 ::
 

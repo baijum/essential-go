@@ -31,7 +31,7 @@ your console/terminal.
    }
 
 You can open your command line program and run the above program like
-this::
+this:
 
 ::
 

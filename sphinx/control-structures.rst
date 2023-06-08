@@ -24,7 +24,7 @@ making decisions in the code using the If control structure. So, the If
 control structure will be always associated with a conditional
 expression which evaluates to a boolean value. If the boolean value is
 true, the statements within the block will be executed. Consider this
-example::
+example:
 
 ::
 
@@ -53,7 +53,7 @@ Sometimes you need to perform different set of action if the condition
 is not true. Go provides a variation of the ``if`` syntax with the
 ``else`` block for that.
 
-Consider this example with else block::
+Consider this example with else block:
 
 ::
 
