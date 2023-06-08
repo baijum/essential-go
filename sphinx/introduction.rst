@@ -341,4 +341,4 @@ briefly discussed about topics required to become a good programmer.
 
 Then we covered chapter organization in this book. And finally, I offer
 a few suggestions for how to use this book. The next chapter provides a
-quick start to programming with Go language.
+quick start to programming with the Go language.

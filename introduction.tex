@@ -218,92 +218,6 @@ GNU Bash or PowerShell. There are many online tutorials available in the
 Internet to learn shell commands. If you do not have any prior experience, you
 can spend few days (3 to 4 days) to learn command line usage.
 
-%% \section{Organizing Code}
-
-%% As mentioned above, you can place project source files under the
-%% workspace directory\index{organizing code}.  The workspace directory
-%% is by default pointing to \texttt{\$HOME/go}.  This can be changed
-%% using \texttt{\$GOPATH} environment variable.
-
-%% The workspace directory struture looks like this:
-
-%% \begin{lstlisting}[numbers=none]
-%% mygo
-%% |-- bin
-%% |-- pkg
-%% `-- src
-%% \end{lstlisting}
-
-%% Under the workspace directory there will be three sub-directories
-%% named \texttt{bin}, \texttt{pkg} and \texttt{src}.  The \texttt{bin}
-%% directory contains executable binaries created from Go programs.  We
-%% have already added this \texttt{\$GOPATH/bin} directory
-%% to \texttt{PATH} environment variable.  This will help us to execute
-%% programs directly without specifying the full path.  The \texttt{src}
-%% directory contains the source files.  The \texttt{pkg} directory
-%% contains package objects used by go tool to create the final
-%% executable binaries.
-
-%% Under the \texttt{src} directory, you can place your code anywhere.
-%% However there are certain conventions followed to organize the files.
-
-%% If you are using GitHub for hosting code, you can create a directory
-%% structure under workspace like this:
-
-%% \begin{lstlisting}[numbers=none]
-%% src/github.com/<username>/<projectname>
-%% \end{lstlisting}
-
-%% Replace the \texttt{<username>} with your GitHub username or
-%% organization name and \texttt{<projectname>} with the name of the
-%% project.
-
-%% For example, if the username is \texttt{baijum} and project
-%% is \texttt{introduction}, the layout will be like this:
-
-%% \begin{lstlisting}[numbers=none]
-%% mygo
-%% |-- bin
-%% |-- pkg
-%% `-- src
-%%     `-- github.com
-%%        `-- baijum
-%%            `-- introduction
-%% \end{lstlisting}
-
-%% The example hello world program we introduced earlier has been pushed
-%% into GitHub here: \url{https://github.com/baijum/introduction}.  You
-%% can get this code into the workspace using \texttt{go get} command.
-%% The \texttt{go get} command download source repositories and places
-%% them in the workspace.  Since the \texttt{\$PATH} has been updated to
-%% include \texttt{\$HOME/go/bin} and \texttt{go get} place a binary
-%% under that, you can execute the program using \texttt{introduction}
-%% command:
-
-%% \begin{lstlisting}[numbers=none]
-%% $ go get github.com/baijum/introduction
-%% $ introduction
-%% Hello, World!
-%% \end{lstlisting}
-
-%% Alternatively, you can run this program from the source
-%% location (\texttt{\$HOME/go/src/github.com/baijum/introduction}).
-
-%% \begin{lstlisting}[numbers=none]
-%% $ cd $HOME/go/src/github.com/baijum/introduction
-%% $ go run hello.go
-%% Hello, World!
-%% \end{lstlisting}
-
-%% We will walk through the hello world example in the next chapter.
-
-%% The \texttt{go} command line program is called Go tool\index{tool}
-%% (\url{https://pkg.go.dev/cmd/go}).  The Go tool understands the layout
-%% of a workspace (\texttt{\$GOPATH} directory).  The Go tool has many
-%% sub-commands.  To see all commands use \texttt{go help} and to see
-%% help of a particular command use \texttt{go help <command>}.  There is
-%% a chapter dedicated about Go tooling later in this book.
-
 \section{Organization of Chapters}
 
 The rest of the book is organized into the following chapters. You can read the
@@ -391,8 +305,7 @@ onward can be read in any order.
 
 This chapter provided an introduction to Go programming language. We briefly
 discussed about topics required to become a good programmer.
-%% Later we covered source code organization in the workspace.
 
 Then we covered chapter organization in this book. And finally, I offer a few
 suggestions for how to use this book. The next chapter provides a quick start to
-programming with Go language.
+programming with the Go language.
