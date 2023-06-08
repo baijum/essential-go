@@ -37,7 +37,8 @@ def update_code_block():
             if line.startswith(".. code:: go"):
                 new_line = line.replace(".. code:: go", ".. code-block:: go")
                 new_rst_lines.append(new_line)
-                new_rst_lines.append("   :linenos:\n")
+                if rst_file != "sphinx/answers.rst":
+                    new_rst_lines.append("   :linenos:\n")
                 continue
             found_figure = False
             if rst_file in images_map:

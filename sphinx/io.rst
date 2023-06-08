@@ -33,20 +33,21 @@ files and devices. You can access all the command line arguments using
 the ``Args`` array/slice attribute available in ``os`` package. Here is
 an example:
 
-::
+.. code-block:: go
+   :linenos:
 
    package main
 
    import (
-       "fmt"
-       "os"
+   	"fmt"
+   	"os"
    )
 
    func main() {
-       fmt.Println(os.Args)
-       fmt.Println(os.Args[0])
-       fmt.Println(os.Args[1])
-       fmt.Println(os.Args[2])
+   	fmt.Println(os.Args)
+   	fmt.Println(os.Args[0])
+   	fmt.Println(os.Args[1])
+   	fmt.Println(os.Args[2])
    }
 
 You can run this program with minimum two additional arguments:

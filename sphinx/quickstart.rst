@@ -4,12 +4,13 @@ Quick Start
    *Software engineering is what happens to programming when you add
    time, and other programmers.* – Russ Cox
 
-This chapter walks through few basic topics in Go. You should be able to
-write simple programs using Go after reading and practicing the examples
-given in this chapter. The next 3 sections revisit the hello world
-program introduced in the last chapter. Later we will move on to few
-basic topics in Go. We will learn about data types, variables, comments,
-For loop, range clause, If, functions, operators, slices and maps.
+This chapter walks through a few basic topics in Go. You should be able
+to write simple programs using Go after reading and practicing the
+examples given in this chapter. The next 3 sections revisit the hello
+world program introduced in the last chapter. Later we will move on to a
+few basic topics in Go. We will learn about data types, variables,
+comments, For loops, range clauses, If, functions, operators, slices,
+and maps.
 
 Hello World!
 ------------
@@ -178,11 +179,11 @@ however it is possible to add more than one, if necessary. A Go module
 is a collection of Go packages that are released together.
 
 To understand the code organization, you also need to understand about
-Go module. A file named go.mod there declares the module path: the
-import path prefix for all packages within the module. The module
-contains the packages in the directory containing its go.mod file as
-well as subdirectories of that directory, up to the next subdirectory
-containing another go.mod file (if any).
+Go module. A file named *go.mod* declares the module path: the import
+path prefix for all packages within the module. The module contains the
+packages in the directory containing its go.mod file as well as
+subdirectories of that directory, up to the next subdirectory containing
+another go.mod file (if any).
 
 Note that you don’t need to publish your code to a remote repository
 before you can build it. A module can be defined locally without

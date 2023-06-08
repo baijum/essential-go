@@ -33,21 +33,7 @@ Sometimes output will be other files and devices.  You can access all
 the command line arguments using the \texttt{Args} array/slice
 attribute available in \texttt{os} package.  Here is an example:
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import (
-    "fmt"
-    "os"
-)
-
-func main() {
-    fmt.Println(os.Args)
-    fmt.Println(os.Args[0])
-    fmt.Println(os.Args[1])
-    fmt.Println(os.Args[2])
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/io/commandline.go}
 
 You can run this program with minimum two additional arguments:
 

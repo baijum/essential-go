@@ -9,26 +9,26 @@ given string is capital letters in English (A,B,C,D etc).
 
 **Solution:**
 
-::
+.. code-block:: go
 
    package main
 
    import "fmt"
 
    func StartsCapital(s string) bool {
-       for _, v := range "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
-           if string(s[0]) == string(v) {
-               return true
-           }
-       }
-       return false
+   	for _, v := range "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
+   		if string(s[0]) == string(v) {
+   			return true
+   		}
+   	}
+   	return false
    }
 
    func main() {
-       h := StartsCapital("Hello")
-       fmt.Println(h)
-       w := StartsCapital("world")
-       fmt.Println(w)
+   	h := StartsCapital("Hello")
+   	fmt.Println(h)
+   	w := StartsCapital("world")
+   	fmt.Println(w)
    }
 
 **Problem 2:** Write a function to generate Fibonacci numbers below a
@@ -36,21 +36,21 @@ given value.
 
 **Solution:**
 
-::
+.. code-block:: go
 
    package main
 
    import "fmt"
 
    func Fib(n int) {
-       for i, j := 0, 1; i < n; i, j = i+j, i {
-           fmt.Println(i)
-       }
+   	for i, j := 0, 1; i < n; i, j = i+j, i {
+   		fmt.Println(i)
+   	}
 
    }
 
    func main() {
-       Fib(200)
+   	Fib(200)
    }
 
 Chapter 3: Control Structures
@@ -61,25 +61,25 @@ Possible greetings are Good morning, Good afternoon and Good evening.
 
 **Solution:**
 
-::
+.. code-block:: go
 
    package main
 
    import (
-       "fmt"
-       "time"
+   	"fmt"
+   	"time"
    )
 
    func main() {
-       t := time.Now()
-       switch {
-       case t.Hour() < 12:
-           fmt.Println("Good morning!")
-       case t.Hour() < 17:
-           fmt.Println("Good afternoon.")
-       default:
-           fmt.Println("Good evening.")
-       }
+   	t := time.Now()
+   	switch {
+   	case t.Hour() < 12:
+   		fmt.Println("Good morning!")
+   	case t.Hour() < 17:
+   		fmt.Println("Good afternoon.")
+   	default:
+   		fmt.Println("Good evening.")
+   	}
    }
 
 **Problem 2:** Write a program to check if a given number is a multiple
@@ -88,7 +88,6 @@ of 2, 3, or 5.
 **Solution:**
 
 .. code-block:: go
-   :linenos:
 
    package main
 
@@ -119,7 +118,6 @@ locations and functionality to check whether its freezing or not.
 **Solution:**
 
 .. code-block:: go
-   :linenos:
 
    package main
 
@@ -158,7 +156,6 @@ capital, currency, and population.
 **Solution:**
 
 .. code-block:: go
-   :linenos:
 
    package main
 
@@ -185,24 +182,24 @@ a circle.
 
 **Solution:**
 
-::
+.. code-block:: go
 
    package main
 
    import "fmt"
 
    type Circle struct {
-       Radius float64
+   	Radius float64
    }
 
    // Area return the area of a circle for the given radius
    func (c Circle) Area() float64 {
-       return 3.14 * c.Radius * c.Radius
+   	return 3.14 * c.Radius * c.Radius
    }
 
    func main() {
-       c := Circle{5.0}
-       fmt.Println(c.Area())
+   	c := Circle{5.0}
+   	fmt.Println(c.Area())
    }
 
 Chapter 6: Interfaces
@@ -219,29 +216,29 @@ data type. This is how the ``error`` interface is defined:
 
 **Solution:**
 
-::
+.. code-block:: go
 
    package main
 
    import "fmt"
 
    type UnauthorizedError struct {
-       UserID string
+   	UserID string
    }
 
    func (e UnauthorizedError) Error() string {
-       return "User not authorised: " + e.UserID
+   	return "User not authorised: " + e.UserID
    }
 
    func SomeAction() error {
-       return UnauthorizedError{"jack"}
+   	return UnauthorizedError{"jack"}
    }
 
    func main() {
-       err := SomeAction()
-       if err != nil {
-           fmt.Println(err)
-       }
+   	err := SomeAction()
+   	if err != nil {
+   		fmt.Println(err)
+   	}
    }
 
 Chapter 7: Concurrency
@@ -252,7 +249,7 @@ with a particular word.
 
 **Solution:**
 
-::
+.. code-block:: go
 
    package main
 
@@ -318,57 +315,57 @@ areas for circle, rectangle, and triangle.
 
 circle.go:
 
-::
+.. code-block:: go
 
    package shape
 
    // Circle represents a circle shape
    type Circle struct {
-       Radius float64
+   	Radius float64
    }
 
    // Area return the area of a circle
    func (c Circle) Area() float64 {
-       return 3.14 * c.Radius * c.Radius
+   	return 3.14 * c.Radius * c.Radius
    }
 
 rectangle.go:
 
-::
+.. code-block:: go
 
    package shape
 
    // Rectangle represents a rectangle shape
    type Rectangle struct {
-       Length float64
-       Width float64
+   	Length float64
+   	Width float64
    }
 
    // Area return the area of a rectangle
    func (r Rectangle) Area() float64 {
-       return r.Length * r.Width
+   	return r.Length * r.Width
    }
 
 triangle.go:
 
-::
+.. code-block:: go
 
    package shape
 
    // Triangle represents a rectangle shape
    type Triangle struct {
-       Breadth float64
-       Height float64
+   	Breadth float64
+   	Height float64
    }
 
    // Area return the area of a triangle
    func (t Triangle) Area() float64 {
-       return (t.Breadth * t.Height)/2
+   	return (t.Breadth * t.Height)/2
    }
 
 doc.go:
 
-::
+.. code-block:: go
 
    // Package shape provides areas for different shapes
    // This includes circle, rectangle, and triangle.
@@ -391,7 +388,6 @@ Use a struct like this to define the complex number:
 **Solution:**
 
 .. code-block:: go
-   :linenos:
 
    package main
 
@@ -420,7 +416,6 @@ remaining tests.
 **Solution:**
 
 .. code-block:: go
-   :linenos:
 
    package main
 
@@ -443,19 +438,19 @@ command.
 
 Here is the package definition for a circle object:
 
-::
+.. code-block:: go
 
    // Package defines a circle object
    package circle
 
    // Circle represents a circle shape
    type Circle struct {
-       Radius float64
+   	Radius float64
    }
 
    // Area return the area of a circle
    func (c Circle) Area() float64 {
-       return 3.14 * c.Radius * c.Radius
+   	return 3.14 * c.Radius * c.Radius
    }
 
 The docs can be accessed like this:

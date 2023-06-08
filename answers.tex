@@ -11,49 +11,14 @@ in a given string is capital letters in English (A,B,C,D etc).
 
 \textbf{Solution:}
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import "fmt"
-
-func StartsCapital(s string) bool {
-    for _, v := range "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
-        if string(s[0]) == string(v) {
-            return true
-        }
-    }
-    return false
-}
-
-func main() {
-    h := StartsCapital("Hello")
-    fmt.Println(h)
-    w := StartsCapital("world")
-    fmt.Println(w)
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/quick-start/capital.go}
 
 \textbf{Problem 2:} Write a function to generate Fibonacci numbers
 below a given value.
 
 \textbf{Solution:}
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import "fmt"
-
-func Fib(n int) {
-    for i, j := 0, 1; i < n; i, j = i+j, i {
-        fmt.Println(i)
-    }
-
-}
-
-func main() {
-    Fib(200)
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/quick-start/fibonacci.go}
 
 \section*{Chapter 3: Control Structures}
 
@@ -62,26 +27,7 @@ Possible greetings are Good morning, Good afternoon and Good evening.
 
 \textbf{Solution:}
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import (
-    "fmt"
-    "time"
-)
-
-func main() {
-    t := time.Now()
-    switch {
-    case t.Hour() < 12:
-        fmt.Println("Good morning!")
-    case t.Hour() < 17:
-        fmt.Println("Good afternoon.")
-    default:
-        fmt.Println("Good evening.")
-    }
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/control-structures/greetings.go}
 
 \textbf{Problem 2:} Write a program to check if a given number is a multiple of 2, 3, or 5.
 
@@ -112,25 +58,7 @@ currency, and population.
 
 \textbf{Solution:}
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import "fmt"
-
-type Circle struct {
-    Radius float64
-}
-
-// Area return the area of a circle for the given radius
-func (c Circle) Area() float64 {
-    return 3.14 * c.Radius * c.Radius
-}
-
-func main() {
-    c := Circle{5.0}
-    fmt.Println(c.Area())
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/functions/circle.go}
 
 \section*{Chapter 6: Interfaces}
 
@@ -144,30 +72,7 @@ type error interface {
 
 \textbf{Solution:}
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import "fmt"
-
-type UnauthorizedError struct {
-    UserID string
-}
-
-func (e UnauthorizedError) Error() string {
-    return "User not authorised: " + e.UserID
-}
-
-func SomeAction() error {
-    return UnauthorizedError{"jack"}
-}
-
-func main() {
-    err := SomeAction()
-    if err != nil {
-        fmt.Println(err)
-    }
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/interfaces/error.go}
 
 \section*{Chapter 7: Concurrency}
 
@@ -176,60 +81,7 @@ any entry with a particular word.
 
 \textbf{Solution:}
 
-\begin{lstlisting}[numbers=none]
-package main
-
-import (
-    "bufio"
-    "fmt"
-    "os"
-    "os/signal"
-    "strings"
-    "time"
-)
-
-func watch(word, fp string) error {
-
-    f, err := os.Open(fp)
-    if err != nil {
-        return err
-    }
-    r := bufio.NewReader(f)
-    defer f.Close()
-    for {
-        line, err := r.ReadBytes('\n')
-        if err != nil {
-            if err.Error() == "EOF" {
-                time.Sleep(2 * time.Second)
-                continue
-            }
-            fmt.Printf("Error: %s\n%v\n", line, err)
-        }
-        if strings.Contains(string(line), word) {
-            fmt.Printf("%s: Matched: %s\n", fp, line)
-        }
-        time.Sleep(2 * time.Second)
-    }
-}
-
-func main() {
-    word := os.Args[1]
-    files := []string{}
-    for _, f := range os.Args[2:len(os.Args)] {
-        files = append(files, f)
-        go watch(word, f)
-    }
-    sig := make(chan os.Signal, 1)
-    done := make(chan bool)
-    signal.Notify(sig, os.Interrupt)
-    go func() {
-        for _ = range sig {
-            done <- true
-        }
-    }()
-    <-done
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/concurrency/watchlog.go}
 
 \section*{Chapter 8: Packages}
 
@@ -241,60 +93,19 @@ functions to calculate areas for circle, rectangle, and triangle.
 
 circle.go:
 
-\begin{lstlisting}[numbers=none]
-package shape
-
-// Circle represents a circle shape
-type Circle struct {
-    Radius float64
-}
-
-// Area return the area of a circle
-func (c Circle) Area() float64 {
-    return 3.14 * c.Radius * c.Radius
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/packages/docs/circle.go}
 
 rectangle.go:
 
-\begin{lstlisting}[numbers=none]
-package shape
-
-// Rectangle represents a rectangle shape
-type Rectangle struct {
-    Length float64
-    Width float64
-}
-
-// Area return the area of a rectangle
-func (r Rectangle) Area() float64 {
-    return r.Length * r.Width
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/packages/docs/rectangle.go}
 
 triangle.go:
 
-\begin{lstlisting}[numbers=none]
-package shape
-
-// Triangle represents a rectangle shape
-type Triangle struct {
-    Breadth float64
-    Height float64
-}
-
-// Area return the area of a triangle
-func (t Triangle) Area() float64 {
-    return (t.Breadth * t.Height)/2
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/packages/docs/triangle.go}
 
 doc.go:
 
-\begin{lstlisting}[numbers=none]
-// Package shape provides areas for different shapes
-// This includes circle, rectangle, and triangle.
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/packages/docs/doc.go}
 
 \section*{Chapter 9: Input/Output}
 
@@ -331,20 +142,7 @@ using \texttt{go doc} command.
 
 Here is the package definition for a circle object:
 
-\begin{lstlisting}[numbers=none]
-// Package defines a circle object
-package circle
-
-// Circle represents a circle shape
-type Circle struct {
-    Radius float64
-}
-
-// Area return the area of a circle
-func (c Circle) Area() float64 {
-    return 3.14 * c.Radius * c.Radius
-}
-\end{lstlisting}
+\lstinputlisting[numbers=none]{code/answers/tooling/circle.go}
 
 The docs can be accessed like this:
 
