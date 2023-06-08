@@ -34,7 +34,7 @@ sphinx:
 	pandoc -o sphinx/control-structures.rst control-structures.tex
 	pandoc -o sphinx/data-structures.rst data-structures.tex
 	pandoc -o sphinx/functions.rst functions.tex
-	pandoc -o sphinx/interfaces.rst interfaces.tex
+	pandoc -o sphinx/objects.rst objects.tex
 	pandoc -o sphinx/concurrency.rst concurrency.tex
 	pandoc -o sphinx/packages.rst packages.tex
 	pandoc -o sphinx/io.rst io.tex

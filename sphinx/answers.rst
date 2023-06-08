@@ -174,8 +174,8 @@ capital, currency, and population.
    	fmt.Printf("%#v\n", countries)
    }
 
-Chapter 5: Functions & Methods
-------------------------------
+Chapter 5: Functions
+--------------------
 
 **Problem 1:** Write a program with a function to calculate the
 perimeter of a circle.
@@ -202,8 +202,8 @@ perimeter of a circle.
    	fmt.Println(c.Area())
    }
 
-Chapter 6: Interfaces
----------------------
+Chapter 6: Objects
+------------------
 
 **Problem 1:** Implement the built-in ``error`` interface for a custom
 data type. This is how the ``error`` interface is defined:

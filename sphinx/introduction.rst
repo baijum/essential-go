@@ -262,14 +262,14 @@ Chapter 5: Functions
      It also explained about variadic function and anonymous function.
      This chapter briefly also covered methods.
 
-Chapter 6: Interfaces
+Chapter 6: Objects
    | 
-   | This chapter explained the concept of interfaces and it’s uses.
-     Interface is an important concept in Go. Understanding interfaces
-     and properly using it makes the design robust. The chapter covered
-     empty interface. Also, briefly explained about pointer receiver and
-     its significance. Type assertions and type switches are also
-     explained.
+   | This chapter explained the concept of objects and interfaces and
+     it’s uses. Interface is an important concept in Go. Understanding
+     interfaces and properly using it makes the design robust. The
+     chapter covered empty interface. Also, briefly explained about
+     pointer receiver and its significance. Type assertions and type
+     switches are also explained.
 
 Chapter 7: Concurrency
    | 

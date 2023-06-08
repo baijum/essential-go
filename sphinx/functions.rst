@@ -1,5 +1,5 @@
-Functions & Methods
-===================
+Functions
+=========
 
    *Either mathematics is too big for the human mind, or the human mind
    is more than a machine.* — Kurt Gödel

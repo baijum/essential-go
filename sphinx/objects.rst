@@ -1,5 +1,5 @@
-Interfaces
-==========
+Objects
+=======
 
    *Program to an interface, not an implementation.* – Design Patterns
    by Gang of Four

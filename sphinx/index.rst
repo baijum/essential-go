@@ -30,7 +30,7 @@ Essentials of Go Programming
    control-structures
    data-structures
    functions
-   interfaces
+   objects
    concurrency
    packages
    io
