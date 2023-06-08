@@ -14,7 +14,7 @@ and optionally return values.
 
 Mathematical function would be a good analogy to understand the concept
 of functions in programming. We have seen this mathematical function in
-the Quickstart chapter.
+the Quick Start chapter.
 
 .. figure:: _static/function/formula.png
 

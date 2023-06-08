@@ -12,7 +12,7 @@ images_map = {
                 ],
             },
         "sphinx/functions.rst": {
-            "the Quickstart chapter.": [
+            "the Quick Start chapter.": [
                 "\n.. figure:: _static/function/formula.png\n",
                 "\n   Figure 5.1: Mathematical function for area of a circle\n",
                 ],

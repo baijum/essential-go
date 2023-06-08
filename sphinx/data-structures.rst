@@ -18,7 +18,7 @@ section is going to cover the primitive data types in Go.
 Zero Value
 ~~~~~~~~~~
 
-In the Quickstart chapter, you have learned various ways to declare a
+In the Quick Start chapter, you have learned various ways to declare a
 variable. When you declare a variable using the ``var`` statement
 without assigning a value, a default Zero value will be assigned for
 certain types. The Zero value is 0 for integers and floats, empty string
@@ -750,7 +750,7 @@ Maps
 ----
 
 Map is another important data structure in Go. We have briefly discussed
-about maps in the Quickstart chapter. As you know, map is an
+about maps in the Quick Start chapter. As you know, map is an
 implementation of hash table. The hash table is available in many very
 high level languages. The data in map is organized like key value pairs.
 

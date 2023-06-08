@@ -7,9 +7,9 @@ Control Structures
 Control structure determines how the code block will get executed for
 the given conditional expressions and parameters. Go provides a number
 of control structures including *for*, *if*, *switch*, *defer*, and
-*goto*. The quickstart chapter has already introduced control structures
-like *if* and *for*. This chapter will elaborate more about these topics
-and introduce some other related topics.
+*goto*. The Quick Start chapter has already introduced control
+structures like *if* and *for*. This chapter will elaborate more about
+these topics and introduce some other related topics.
 
 If
 --
@@ -106,7 +106,7 @@ argument.
 The ``os`` package has an attribute named ``Args``. The value of
 ``Args`` will be a slice of strings which contains all command line
 arguments passed while running the program. As we have learned from the
-Quickstart chapter, the values can be accessed using the index syntax.
+Quick Start chapter, the values can be accessed using the index syntax.
 The value at zero index will be the program name itself and the value at
 1st index the first argument and the value at 2nd index the second
 argument and so on. Since we are expecting only one argument, you can
@@ -214,7 +214,7 @@ For
 Basic For
 ~~~~~~~~~
 
-As we have seen briefly in the Quickstart, the For control structure
+As we have seen briefly in the Quick Start, the For control structure
 helps to create loops to repeat certain actions. The For control
 structure has few syntax variants.
 

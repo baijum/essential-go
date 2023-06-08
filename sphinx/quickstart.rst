@@ -1,5 +1,5 @@
-Quickstart
-==========
+Quick Start
+===========
 
    *Software engineering is what happens to programming when you add
    time, and other programmers.* – Russ Cox

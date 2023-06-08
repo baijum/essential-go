@@ -67,10 +67,9 @@ the necessary development environment.
 
 Text editors like Notepad, Notepad++, Gedit, and Vim can be used to
 write Go programs. The file that you create using the text file is
-called source file. The source file text is UTF-8 encoded. The Go
-compiler creates executable programs from the source file. You can run
-the executable program and get the output. So, you need a text editor
-and Go compiler installed in your system.
+called source file. The Go compiler creates executable programs from the
+source file. You can run the executable program and get the output. So,
+you need a text editor and Go compiler installed in your system.
 
 Depending on your operating system, follow the instruction given below
 to install the Go compiler. If you have difficulty following this, you
@@ -79,7 +78,8 @@ simple Go program and run it to validate the steps.
 
 You can use any text editor to write code. If you are not familiar with
 any text editor, consider using Vim. You can bootstrap Vim configuration
-for Go programming language from this webste: https://vim-bootstrap.com.
+for Go programming language from this website:
+https://vim-bootstrap.com.
 
 Using a source code management system like Git would be helpful. Keeping
 all your code under version control is highly recommended. You can use a
@@ -95,8 +95,8 @@ https://go.dev/dl
 
 The following commands will download and install Go compiler in a 64 bit
 GNU/Linux system. Before performing these steps, ensure Go compiler is
-not installed by running ``go`` command. If it prints *command not
-found...*, you can proceed with these steps.
+not installed by running ``go`` command. If it prints
+``command not found...``, you can proceed with these steps.
 
 These commands must be run as *root* or through *sudo*. If you do not
 know how to do it, you can get help from somebody else.
@@ -110,10 +110,11 @@ know how to do it, you can get help from somebody else.
 The first line ensure that current working directory is the ``/tmp``
 directory.
 
-You should change the version number in the second line and it’s going
-to download the 64 bit binary for GNU/Linux. The ``wget`` is a command
-line download manager. Alternatively you can use ``curl`` or any other
-download manager to download the tar ball.
+In the second line, replace the version number from the `Go
+downloads <https://go.dev/dl>`__ website. It’s going to download the 64
+bit binary for GNU/Linux. The ``wget`` is a command line download
+manager. Alternatively you can use ``curl`` or any other download
+manager to download the tar ball.
 
 The third line extract the downloaded tar ball into ``/usr/local/go``
 directory.
@@ -122,8 +123,8 @@ Now you can exit from the *root* user or stop using *sudo*.
 
 By default Go packages are installed under ``$HOME/go`` directory. This
 directory can be overridden using ``GOPATH`` environment variable. Any
-binaries installed using ``go install`` and ``go get`` commands goes
-into ``$GOPATH/bin`` directory.
+binaries installed using ``go install`` goes into ``$GOPATH/bin``
+directory.
 
 You can also update PATH environment variable to include new binary
 locations. Open the ``$HOME/.bashrc`` file in a text editor and enter
@@ -213,9 +214,9 @@ Using Git
 ~~~~~~~~~
 
 You should be comfortable using a source code management system. As
-mentioned above Git would be a good choice. You can create an account in
-GitHub and publish your example code there. If you do not have any prior
-experience, you can spend 2 to 3 days to learn Git.
+mentioned before, Git would be a good choice. You can create an account
+in GitHub and publish your example code there. If you do not have any
+prior experience, you can spend 2 to 3 days to learn Git.
 
 Using Command Line
 ~~~~~~~~~~~~~~~~~~
@@ -228,11 +229,11 @@ spend few days (3 to 4 days) to learn command line usage.
 Organization of Chapters
 ------------------------
 
-The rest of the book is organized into the following chapters. It is
-recommended to read the first six chapters in order – that’s until the
-chapter on interfaces. The remaining chapters can be read in any order.
+The rest of the book is organized into the following chapters. You can
+read the first six chapters in the given order. The remaining chapters
+can be read in any order.
 
-Chapter 2: Quickstart
+Chapter 2: Quick Start
    | 
    | This chapter provides a tutorial introduction to the language. It
      introduce few basic topics in Go programming language. The topics
@@ -324,13 +325,13 @@ get help from your friends to setup the environment. Use source code
 management system like Git to manage your code. You can write exercises
 and solve additional problems and keep it under version control.
 
-I would suggest not to copy & paste code from the E-book. Rather you can
-type every examples in this book. This will help you to familiarize the
+I would suggest not to copy & paste code from the book. Rather, you can
+type every example in this book. This will help you to familiarize the
 syntax much quickly.
 
 The first 6 chapters, that is from Introduction to Interfaces should be
 read in order. The remaining chapters are based on the first 6 chapters.
-So, the chapter 7 onward can be read in any order.
+And chapters 7 onward can be read in any order.
 
 Summary
 -------
@@ -338,6 +339,6 @@ Summary
 This chapter provided an introduction to Go programming language. We
 briefly discussed about topics required to become a good programmer.
 
-Then we covered chapter organization in this book. And finally few
-suggestions for readers are given. The next chapter provides a
-quickstart to programming with Go language.
+Then we covered chapter organization in this book. And finally, I offer
+a few suggestions for how to use this book. The next chapter provides a
+quick start to programming with Go language.

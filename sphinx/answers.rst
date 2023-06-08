@@ -1,8 +1,8 @@
 Appendix A: Answers
 ===================
 
-Chapter 2: Quickstart
----------------------
+Chapter 2: Quick Start
+----------------------
 
 **Problem 1:** Write a function to check whether the first letter in a
 given string is capital letters in English (A,B,C,D etc).
