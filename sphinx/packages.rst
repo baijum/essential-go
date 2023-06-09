@@ -1,7 +1,7 @@
 Packages
 ========
 
-   *A little copying is better than a little dependency.* — Go Proverb
+   *A little copying is better than a little dependency.* — Go Proverbs
 
 Go encourages and provides mechanisms for code reusability. Packages are
 one of the building block for code reusability. We have seen other code
@@ -398,8 +398,11 @@ areas for circle, rectangle, and triangle.
 Summary
 -------
 
-This chapter explained the Go package in detail. Package is one of
-building block of a reusable Go program. This chapter explained about
-creating packages, documenting packages, and finally about publish
-packages. The chapter also covered modules and its usage. Finally it
-explained moving types across packages during refactoring.
+This chapter explained packages in Go programming. Packages are a
+collection of related Go source files that are compiled together to form
+a single unit. They are one of the building blocks of a reusable Go
+program. This chapter explained how to create packages, document
+packages, and publish packages. It also covered modules and their usage.
+Finally, it explained how to move types across packages during
+refactoring. By understanding packages, you can write more modular and
+reusable Go programs.

@@ -555,10 +555,10 @@ Use a struct like this to define the complex number:
 Summary
 -------
 
-This chapter discussed about various input/output related
-functionalities in Go. The chapter explained using command line
-arguments and interactive input. The chaptered using *flag* package. It
-also explained about various string formatting techniques.
+This chapter discussed the input/output (I/O) features of the Go
+programming language. It explained how to use command line arguments and
+interactive input, and how to use the *flag* package to parse command
+line arguments. It also explained various string formatting techniques.
 
 .. [1]
    https://en.wikipedia.org/wiki/File_descriptor

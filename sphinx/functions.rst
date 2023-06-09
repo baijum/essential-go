@@ -518,8 +518,25 @@ perimeter of a circle.
 Summary
 -------
 
-This chapter explained all the major aspects of functions in Go. The
-chapter covered how to send input parameters and return values. It also
-explained about variadic function and anonymous function. This chapter
-briefly also covered methods. The next chapter will cover interfaces.
-Along with that, we will learn more about methods.
+This chapter explained the main features of functions in Go. It covered
+how to send input parameters and receive return values. It also
+explained about variadic functions and anonymous functions. This chapter
+briefly covered methods. The next chapter will cover interfaces. Along
+with that, we will learn more about methods.
+
+Brief summary of key concepts introduced in this chapter:
+
+-  Functions are used to group together related code and make it easier
+   to read and understand. They can also be used to reuse code in
+   different parts of a program.
+
+-  Input parameters are values that are passed into a function when it
+   is called. Return values are values that are returned by a function
+   when it finishes executing.
+
+-  Variadic functions are functions that can accept a variable number of
+   input parameters. Anonymous functions are functions that are defined
+   without a name.
+
+-  Methods are functions that are associated with a specific type. They
+   can be used to operate on objects of that type.

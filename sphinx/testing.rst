@@ -357,6 +357,7 @@ continue with the remaining tests.
 Summary
 -------
 
-This chapter explained writing tests using the *testing* package. It
-covered how to mark a test as a failure, logging, skipping, and parallel
-running. Also, it briefly touched upon sub-tests.
+This chapter explained how to write tests using the *testing* package.
+It covered how to mark a test as a failure, how to log messages, how to
+skip tests, and how to run tests in parallel. It also briefly mentioned
+sub-tests.

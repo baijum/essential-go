@@ -373,8 +373,27 @@ data type. This is how the ``error`` interface is defined:
 Summary
 -------
 
-This chapter explained the concept of interfaces and it’s uses.
-Interface is an important concept in Go. Understanding interfaces and
-properly using it makes the design robust. The chapter covered empty
-interface. Also, briefly explained about pointer receiver and its
-significance. Type assertions and type switches are also explained.
+This chapter explained the concept of interfaces and their uses.
+Interfaces are an important concept in Go. Understanding interfaces and
+using them properly makes the design robust. The chapter covered the
+empty interface, pointer receivers, and type assertions and type
+switches.
+
+Brief summary of key concepts introduced in this chapter:
+
+-  An interface is a set of methods that a type must implement. A type
+   that implements an interface can be used anywhere an interface is
+   expected. This allows for greater flexibility and reusability in Go
+   code.
+
+-  A pointer receiver is a method that takes a pointer to a struct as
+   its receiver. Pointer receivers are often used to modify the state of
+   a struct.
+
+-  A type assertion is a way of checking the type of a value at runtime.
+   Type assertions can be used to ensure that a value is of a certain
+   type before using it.
+
+-  A type switch is a control flow statement that allows for different
+   code to be executed based on the type of a value. Type switches can
+   be used to make code more robust and easier to read.

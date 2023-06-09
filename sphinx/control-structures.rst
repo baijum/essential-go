@@ -929,9 +929,27 @@ by 2, 3, or 5.
 Summary
 -------
 
-This chapter introduced control structures available in Go except those
-related to concurrency. The *if* control structure was covered first,
-then *for* loop explained. The *switch* cases was discussed later. Then
-*defer* statement and finally *goto* control structure was explained in
-detail. This chapter also briefly explained about accessing command line
-arguments from the program.
+This chapter explained the control structures available in Go, except
+those related to concurrency. The *if* control structure was covered
+first, then the *for* loop was explained. The *switch* cases were
+discussed later. Then the *defer* statement and finally, the *goto*
+control structure was explained in detail. This chapter also briefly
+explained accessing command line arguments from the program.
+
+Control structures are used to control the flow of execution in a
+program. They allow you to execute code conditionally, repeatedly, or in
+a specific order.
+
+-  The *if* control structure is used to execute code if a condition is
+   met.
+
+-  The *for* loop is used to execute code repeatedly until a condition
+   is met.
+
+-  The *switch* statement is used to execute code based on the value of
+   a variable.
+
+-  The *defer* statement is used to execute code after the current
+   function has finished executing.
+
+-  The *goto* statement is used to jump to a specific label in the code.

@@ -433,11 +433,12 @@ with a particular word.
 Summary
 -------
 
-This chapter explained concurrency features of Go. Based on your
-problem, you can choose channels or other synchronization techniques.
-This chapter covered goroutines and channels usage. It covered
-Waitgroups, Select statement. It also covered buffered channels, channel
-direction. The chapter also touched upon *sync.Once* function usage.
+This chapter explained how to use Go’s concurrency features. You can
+choose channels or other synchronization techniques, depending on your
+problem. This chapter covered goroutines and how to use channels. It
+also covered Waitgroups and Select statements. Additionally, it covered
+buffered channels and channel direction. Finally, the chapter briefly
+discussed the *sync.Once* function.
 
 .. [1]
    http://usingcsp.com
