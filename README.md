@@ -16,6 +16,6 @@ The book is also available for purchase from [Amazon][amazon].
 
 [book-blog]: https://muthukadan.net/golang/book/a-comprehensive-guide-to-go-programming/
 [by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
-[download]: https://github.com/baijum/essential-go/releases/latest
+[download]: https://github.com/baijum/essential-go/releases/latest/download/essential-go.pdf
 [online]: https://essentials-of-go-programming.readthedocs.io
 [amazon]: https://www.amazon.com/dp/B0C52D41B7
