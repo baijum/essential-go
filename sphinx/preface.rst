@@ -1,8 +1,8 @@
 Preface
 =======
 
-   *For surely there is an end; and thine expectation shall not be cut
-   off.* — Proverbs 23:18
+   *The only way to learn a new programming language is by writing
+   programs in it* — The C Programming Language, Kernighan & Ritchie
 
 If you are searching for a straightforward and robust programming
 language suitable for a variety of applications, Go is an excellent
