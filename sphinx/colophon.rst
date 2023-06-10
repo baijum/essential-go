@@ -30,8 +30,9 @@ Feedback
 About the Author
 ----------------
 
-Baiju Muthukadan is a software engineer based in Kerala, India. He
-started his software development career in 2002. Baiju has contributed
-to many free/open source software over the last so many years. He wrote
-his first book related to Python in 2007. Since 2013 he is working on
-various Go projects. Twitter: `@baijum <https://twitter.com/baijum>`__
+Baiju Muthukadan is a software engineer from Kerala, India. He began his
+software development career in 2002. Over the years, Baiju has
+contributed to many free and open source software projects. In 2007, he
+authored his first book on Python. Since 2013, he has been working on
+various Go projects. His Twitter handle is
+`@baijum <https://twitter.com/baijum>`__.
