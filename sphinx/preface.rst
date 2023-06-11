@@ -11,16 +11,24 @@ with significant contributions from the community. The project
 originated in 2007 through the efforts of Robert Griesemer, Rob Pike,
 and Ken Thompson. It was subsequently released as open-source software
 by Google in November 2009. Go has gained popularity among numerous
-organizations across diverse problem domains.
+organizations across diverse problem domains. Please note that the
+preferred term for the Go programming language when searching for
+information is Golang.
 
 This book serves as an introduction to the fundamentals of Go
 programming. Whether you are a novice programmer or someone seeking a
-refresher, I hope this book proves to be valuable. If you are entirely
-new to programming, I recommend exploring the Scratch programming
-language website at https://scratch.mit.edu. It provides helpful
-resources for those who have not yet delved deeply into programming.
-Once you have grasped the fundamental programming concepts, you can
-return to this book.
+refresher, I hope this book proves to be valuable. This book is
+specifically designed for practice rather than just reading. Note-taking
+is an important skill that can help you learn more effectively, remember
+information better, and stay organized. I recommend taking notes while
+reading and engaging in the exercises to enhance your learning
+experience.
+
+If you are entirely new to programming, I recommend exploring the
+Scratch programming language website at https://scratch.mit.edu. It
+provides helpful resources for those who have not yet delved deeply into
+programming. Once you have grasped the fundamental programming concepts,
+you can return to this book.
 
 My journey with programming began around 2003 when I started working
 with Python. Over the course of a decade, I gained extensive experience
