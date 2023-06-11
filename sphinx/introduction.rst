@@ -321,6 +321,10 @@ compiled your code into an executable format and then executed the
 program. The next chapter will provide more detailed explanations about
 this example and delve further into the concepts of Go programming.
 
+Note: The Go Playground website, available at https://go.dev/play,
+serves as a platform for publicly sharing Go source code. It also offers
+the convenience of running programs directly within the browser.
+
 Using Git
 ~~~~~~~~~
 

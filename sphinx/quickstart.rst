@@ -4,21 +4,21 @@ Quick Start
    *Software engineering is what happens to programming when you add
    time, and other programmers.* – Russ Cox
 
-This chapter walks through a few basic topics in Go. You should be able
-to write simple programs using Go after reading and practicing the
-examples given in this chapter. The next 3 sections revisit the hello
-world program introduced in the last chapter. Later we will move on to a
-few basic topics in Go. We will learn about data types, variables,
-comments, For loops, range clauses, If, functions, operators, slices,
-and maps.
+This chapter introduces a few basic concepts in Go. After reading and
+practicing the examples in this chapter, you should be able to write
+simple Go programs. The next three sections review the "hello world"
+program from the previous chapter. Later, we will discuss a few more
+basic concepts in Go. We will learn about data types, variables,
+comments, for loops, range clauses, if statements, functions, operators,
+slices, and maps.
 
 Hello World!
 ------------
 
-Here is the hello world program introduced in the previous chapter. You
-can type the below code to your favorite text editor and save it as
-``hello.go``. This program will print a message, ``Hello, World!`` into
-your console/terminal.
+The following code is the "hello world" program from the previous
+chapter. You can type it into your favorite text editor and save it as
+``hello.go``. When you run the program, it will print the message
+``Hello, World!`` to your console or terminal.
 
 .. code-block:: go
    :linenos:
@@ -39,86 +39,92 @@ this:
    $ go run hello.go
    Hello, World!
 
-What you wrote in the ``hello.go`` is a structured document. The
-characters, words, spaces, line breaks and the punctuation characters
-used all are important. In fact, we followed the "syntax" of Go
-language. According to Wikipedia, the syntax of a computer language is
-the set of rules that defines the combinations of symbols that are
-considered to be a correctly structured document or fragment in that
-language.
+The text you wrote in the ``hello.go`` file is a structured document.
+The characters, words, spaces, line breaks, and punctuation marks used
+are all important. In fact, we followed the "syntax" of the Go
+programming language. According to Wikipedia, the syntax of a computer
+language is the set of rules that defines the combinations of symbols
+that are considered to be a correctly structured document or fragment in
+that language.
 
-The ``go run`` command is easy to use when developing programs. However,
-when you want to use this program in production environment, it is
-better to create executable binaries. The next section briefly explain
-the process of building executable binaries and running it.
+The ``go run`` command is convenient for developing programs. However,
+when you want to use the program in a production environment, it is
+better to create executable binaries. The next section will briefly
+explain how to build executable binaries and run them.
 
 Building and Running Programs
 -----------------------------
 
-You can use the ``go build`` command to compile the source and create
-executable binary programs. Later this executable can run directly or
-copied to other similar systems and run.
+The ``go build`` command can be used to compile source code into
+executable binary programs. These executable programs can be run
+directly or copied to other similar systems and run there.
 
-To compile (build) the hello world program, you can use this command:
+To compile (build) the hello world program, you can use the following
+command:
 
 ::
 
    $ go build hello.go
 
-This command produce an an executable file named ``hello`` in the
-current directory where you run the ``build`` command. And you can run
-this program in a GNU/Linux system as given below. The ``./`` in the
-beginning of the command ensure that you are running the ``hello``
-program located in the current directory:
+The ``go build`` command produces an executable file named ``hello`` in
+the current directory. This program can be run in a GNU/Linux system as
+follows. The ``./`` at the beginning of the command ensures that the
+``hello`` program is run from the current directory.
 
 ::
 
    $ ./hello
    Hello, World!
 
-In Windows, the executable file name ends with ``.exe``. This is how you
-can run the executable in Windows:
+In Windows, the executable file has the extension ``.exe``. Here is how
+you can run the executable file on a Windows system:
 
 ::
 
    C:\> hello.exe
    Hello, World!
 
-The ``go build`` command produce a binary file native to the operating
-system and the architecture of the CPU (i386, x86_64, arm etc.)
+The ``go build`` command produces a binary file that is native to the
+operating system and the architecture of the CPU. For example, if you
+are running Go on a Linux system with an x86_64 CPU, the Go build
+command will produce a binary file that can be run on Linux systems with
+x86_64 CPUs.
 
 The Example Explained
 ---------------------
 
-The first line is a clause defining the name of the package to which the
-file belongs. In the above hello world program, the ``hello.go`` file
-belongs to the the ``main`` package because of this clause at the
-beginning of the file:
+The first line of a Go program is a package clause. It defines the name
+of the package to which the file belongs. In the hello world program,
+the package clause is ``package main``. This means that the ``hello.go``
+file belongs to the ``main`` package.
 
 ::
 
    package main
 
-A package is a collection of Go source files. Package sources can be
-spread across multiple source files in a directory. If you want to
-produce an executable from your program, the name of package should be
-named as ``main``. Always use lowercase letters for the package names.
+A package is a collection of Go source files. The source files that
+belong to a package can be distributed across multiple files within a
+directory. When creating an executable program, the package that
+contains the main entry point should be named ``main``. It is
+recommended to use lowercase letters for package names.
 
-The second line has kept as blank for readability. The 3rd line is an
-``import`` declaration. The ``import`` declaration enable accessing
-external packages from the current package. In the above example,
-``fmt`` package is imported like this.
+The second line is intentionally left blank for improved readability.
+The third line is an import declaration, which allows access to external
+packages from the current package. In the provided example, the ``fmt``
+package is imported using this syntax.
 
 ::
 
    import "fmt"
 
 If a package is imported, it must be used somewhere in the source files.
-Otherwise, the compiler will produce an error. As you can see above, the
-import declaration starts with a word ``import`` followed by the name of
-the package in double quotes. If multiple packages need be imported, you
-can group the imports into a parenthesis (factored import) to reduce
-typing. Here is an example for factored import:
+Otherwise, the compiler will generate an error. As shown in the example
+above, an import declaration begins with the keyword ``import`` followed
+by the package name enclosed in double quotes. If multiple packages need
+to be imported, they can be grouped together using parentheses for a
+more concise and efficient import statement. This is commonly referred
+to as a factored import. This is Here is an example of a factored
+import:
 
 ::
 
@@ -127,81 +133,107 @@ typing. Here is an example for factored import:
        "math"
    )
 
-The name of the package for the built-in packages will be the name given
-within quotes of the import statement. If the import string is a path
-separated by slash, then name of the package will be the last part of
-the string. For example, "net/http" package name is ``http``. For other
-third party vendor packages, the name should be verified within the
-source code.
+The name of a built-in package is determined by the name specified
+within the quotes of the import statement. If the import string is a
+path separated by slashes, the name of the package will be the last part
+of the string. For instance, the package ``net/http`` has the name
+``http``. For third-party vendor packages, the package name should be
+verified within the source code.
 
-Names within the imported package can be referred using a dot operator
-as you can see above: ``fmt.Println``. A name is considered as exported
-if it begins with a capital letter. For example, the name ``Area`` is an
-exported name, but ``area`` is not exported.
+Names within an imported package can be accessed using the dot operator,
+as shown in the example above (``fmt.Println``). A name is considered
+exported if it starts with a capital letter. For instance, the name
+``Area`` is an exported name, while ``area`` is not exported.
 
-The https://go.dev/play site can be used to share Go source code
-publicly. You can also run the programs in the playground.
+After adding a blank line for readability, the fifth line begins with a
+function definition. In this case, it is a special function called
+``main``. A function is a set of instructions, or statements. A function
+definition starts with the ``func`` keyword, followed by the function
+name, parameters enclosed in parentheses, and finally the statements
+enclosed in curly brackets. The ``main`` function is a special function
+that does not take any arguments. The opening curly bracket should be on
+the same line as the function definition, and the statements should
+start on the next line. An executable program should have only one
+``main`` function.
 
-Again we have added one blank line after the import statement for
-readability. The fifth line starts with a function definition. In this
-case, this is a special function named ``main``. A function is a
-collection of instructions or more specifically statements. A function
-definition starts with ``func`` keyword followed by function name then
-arguments (parameters) for the function within parenthesis and finally
-statements within curly brackets. The ``main`` function is a special
-function which doesn’t accept any arguments. The starting curly bracket
-should be in the same line where function definition started and
-statements should start in the next line. There should be only one
-``main`` function for an executable program.
+Please note that, parameters are defined in the function declaration,
+while arguments are the values passed to the function when it is called.
+Parameters represent the expected inputs, while arguments are the actual
+values supplied for those inputs.
 
-Inside the main function, we are calling the ``Println`` function
-available inside the ``fmt`` package.
+Inside the main function, we are invoking the ``Println`` function that
+is provided by the ``fmt`` package. By using the dot operator (``.``),
+we can access and use functions from imported packages in our Go
+program. In this case, we are using the Println function from the fmt
+package to print a message to the console.
 
 ::
 
    fmt.Println("Hello, World!")
 
 The above function call is a complete statement in Go. The ``Println``
-function print the string into standard output of the terminal/console
-and also add a new line at the end of the string.
+function is responsible for printing the specified string to the
+standard output of the terminal or console. Additionally, it
+automatically appends a new line character at the end of the printed
+string.
 
 Organizing Code
 ---------------
 
-As mentioned above, a package is a collection of Go source files.
-Package sources can be spread across multiple source files in a
-directory. For a given package, all the variables, functions, types, and
-constants defined in one source file can be directly referrenced from
-other sources files.
+As mentioned earlier, a package in Go consists of multiple source files
+that are grouped together. These source files can be spread across
+different files within a directory. In Go, when multiple source files
+belong to the same package, the variables, functions, types, and
+constants defined in one source file can be directly referenced from
+other source files within the same package. This allows for easy sharing
+and access to code elements across different files within the package.
 
-A Git repository normally contain one module, located at the root,
-however it is possible to add more than one, if necessary. A Go module
-is a collection of Go packages that are released together.
+In a Git repository, it is typical to have one module located at the
+root. However, if needed, it is possible to include more than one module
+in the repository. A Go module, on the other hand, represents a
+collection of Go packages that are released and managed together. By
+organizing related packages within a module, it becomes easier to
+maintain and version them as a cohesive unit.
 
-To understand the code organization, you also need to understand about
-Go module. A file named *go.mod* declares the module path: the import
-path prefix for all packages within the module. The module contains the
-packages in the directory containing its go.mod file as well as
-subdirectories of that directory, up to the next subdirectory containing
-another go.mod file (if any).
+To comprehend the organization of code in Go, it is important to
+understand the concept of a Go module. In Go, a file called *go.mod*
+serves as a declaration for the module path, which is essentially the
+import path prefix for all packages within the module. The module itself
+encompasses not only the packages located directly in the directory
+where the *go.mod* file resides but also the packages within its
+subdirectories. This inclusion extends up to the next subdirectory that
+contains another *go.mod* file, if such a subdirectory exists within the
+module structure. This hierarchical approach helps define the scope and
+boundaries of a Go module and its associated packages.
 
-Note that you don’t need to publish your code to a remote repository
-before you can build it. A module can be defined locally without
-belonging to a repository. However, it’s a good habit to organize your
-code as if you will publish it someday.
+It is important to note that publishing your code to a remote repository
+is not a prerequisite for building it. You can define a module locally
+without associating it with a repository. However, it is considered good
+practice to organize your code in a way that aligns with the expectation
+of future publication. This entails maintaining a clean and
+well-structured codebase, adhering to best practices, and following
+standard conventions. By doing so, you will be better prepared to share
+and publish your code in the future, should the need arise.
 
-Each module’s path not only serves as an import path prefix for its
-packages, but also indicates where the go command should look to
-download it. For example, in order to download the module
-golang.org/x/tools, the go command would consult the repository
-indicated by https://golang.org/x/tools (described more here).
+Each module’s path in Go not only acts as a prefix for import paths of
+its packages but also specifies the location where the Go command should
+look to download the module. For instance, if you want to download the
+module ``golang.org/x/tools``, the Go command will consult the
+repository indicated by the URL https://golang.org/x/tools to fetch the
+module’s source code. This allows the Go command to retrieve and manage
+dependencies efficiently, ensuring that the correct versions of modules
+are obtained for your project.
 
-An import path is a string used to import a package. A package’s import
-path is its module path joined with its subdirectory within the module.
-For example, the module github.com/google/go-cmp contains a package in
-the directory cmp/. That package’s import path is
-github.com/google/go-cmp/cmp. Packages in the standard library do not
-have a module path prefix.
+An import path in Go is a string that is used to import a package. It
+consists of the module path joined with the subdirectory within the
+module where the package is located. For example, if the module
+``github.com/google/go-cmp`` contains a package in the directory
+``cmp/``, the import path for that package would be
+``github.com/google/go-cmp/cmp``.
+
+It’s important to note that packages in the Go standard library do not
+have a module path prefix, as they are part of the standard distribution
+and are accessible without specifying a module path.
 
 Basics
 ------
@@ -209,18 +241,18 @@ Basics
 Data Types
 ~~~~~~~~~~
 
-Data is unorganized facts that requires processing. In programming, the
-data is processed and organized to be useful. Data type provides a
-classification for the data. Date type is often simply called as *type*.
-Data type is one of the fundamental concept in any programming language.
-In most of the places in this book, we will say data as "value". More
-advanced data type is often called data structures.
+Data in programming refers to unorganized facts that need to be
+processed. To make data useful, it is processed and organized. In
+programming, data types are used to classify and define the nature of
+the data. Data types are often referred to simply as *types*.
+Understanding data types is a fundamental concept in any programming
+language. In this book, we will often refer to data as *values*. More
+complex data types are known as data structures.
 
-Consider an example, you want to work with names of toys in your
-programs. So, the values of the "names of toys" is the data. The data
-type that you can use to represent this data is called "string". If you
-are literally writing a string in Go, you can use a double quote around
-the names like this:
+Consider an example where you need to work with names of toys in your
+programs. The actual names of the toys are the data. To represent this
+data in Go, you can use the data type called *string*. When writing a
+string in Go, you can enclose the names within double quotes, like this:
 
 ::
 
@@ -228,9 +260,15 @@ the names like this:
    "Buzz Lightyear"
    "Jessie"
 
-In the hello world example, we used the string "Hello, World!"
-literally. Representation of a string value within source code is called
-string literal.
+In the hello world example, we used the string "Hello, World!" directly
+in the source code. This representation of a string value within the
+source code is called a string literal.
+
+Let’s consider another example. You want to mark whether the toy
+characters are male or female. This type of data is called Boolean data.
+Boolean data can only have two values: true or false. In this case, if
+the toy is male, the value will be true. Otherwise, the value will be
+false.
 
 Consider a related example, you want to mark whether the toys are male
 or not. This type of data is called Boolean data. So, if the toy is
@@ -242,15 +280,17 @@ male, the value will be ``true`` otherwise ``false`` as given below:
    {"Buzz Lightyear", true}
    {"Jessie",        false}
 
-Apart from *string*, and *bool*, Go has some other data types like
-*int*, *byte*, *float64* etc.
+In addition to *string* and *bool*, Go has several other data types such
+as *int*, *byte*, *float64*, and more. These data types allow you to
+work with different kinds of values and perform various operations on
+them.
 
 Variables
 ~~~~~~~~~
 
-Let’s go back to the hello world example, if you want to print the hello
-world message three times. You will be required to write that sentence
-three times as given below.
+Let’s return to the hello world example, where you want to print the
+"hello world" message three times. To achieve this, you can write the
+sentence three times, as shown below:
 
 .. code-block:: go
    :linenos:
@@ -265,12 +305,15 @@ three times as given below.
        fmt.Println("Hello, World!")
    }
 
-This is where the concept called *variable* becoming useful. Instead of
-using the literal string three times, you can use a short variable name
-to refer that string value. The variable is like an alias referring to
-the data. The name of the variable is considered as an identifier for
-the variable. Consider the example below where a variable named ``hw``
-is used to refer the "Hello, World!" string literal.
+By repeating the code three times, the "hello world" message will be
+printed three times.
+
+This is where the concept of variables becomes useful. Instead of using
+the literal string three times, you can assign the string value to a
+variable and then use that variable throughout your code. A variable
+acts as an alias or placeholder for the data it holds. The name of the
+variable is called its identifier. Here’s an example where a variable
+named ``hw`` is used to refer to the "Hello, World!" string literal:
 
 ::
 
@@ -285,17 +328,21 @@ is used to refer the "Hello, World!" string literal.
        fmt.Println(hw)
    }
 
-As you can see in the above example, we are using two special characters
-(``:=``) in between the variable name and the string literal. The colon
-character immediately followed by equal character is what you can use to
-define a short variable declaration in Go. However, there is a small
-catch here, the this short syntax for declaring variable will only work
-inside a function definition. The Go compiler identify the type of
-variable as string. This process of identifying data type automatically
-is called *type inference*.
+By assigning the string to the variable ``hw``, you can simply use
+``hw`` in place of the literal string, making your code more concise and
+easier to read.
 
-To assign a new value to the variable, you can use ``=`` as given in the
-below example:
+As you can see in the above example, we are using a special syntax
+(``:=``) between the variable name and the string literal. The colon
+character immediately followed by the equal character is used to define
+a short variable declaration in Go. However, there is a small caveat:
+this short syntax for declaring variables will only work inside a
+function definition. The Go compiler automatically identifies the type
+of the variable as a string based on the assigned value. This process of
+automatically determining the data type is called type inference.
+
+To assign a new value to the variable, you can use the ``=`` operator,
+as shown in the example below:
 
 ::
 
@@ -314,15 +361,15 @@ The output will look like this:
 
 ::
 
-   $ go run t4.go
+   $ go run hello.go
    Hello, World!
    Hi, New World!
 
-You can also explicitly define the type of variable instead of using the
-``:=`` syntax. To define the type of a variable, you can use the keyword
-``var`` followed by the name of the type. Later, to assign a string
-value for the ``hw`` variable, you can use ``=`` symbol instead of
-``:=``. So, the example we can rewrite like this.
+You can also explicitly define the type of a variable instead of using
+the ``:=`` syntax. To define the type of a variable, you can use the
+*var* keyword followed by the name of the variable and its type. Later,
+to assign a string value to the ``hw`` variable, you can use the ``=``
+symbol instead of ``:=``. Here’s how the example can be rewritten:
 
 ::
 
@@ -338,56 +385,154 @@ value for the ``hw`` variable, you can use ``=`` symbol instead of
        fmt.Println(hw)
    }
 
-The variable declared outside the function (package level) can access
-anywhere within the same package.
+This code will produce the same output as before.
 
-Variables declared at the function level must be used. Otherwise, the
-compiler is going to throw an error during compilation.
+Variables declared at the package level, also known as global variables,
+can be accessed from anywhere within the same package. They have a wider
+scope and can be used across multiple functions.
 
-The keyword *var* can used to declare more than one variable. You can
-also assign values along with ``var`` declaration. Unlike ``:=`` syntax
-give above, the variable declaration using *var* keyword can be at
-package level or inside function.
+On the other hand, variables declared at the function level, also known
+as local variables, have a limited scope and are only accessible within
+the function where they are declared. They are typically used for
+temporary storage or calculations within a specific function.
 
-Here are different ways how you can declare a variable:
+It is important to note that local variables must be used within the
+function where they are declared. If they are not used, the Go compiler
+will throw an error during compilation to indicate that the variable is
+defined but not used. However, if a global variable is declared but not
+used, there won’t be any compilation error. It is generally considered
+good practice to remove unused variables to keep the code clean and
+maintainable.
 
-::
+The keyword *var* can be used to declare multiple variables. You can
+also assign values during variable declaration. Unlike the ``:=`` syntax
+mentioned earlier, variable declarations using the *var* keyword can be
+done at the package level or inside a function.
 
-   var variable type
-   var variable type = value
-   var variable = value
-   var variable1, variable2 type = value1, value2
+Here are different ways in which you can declare a variable:
 
-If value is not given, a default "zero" value will be assigned. The zero
-value is: 0 for numeric types (int, int32 etc.), false for Boolean type,
-and empty string for strings.
-
-Here are a few examples.
-
-::
-
-   var name string
-   var age int = 24
-   var length = 36
-   var width, height int = 3, 6
-
-The same examples using short declaration look like this.
+1. Declaring a variable without assigning a value:
 
 ::
 
-   name := ""
-   age := 24
-   length := 36
-   width, height := 3, 6
+   var x int
 
-We used names like ``hw``, ``name``, ``age``, ``length`` etc. as
-identifiers for variables. An identifier should start with an alphabet
-or underscore, and it can contain digits afterwards. But there are
-certain reserved words called keywords which are not allowed to be used
-as identifiers. We have already seen some keywords like ``package``,
-``import``, ``func`` and ``var``. In the next few sections, we are going
-to see some more keywords like ``for``, ``if`` etc. These keywords has
-special meaning in the language.
+2. Declaring a variable and assigning a value:
+
+::
+
+   var y int = 10
+
+3. Declaring multiple variables of the same type:
+
+::
+
+   var a, b, c int
+
+4. Declaring and initializing variables of different types:
+
+::
+
+   var name string = "John"
+   var age int = 25
+   var isChild bool = false
+
+5. Declaring variables without specifying the type (type inference):
+
+::
+
+   var z = 3.14
+   var isActive = false
+
+6. Short variable declaration (only allowed within functions):
+
+::
+
+   x := 5
+   y := "Hello"
+
+Factored variable declaration refers to the technique of declaring
+multiple variables in a single statement. In Go, you can declare
+multiple variables of the same or different types using the *var*
+keyword in a factored declaration.
+
+Here’s an example of a factored variable declaration:
+
+::
+
+   var (
+       x = 10
+       y = "Hello"
+       z = true
+   )
+
+In the above code, three variables ‘x‘, ‘y‘, and ‘z‘ are declared and
+initialized with different types and values. The factored declaration
+allows you to declare multiple variables in a concise and readable
+manner.
+
+Note that the type of each variable is inferred from the assigned
+values. If you want to specify the type explicitly, you can do so for
+the first variable in the list, and the subsequent variables will have
+the same type.
+
+When declaring a variable in Go without assigning a value, it will be
+automatically assigned a default "zero" value. The zero value depends on
+the type of the variable and follows certain rules:
+
+-  For numeric types such as ‘int‘, ‘int32‘, ‘float64‘, etc., the zero
+   value is ‘0‘.
+
+-  For Boolean types, the zero value is ‘false‘.
+
+-  For strings, the zero value is an empty string ‘""`.
+
+Here’s an example that demonstrates the default zero values:
+
+::
+
+   var x int
+   var y float64
+   var z bool
+   var str string
+
+   fmt.Println(x)   // Output: 0
+   fmt.Println(y)   // Output: 0.0
+   fmt.Println(z)   // Output: false
+   fmt.Println(str) // Output: ""
+
+In the above code, the variables ‘x‘, ‘y‘, ‘z‘, and ‘str‘ are declared
+without assigning any value explicitly. As a result, they are
+automatically initialized with their respective zero values.
+
+Understanding the default zero values is important when working with
+variables that haven’t been explicitly initialized, as it helps avoid
+unexpected behavior and provides a starting point for further operations
+on those variables.
+
+In Go, when naming variables, we used identifiers such as ‘hw‘, ‘name‘,
+‘age‘, ‘length‘, and so on. An identifier in Go must adhere to certain
+rules:
+
+-  It should start with an alphabet (a-z or A-Z) or an underscore ``_``.
+
+-  After the first character, it can contain alphanumeric characters
+   (a-z, A-Z, 0-9) and underscores ``_``.
+
+-  It cannot be a reserved keyword, which are words that have special
+   meaning in the language.
+
+Some examples of reserved keywords we have already encountered include
+‘package‘, ‘import‘, ‘func‘, and ‘var‘. These keywords are predefined
+and serve specific purposes within the language.
+
+In the upcoming sections, we will explore more keywords such as ‘for‘,
+‘if‘, and others. It is important to note that these keywords cannot be
+used as identifiers for variables or other entities in your code.
+
+By following the rules for naming identifiers and avoiding reserved
+keywords, you can choose meaningful and descriptive names for your
+variables, making your code more readable and maintainable.
 
 Comments
 ~~~~~~~~
