@@ -117,6 +117,16 @@ GOGCCFLAGS="-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0
   -gno-record-gcc-switches"
 \end{lstlisting}
 
+You can temporarily set environment variable with \texttt{-w} option. This is an
+example to set \textit{GOPATH} in Windows system.
+
+\begin{lstlisting}[numbers=none]
+C:\> go env -w GOPATH=C:\mygo
+\end{lstlisting}
+
+Note: To set an environment variable permenantly in Windows, see the first
+chapter which explains about Windows installation.
+
 \subsection{List}
 
 The \textit{list} command provides meta information about packages.

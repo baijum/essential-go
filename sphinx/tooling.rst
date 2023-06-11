@@ -117,6 +117,16 @@ A typical output will look like this:
      -fdebug-prefix-map=/tmp/go-build1378738152=/tmp/go-build
      -gno-record-gcc-switches"
 
+You can temporarily set environment variable with ``-w`` option. This is
+an example to set *GOPATH* in Windows system.
+
+::
+
+   C:\> go env -w GOPATH=C:\mygo
+
+Note: To set an environment variable permenantly in Windows, see the
+first chapter which explains about Windows installation.
+
 List
 ~~~~
 

@@ -9,92 +9,104 @@ different context, or to review it.} --- Robert J. Chassell (An Introduction to
 Programming in Emacs Lisp)
 \end{quote}
 
-Computer programming skill helps you to solve many real-world problems.
-Programming is a process starting from the formulation of a computing problem to
-producing computer programs (software). Computer programming is part of a more
-extensive software development process.
+Having proficiency in computer programming empowers you to tackle a wide range
+of real-world challenges. Programming encompasses a process that begins with
+formulating a computing problem and culminates in the creation of computer
+programs or software. It is an integral part of a broader software development
+process.
 
-Programming involves analysis, design, and implementation of the software.
-Coding is the activity of implementing software. Sometimes coding involves more
-than one programming language and use of other technologies. Learning a
-programming language is a crucial part of the skill required for computer
-programming or software development in general.
+Programming entails analyzing, designing, and implementing software solutions.
+Coding is the active process of implementing the software. At times, coding
+involves utilizing multiple programming languages and incorporating other
+technologies. Acquiring proficiency in a programming language is an essential
+aspect of the skill set required for computer programming and software
+development as a whole.
 
-Using a programming language, we are preparing instructions for a computing
-machine. The computing machine includes a desktop computer, laptop, and mobile
-phone.
+By utilizing a programming language, we construct instructions for computing
+machines such as desktop computers, laptops, and mobile phones.
 
-There are many programming languages in use today with different feature sets.
-You should learn to pick the right programming language for the problem at hand.
-Some languages are more suitable for specific problems. This book provides an
-introduction to the Go programming language. Studying the Go programming should
-help you to make the right decision about programming language choice for your
-projects. If you have already decided to use Go, this book should give an
-excellent introduction to Go programming.
+Today, there exists a multitude of programming languages with diverse features.
+Choosing the appropriate programming language for a given problem is crucial.
+Certain languages are better suited for specific challenges. This book serves as
+an introduction to the Go programming language, offering valuable insights to
+aid in making informed language selection decisions for your projects. If you
+have already chosen to work with Go and seek to enhance your understanding, this
+book provides an excellent introduction to Go programming.
 
-Go, also commonly referred to as Golang, is a general-purpose programming
-language. Go was initially developed at Google in 2007 by Robert Griesemer, Rob
-Pike, and Ken Thompson. Go was publicly released as an open source software in
-November 2009 by Google.
+Go, an open-source language developed by Google with significant contributions
+from the community, has emerged as a popular choice. The project was initiated
+in 2007 by Robert Griesemer, Rob Pike, and Ken Thompson and was subsequently
+released as open-source software by Google in November 2009. Go has gained
+widespread adoption across diverse problem domains, being embraced by numerous
+organizations.
 
-Many other programming languages including C, Python, and occam has inspired the
-design of the Go programming language. Go programs can run on many operating
-systems including GNU/Linux, Windows and Mac OS X.
+The design of the Go programming language draws inspiration from various
+programming languages, such as C, Python, and occam. Go programs can run on many
+operating systems including GNU/Linux, Windows and Mac OS X.
 
-You require some preparations to learn Go programming. The next section explains
-the preparations required.
+Before diving into learning Go programming, there are certain preparations that
+you need to make. The following section will provide an explanation of these
+necessary preparations.
 
-This book is for beginners who want to learn to programme. The readers are
-expected to have a basic knowledge of computers. This book covers all the major
-topics in the Go programming language. Each chapter in this book covers one or
-two major topics. However many minor topics are introduced intermittently.
-
-This chapter provides an introduction to the language, preparations required to
-start practicing the exercises in this book, organizing code and walk through of
-remaining chapters. Few suggestions for learning Go using this book is given
-towards the end of this chapter.
+This book is tailored for beginners who are eager to learn programming. While no
+prior programming experience is required, readers are expected to have a basic
+understanding of computers. The book comprehensively covers all the major topics
+in the Go programming language, with each chapter focusing on one or two key
+areas. Additionally, minor topics are introduced throughout the book at
+appropriate intervals.
 
 \section{Preparations}
 
-Learning a natural language like English, Chinese, and Spanish is not just
-understanding the alphabet and grammar of that particular language. Similarly,
-there are many things that you need to learn to become a good programmer. Even
-though this book is going to focus on Go programming; now we are going to see
-some other topics that you need to learn. This section also explains the
-installation of the Go compiler and setting up the necessary development
-environment.
+Learning a programming language, such as Go, is akin to learning a natural
+language like English, Chinese, or Spanish. It involves more than just
+understanding the alphabet and grammar specific to that language. To become a
+proficient programmer, there are several other important concepts and skills
+that you need to acquire. While this book primarily focuses on Go programming,
+we will also explore other essential topics that are crucial for your overall
+programming journey.
 
-Text editors like Notepad, Notepad++, Gedit, and Vim can be used to write Go
-programs. The file that you create using the text file is called source file.
-The Go compiler creates executable programs from the source file. You can run
-the executable program and get the output. So, you need a text editor and Go
-compiler installed in your system.
+In this section, we will delve into the installation of the Go compiler and the
+setup of a suitable development environment. These steps are necessary to ensure
+that you have the necessary tools in place to begin your Go programming
+experience.
 
-Depending on your operating system, follow the instruction given below to
-install the Go compiler. If you have difficulty following this, you may get some
-help from your friends to do this step. Later we write a simple Go program and
-run it to validate the steps.
+Text editors such as \href{https://vim-bootstrap.com}{Vim} and VS Code are
+popular choices for writing Go programs. The files created using these text
+editors are referred to as source files. To transform these source files into
+executable programs, the Go compiler comes into play. Once the executable
+program is generated, you can run it and obtain the desired output. Therefore,
+it is essential to have a text editor and the Go compiler properly installed on
+your computer system.
 
-You can use any text editor to write code. If you are not familiar with any text
-editor, consider using Vim. You can bootstrap Vim configuration for Go
-programming language from this website: \url{https://vim-bootstrap.com}.
+Utilizing a source code management system, such as Git, is highly advantageous.
+It is strongly recommended to keep all your code under version control. There
+are several public code hosting services available, such as GitHub, Bitbucket,
+and GitLab, where you can store your code examples securely. By leveraging these
+platforms, you can easily manage your code, collaborate with others, and track
+changes effectively.
 
-Using a source code management system like Git would be helpful. Keeping all
-your code under version control is highly recommended. You can use a public code
-hosting service like GitHub, Bitbucket, and GitLab to store your examples.
+To install the Go compiler, please refer to the instructions specific to your
+operating system. If you encounter any difficulties during the installation
+process, don't hesitate to seek assistance from your friends or fellow
+programmers. Once the Go compiler is installed, you can proceed to write a
+simple Go program and run it to validate that the installation was successful.
 
 \subsection{Linux Installation}
 
-Go project provides binaries for major operating systems including GNU/Linux.
-You can find 64 bit binaries for GNU/Linux here: \url{https://go.dev/dl}
+The Go project offers binaries for various major operating systems, including
+GNU/Linux. If you are using a 64-bit GNU/Linux system, you can find the
+appropriate binaries for your platform by visiting the following link:
+\url{https://go.dev/dl}.
 
-The following commands will download and install\index{install!linux} Go
-compiler in a 64 bit GNU/Linux system. Before performing these steps, ensure Go
-compiler is not installed by running \texttt{go} command. If it
-prints \texttt{command not found...}, you can proceed with these steps.
+To download and install\index{install!linux} the Go compiler on a 64-bit
+GNU/Linux system, please follow the instructions below. Before proceeding, make
+sure that the Go compiler is not already installed by running the \texttt{go}
+command. If the command returns \texttt{command not found...}, you can proceed
+with the installation process.
 
-These commands must be run as \textit{root} or through \textit{sudo}. If you do
-not know how to do it, you can get help from somebody else.
+To execute these commands, you need \textit{root} access or you can use
+the \texttt{sudo} command. If you are unfamiliar with the process, you can seek
+assistance from someone who has the necessary knowledge.
 
 \begin{lstlisting}[numbers=none]
 cd /tmp
@@ -102,28 +114,30 @@ wget https://go.dev/dl/go1.x.linux-amd64.tar.gz
 tar -C /usr/local -zxvf go1.x.linux-amd64.tar.gz
 \end{lstlisting}
 
-The first line ensure that current working directory is the \texttt{/tmp}
+The first line ensures that the current working directory is set to
+the \texttt{/tmp} directory.
+
+In the second line, replace the version number with the appropriate version
+available on the \href{https://go.dev/dl}{Go downloads} website. This command
+will download the 64-bit binary for GNU/Linux using the \textit{wget} command,
+which is a command line download manager. Alternatively, you can
+use \textit{curl} or any other download manager of your choice to download the
+tar ball.
+
+The third line extracts the downloaded tar ball into the \texttt{/usr/local/go}
 directory.
 
-In the second line, replace the version number from
-the \href{https://go.dev/dl}{Go downloads} website. It's going to download the
-64 bit binary for GNU/Linux. The \texttt{wget} is a command line download
-manager. Alternatively you can use \texttt{curl} or any other download manager
-to download the tar ball.
+You can now exit the \textit{root} user or stop using \textit{sudo}, depending
+on the method you chose.
 
-The third line extract the downloaded tar ball into \texttt{/usr/local/go}
-directory.
+By default, Go packages are installed under the \texttt{\$HOME/go} directory.
+However, you can override this directory by setting the \texttt{GOPATH}
+environment variable. Any binaries installed using the \texttt{go install}
+command will be placed in the \texttt{\$GOPATH/bin} directory.
 
-Now you can exit from the \textit{root} user or stop using \textit{sudo}.
-
-By default Go packages are installed under \texttt{\$HOME/go} directory. This
-directory can be overridden using \texttt{GOPATH} environment variable. Any
-binaries installed using \texttt{go install} goes into \texttt{\$GOPATH/bin}
-directory.
-
-You can also update PATH environment variable to include new binary locations.
-Open the \texttt{\$HOME/.bashrc} file in a text editor and enter this lines at
-the bottom.
+To include the new binary locations in the \texttt{PATH} environment variable,
+you can open the \texttt{\$HOME/.bashrc} file in a text editor and add the
+following lines at the bottom:
 
 \begin{lstlisting}[numbers=none]
 export PATH=$HOME/go/bin:/usr/local/go/bin:$PATH
@@ -131,54 +145,112 @@ export PATH=$HOME/go/bin:/usr/local/go/bin:$PATH
 
 \subsection{Windows Installation}
 
-There are separate installers\index{install!windows} (MSI files) available for
-32 bit and 64 bit versions of Windows. The 32 bit version MSI file will be named
-like this: \textit{go1.x.y.windows-386.msi} (Replace \texttt{x.y} with the
-current version). Similarly for 64 bit version, the MSI file will be named like
-this: \textit{go1.x.y.windows-amd64.msi} (Replace \texttt{x.y} with the current
-version).
+For Windows users, there are separate installers\index{install!windows} (MSI
+files) available for both 32-bit and 64-bit versions of the Go programming
+language. The 32-bit version MSI file follows a naming convention similar to:
+\textit{go1.x.y.windows-386.msi}, where \textit{x.y} represents the current version number.
+Similarly, the 64-bit version MSI file is named
+as \textit{go1.x.y.windows-amd64.msi}. It is important to replace \textit{x.y}
+with the actual version number when downloading the appropriate installer file.
 
-You can download the installers (MSI files) from here:
-\url{https://go.dev/dl}
+You can download the installers (MSI files) for the Go programming language from
+the following website: \url{https://go.dev/dl}
 
-After downloading the installer file, you can open the MSI file by double
-clicking on that file. This should prompts few things about the installation of
-the Go compiler. The installer place the Go related files in
-the \texttt{C:\textbackslash{}Go} directory.
+This website provides the official distribution of Go, where you can find the
+installers for various operating systems, including Windows. Simply navigate to
+the provided link and select the appropriate MSI file for your Windows version
+(32-bit or 64-bit) to begin the download.
 
-The installer also put the \texttt{C:\textbackslash{}Go\textbackslash{}bin}
-directory in the system \texttt{PATH} environment variable. You may need to
-restart any open command prompts for the change to take effect.
+Once you have downloaded the Go installer file (MSI), you can proceed with the
+installation by following these steps:
 
-You also need to create a directory to download third party packages from
-github.com or similar sites. The directory can be created at
-\texttt{C:\textbackslash{}mygo} like this:
+\begin{enumerate}
+\item Locate the downloaded MSI file on your computer.
+\item Double-click on the MSI file to open it.
+\item The installer will prompt you with a setup wizard that guides you through the installation process.
+\item Follow the instructions provided by the setup wizard.
+\item During the installation, you will be asked to choose the destination directory for the Go compiler.
+\item By default, the installer will suggest the \texttt{C:\textbackslash Go} directory as the installation location.
+\item You can either accept the default directory or choose a different location on your system.
+\item Once you have selected the installation directory, click on the \textit{Install} or \textit{Next} button to proceed.
+\item The installer will then copy the necessary files to the chosen directory.
+\item After the installation is complete, you can close the installer.
+\end{enumerate}
+
+At this point, the Go compiler should be successfully installed on your system,
+with the relevant files located in the specified installation directory
+(e.g., \texttt{C:\textbackslash Go} by default).
+
+Additionally, the installer automatically adds the \texttt{C:\textbackslash
+Go\textbackslash bin} directory to the system PATH environment variable.
+However, in order for this change to take effect, you may need to restart any
+open command prompts or terminals on your system. This ensures that the Go
+executables can be accessed from any command prompt or terminal window without
+specifying the full path to the \texttt{bin} directory.
+
+To download third-party packages from websites like GitHub.com, it is
+recommended to create a directory where these packages will be stored. You can
+create a directory named \texttt{mygo} at the \texttt{C:\textbackslash}
+directory by following these steps:
+
+\begin{enumerate}
+\item Open a command prompt or terminal.
+\item Type the following command and press Enter:
+\end{enumerate}
 
 \begin{lstlisting}[numbers=none]
-C:\> mkdir C:\mygo
+mkdir C:\mygo
 \end{lstlisting}
 
-After this you can set \texttt{GOPATH} environment variable to point to this
-location.
+This will create a new directory named \texttt{mygo} directly under
+the \texttt{C:\textbackslash} directory. You can use this directory to store and
+manage the third-party packages you download for your Go projects.
+
+To set the \textit{GOPATH} environment variable to point to the location where
+you created the \texttt{mygo} directory (in this case,
+\texttt{C:\textbackslash mygo}), follow these steps:
+
+\begin{enumerate}
+    \item Right-click on the \textit{This PC} or \textit{My Computer} icon on your desktop and select \textit{Properties}.
+    \item In the System window, click on \textit{Advanced system settings} on the left-hand side.
+    \item In the System Properties window, click on the \textit{Environment Variables} button.
+    \item In the Environment Variables window, under the \textit{User variables} section, click on the \textit{New} button.
+    \item Enter \textit{GOPATH} as the variable name.
+    \item Enter the path to the \texttt{mygo} directory (in this case, \texttt{C:\textbackslash mygo}) as the variable value.
+    \item Click \textit{OK} to save the changes.
+\end{enumerate}
+
+Once you have set the GOPATH environment variable, it will point to the
+specified location, allowing Go to find and use the packages stored in the
+\texttt{mygo} directory.
+
+\subsection{Verifying Installation}
+
+To verify that you have successfully installed Go, run the following command:
 
 \begin{lstlisting}[numbers=none]
-C:\> go env -w GOPATH=C:\mygo
+go version
 \end{lstlisting}
 
-You can also append \texttt{C:\textbackslash{}mygo\textbackslash{}bin} into
-the \texttt{PATH} environment variable.
+This command will display the installed Go version if the installation was
+successful. The output should looks like somthing like this:
 
-If you do not know how to set environment variable, just do a Google search
-for: \textit{set windows environment variable}.
+\begin{lstlisting}[numbers=none]
+go version go1.20.4 linux/amd64
+\end{lstlisting}
+
+Please note that the version number and platform may vary depending on the Go
+version and the operating system you are using.
 
 \subsection{Hello World!}
 
-It's kind of a tradition in teaching programming to introduce a \textit{Hello
-World} program as the first program. This program normally prints
-a \textit{Hello World} to the console when running.
+It is a common tradition in programming education to introduce a \textit{Hello
+World} program as the first program. This program typically prints the message
+\texttt{Hello World} to the console when executed.
 
-Here is our hello world program. You can type the source code given below to
-your favorite text editor and save it as \texttt{hello.go}.
+
+Here is a simple \textit{Hello World} program. You can type the following source
+code into your favorite text editor and save it as \texttt{hello.go}:
 
 \begin{lstlisting}[caption=Hello World! (hello.go)]
 package main
@@ -190,122 +262,203 @@ func main() {
 }
 \end{lstlisting}
 
-Once you saved the above source code into a file. You can open your command line
-program (bash or cmd.exe) then change to the directory where you saved the
-program code and run the above program like this:
+Make sure to save the file with the extension \textit{.go} to indicate that it
+is a Go source code file.
+
+Once you have saved the above source code into a file, you can open your command
+line program (such as Terminal or Command Prompt). Then, navigate to the
+directory where you saved the program code using the \texttt{cd} command. For
+example:
 
 \begin{lstlisting}[numbers=none]
-$ go run hello.go
-Hello, World!
+cd /path/to/directory
 \end{lstlisting}
 
-If you see the output as \texttt{Hello, World!}, congratulations! Now you have
-successfully installed Go compiler. In fact, the \texttt{go run} command
-compiled your code to an executable format and then run that program. The next
-chapter explains more about this example.
+Replace \texttt{/path/to/directory} with the actual path to the directory where
+you saved the \texttt{hello.go} file.
+
+Once you are in the correct directory, you can run the program by typing the
+following command:
+
+\begin{lstlisting}[numbers=none]
+go run hello.go
+\end{lstlisting}
+
+Press Enter to execute the command. The program will be compiled and executed,
+and you should see the output \texttt{Hello, World!} displayed in the command
+line.
+
+If you see the output as \texttt{Hello, World!}, congratulations! You have
+successfully installed the Go compiler. In fact, the \texttt{go run} command
+compiled your code into an executable format and then executed the program. The
+next chapter will provide more detailed explanations about this example and
+delve further into the concepts of Go programming.
 
 \subsection{Using Git}
 
-You should be comfortable using a source code management system. As mentioned
-before, Git\index{git} would be a good choice. You can create an account in
-GitHub and publish your example code there. If you do not have any prior
-experience, you can spend 2 to 3 days to learn Git.
+It is important to be comfortable using a source code management system, and
+Git\index{git} is highly recommended. Creating an account on GitHub and
+publishing your example code there would be beneficial. If you are new to Git
+and have no prior experience, dedicating 2 to 3 days to learn Git would be
+worthwhile.
 
 \subsection{Using Command Line}
 
-You should be comfortable using command line\index{command line} interfaces like
-GNU Bash or PowerShell. There are many online tutorials available in the
-Internet to learn shell commands. If you do not have any prior experience, you
-can spend few days (3 to 4 days) to learn command line usage.
+It is essential to be comfortable using command line\index{command line}
+interfaces such as GNU Bash or PowerShell. There are numerous online tutorials
+available on the Internet to learn shell commands. If you are unfamiliar with
+command line usage, it is recommended to allocate a few days (around 3 to 4
+days) to learn and familiarize yourself with the command line environment.
 
 \section{Organization of Chapters}
 
-The rest of the book is organized into the following chapters. You can read the
-first six chapters in the given order. The remaining chapters can be read in any
-order.
+The book is structured into the following chapters, which can be read in the
+suggested order. The first six chapters are designed to be read sequentially,
+while the remaining chapters can be read in any order you prefer.
 
 \begin{description}
 \item[Chapter 2: Quick Start] \hfill \\
-This chapter provides a tutorial introduction to the language. It introduce few
-basic topics in Go programming language. The topics include Data Types,
-Variables, Comments, For Loop, Range Clause, If, Function, Operators, Slices,
-and Maps.
+This chapter serves as a tutorial introduction to the Go programming language.
+It covers essential topics that form the foundation of Go programming, including
+data types, variables, comments, for loops, range clauses, if statements,
+functions, operators, slices, and maps. By studying these topics, readers will
+gain a solid understanding of the fundamentals of Go programming.
 \item[Chapter 3: Control Structures] \hfill \\
-This chapter cover the various control structures like \textit{goto}, \textit{if
-condition}, \textit{for loop} and \textit{switch case} in the language. It goes
-into details of each of these topics.
+This chapter covers the different control structures available in the Go
+programming language, including goto statements, if conditions, for loops, and
+switch cases. Each of these topics is explained in detail, providing a
+comprehensive understanding of how to effectively use these control structures
+in Go programming.
 \item[Chapter 4: Data Structures] \hfill \\
-This chapter cover data structures. The chapter starts with arrays. Then slices,
-the more useful data structure built on top of array is explained. Then we
-looked at how to define custom data types using existing primitive types. The
-struct is introduced which is more useful to create custom data types. Pointer
-is also covered. like \textit{struct}, \textit{slice} and \textit{map} in the
-language.
+This chapter explores data structures in the Go programming language. It begins
+by discussing arrays and then delves into slices, which are a more versatile
+data structure built on top of arrays. The chapter also explains how to define
+custom data types using existing primitive types and introduces the use of
+structs for creating more complex custom data types. Pointers are also covered,
+along with structs, slices, and maps in the language.
 \item[Chapter 5: Functions] \hfill \\
-This chapter explained all the major aspects of functions in Go. The chapter
-covered how to send input parameters and return values. It also explained about
-variadic function and anonymous function. This chapter briefly also covered
-methods.
+This chapter provides a comprehensive explanation of functions in Go. It covers
+various aspects such as sending input parameters and returning values. The
+chapter also explores variadic functions and anonymous functions. Additionally,
+there is a brief introduction to methods in Go.
 \item[Chapter 6: Objects] \hfill \\
-This chapter explained the concept of objects and interfaces and it's uses.
-Interface is an important concept in Go. Understanding interfaces and properly
-using it makes the design robust. The chapter covered empty interface. Also,
-briefly explained about pointer receiver and its significance. Type assertions
-and type switches are also explained.
+This chapter delves into the concept of objects and interfaces in Go and their
+practical applications. Interfaces hold significant importance in Go as they
+contribute to robust design. The chapter covers the concept of empty interfaces
+and provides an overview of pointer receivers and their significance.
+Additionally, the chapter explores type assertions and type switches in Go.
 \item[Chapter 7: Concurrency] \hfill \\
-This chapter explained concurrency features of Go. Based on your problem, you
-can choose channels or other synchronization techniques. This chapter covered
-goroutines and channels usage. It covered Waitgroups, Select statement. It also
-covered buffered channels, channel direction. The chapter also touched
-upon \textit{sync.Once} function usage.
+In this chapter, the concurrency features of Go are explained in detail.
+Depending on the problem at hand, you can choose between channels and other
+synchronization techniques. The chapter covers the usage of goroutines and
+channels, highlighting their importance in concurrent programming. It also
+explores topics such as Waitgroups, Select statements, buffered channels, and
+channel direction. Additionally, the chapter provides an introduction to the
+usage of the sync.Once function.
 \item[Chapter 8: Packages] \hfill \\
-This chapter explained the Go package in detail. Package is one of building
-block of a reusable Go program. This chapter explained about creating packages,
-documenting packages, and finally about publish packages. The chapter also
-covered modules and its usage. Finally it explained moving types across packages
-during refactoring.
+In this chapter, the concept of Go packages is thoroughly explained. Packages
+serve as fundamental building blocks for creating reusable Go programs. The
+chapter covers various aspects such as creating packages, documenting packages,
+and the process of publishing packages. It also delves into the topic of modules
+and their usage in managing dependencies. Additionally, the chapter provides
+insights on moving types across packages during the refactoring process.
 \item[Chapter 9: Input/Output] \hfill \\
-This chapter discussed about various input/output related functionalities in Go.
-The chapter explained using command line arguments and interactive input. The
-chaptered using \textit{flag} package. It also explained about various string
-formatting techniques.
+In this chapter, the various input/output functionalities in Go are explored.
+The chapter covers topics such as handling command line arguments and
+interactive input. It introduces the usage of the flag package for handling
+command line options and arguments. Additionally, the chapter provides insights
+into various string formatting techniques used in Go.
 \item[Chapter 10: Testing] \hfill \\
-This chapter explained writing tests using the \textit{testing} package. It
-covered how to mark a test as a failure, logging, skipping, and parallel
-running. Also, it briefly touched upon sub-tests.
+In this chapter, the process of writing tests using the testing package in Go is
+explained. The chapter covers important concepts such as marking tests as
+failures, logging, skipping tests, and running tests in parallel. Additionally,
+the chapter briefly introduces the concept of sub-tests, providing a glimpse
+into its usage.
 \item[Chapter 11: Tooling] \hfill \\
-This chapter introduced the Go tool. All the Go commands were explained in
-detail. Practical example usage was also given for each command. The chapter
-coverd how to build and run programs, running tests, formatting code, and
-displaying documentation. It also touched upon few other handy tools.
+In this chapter, the Go tool is introduced and all its commands are explained in
+detail. Practical examples are provided for each command to illustrate their
+usage. The chapter covers important commands such as building and running
+programs, running tests, formatting code, and displaying documentation.
+Additionally, the chapter briefly mentions a few other useful tools that can
+enhance your development workflow.
 \end{description}
 
-In addition to the solved exercises, each chapter contains additional problems.
-Answers to these additional problems are given in Appendix A.
+In addition to the solved exercises, each chapter includes additional problems
+for further practice. The answers to these additional problems can be found in
+Appendix A.
 
-And finally there is an index at the end of the book.
+Lastly, the book concludes with an index at the end, which serves as a helpful
+reference for locating specific topics and concepts throughout the book.
 
 \section{Suggestions to Use this Book}
 
-Make sure to setup your system with Go compiler and the environment as explained
-in this chapter. If you are finding it very difficult, you may get help from
-your friends to setup the environment. Use source code management system like
-Git to manage your code. You can write exercises and solve additional problems
-and keep it under version control.
+It is important to follow the instructions provided in this chapter to set up
+your system with the Go compiler and the necessary environment. If you encounter
+any difficulties during the setup process, don't hesitate to seek assistance
+from your friends or colleagues. Additionally, utilizing a source code
+management system like Git will greatly facilitate the management of your code.
+You can use it to write exercises, solve additional problems, and keep your code
+under version control for easy tracking and collaboration.
 
-I would suggest not to copy \& paste code from the book. Rather, you can type
-every example in this book. This will help you to familiarize the syntax much
-quickly.
+I would recommend against simply copying and pasting code from the book.
+Instead, I encourage you to actively type out each example provided. By manually
+typing the code, you will gain a better understanding of the syntax and
+structure of the language, which will help you become more familiar with it more
+quickly. Additionally, typing out the code will improve your muscle memory and
+reinforce your learning process. So, take the time to engage with the code
+actively and type it out yourself for a more effective learning experience.
 
-The first 6 chapters, that is from Introduction to Interfaces should be read in
-order. The remaining chapters are based on the first 6 chapters. And chapters 7
-onward can be read in any order.
+It is recommended to read the first six chapters of the book in order, starting
+from the Introduction to Interfaces. These initial chapters lay the foundation
+and cover important concepts that are built upon in the later chapters. Reading
+them sequentially will provide a logical progression of knowledge and
+understanding.
+
+However, once you have completed the first six chapters, the remaining chapters
+can be read in any order based on your specific interests or needs. Each chapter
+in the later part of the book focuses on a specific topic or aspect of Go
+programming, and they are designed to be relatively independent of each other.
+Feel free to explore the chapters that align with your interests or are relevant
+to your current programming goals.
+
+By following this approach, you will establish a solid understanding of the
+fundamentals through the initial chapters and then have the flexibility to delve
+into specific topics of your choice in the later chapters.
 
 \section*{Summary}
 
-This chapter provided an introduction to Go programming language. We briefly
-discussed about topics required to become a good programmer.
+In this chapter, we provided an introduction to the Go programming language. We
+covered essential topics that are crucial for becoming a proficient programmer.
+Our discussion touched upon various aspects that are important to understand in
+order to develop strong programming skills.
 
-Then we covered chapter organization in this book. And finally, I offer a few
-suggestions for how to use this book. The next chapter provides a quick start to
-programming with the Go language.
+We emphasized that learning Go programming involves more than just understanding
+the language syntax. To become a good programmer, it is necessary to grasp a
+wide range of concepts and skills. While our focus in this book is on Go
+programming, we acknowledged that there are several other topics and areas of
+knowledge that are valuable for programmers to explore.
+
+Furthermore, we highlighted the significance of installing the Go compiler and
+setting up a suitable development environment to facilitate the learning
+process. We also encouraged the use of source code management systems like Git
+to manage and organize your code effectively.
+
+By introducing these essential elements in this chapter, we aim to provide a
+solid foundation for your journey in learning Go programming.
+
+Following the introduction to Go programming, we proceeded to discuss the
+organization of chapters in this book. We outlined the structure and sequence of
+topics covered, emphasizing that the first six chapters should be read in order.
+These initial chapters serve as a foundation for the subsequent content, forming
+the building blocks for a comprehensive understanding of Go programming.
+
+Additionally, we provided some helpful suggestions on how to effectively utilize
+this book for learning Go. These recommendations are intended to enhance your
+learning experience and maximize your understanding of the language and its
+concepts.
+
+Moving forward, the next chapter will provide a quick start to programming with
+the Go language. It will offer practical examples and hands-on exercises to help
+you get started with writing Go programs. This chapter aims to provide a smooth
+transition from theoretical concepts to practical application, enabling you to
+gain firsthand experience with Go programming.
