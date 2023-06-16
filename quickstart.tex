@@ -21,7 +21,7 @@ can type it into your favorite text editor and save it as \texttt{hello.go}.
 When you run the program, it will print the message \texttt{Hello, World!} to
 your console or terminal.
 
-\lstinputlisting[caption=Hello World]{code/quickstart/hello.go}
+\lstinputlisting{code/quickstart/hello.go}
 
 You can open your command line program and run the above program like
 this:
@@ -270,7 +270,7 @@ Let's return to the hello world example, where you want to print the "hello
 world" message three times. To achieve this, you can write the sentence three
 times, as shown below:
 
-\lstinputlisting[caption=Multiple Hello World]{code/quickstart/multiplehello.go}
+\lstinputlisting{code/quickstart/multiplehello.go}
 
 By repeating the code three times, the "hello world" message will be printed three times.
 
@@ -281,7 +281,7 @@ alias or placeholder for the data it holds. The name of the variable is called
 its identifier. Here's an example where a variable named \texttt{hw} is used to
 refer to the "Hello, World!" string literal:
 
-\begin{lstlisting}[caption=Reusing variable]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -310,7 +310,7 @@ called type inference.
 To assign a new value to the variable, you can use the \texttt{=} operator, as
 shown in the example below:
 
-\begin{lstlisting}[caption=Assign new value to variable]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -338,7 +338,7 @@ Later, to assign a string value to the \texttt{hw} variable, you can use
 the \texttt{=} symbol instead of \texttt{:=}. Here's how the example can be
 rewritten:
 
-\begin{lstlisting}[caption=Alternate syntax for variable declaration]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -519,7 +519,7 @@ named \texttt{plus}.  As you can see here, the comment is used to give
 a brief description about the package and two example usages are also
 given.
 
-\begin{lstlisting}[caption=Package level comment]
+\begin{lstlisting}
 /*
 Package plus provides utilities for Google+
 Sign-In (server-side apps)
@@ -568,7 +568,7 @@ printed the same message.  So, instead of typing the same print
 statement again and again, we can use a \texttt{for} loop as given
 below.
 
-\begin{lstlisting}[caption=For loop (sum1.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -599,7 +599,7 @@ this chapter.
 Here is another example \texttt{for} loop to get sum of values
 starting from 0 up to 10.
 
-\begin{lstlisting}[caption=For loop (sum2.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -616,7 +616,7 @@ func main() {
 The initialization and increment part are optional as you can see
 below.
 
-\begin{lstlisting}[caption=For loop (sum3.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -633,7 +633,7 @@ func main() {
 An infinite loop can be created using a \texttt{for} without any
 condition as given below.
 
-\begin{lstlisting}[caption=Infinite For loop]
+\begin{lstlisting}
 package main
 
 func main() {
@@ -654,7 +654,7 @@ Consider a simple scenario, based on money available you want to buy
 vehicles.  You want to buy a bike, but if more money is available you
 also want to buy a car.
 
-\begin{lstlisting}[caption=If control structure (buy.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -686,7 +686,7 @@ Now let's consider another scenario where you either want to buy a
 bike or car but not both.  The \texttt{else} block associated with
 \texttt{if} condition will be useful for this.
 
-\begin{lstlisting}[caption=If with else block]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -713,7 +713,7 @@ Similar to \texttt{for} loop, the \texttt{if} statement can start with
 a short statement to execute before the condition.  See the example
 given below.
 
-\begin{lstlisting}[caption=If with initialization statement]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -785,7 +785,7 @@ be written in the next line on wards until the closing curly bracket.
 
 Here is a complete example with usage of the Area function.
 
-\begin{lstlisting}[caption=Function usage]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -867,7 +867,7 @@ In the above example, the length of slice is \texttt{3} and the slice
 values are string data.  The \texttt{len} function gives the length of
 slice.  See this complete example:
 
-\begin{lstlisting}[caption=Printing slice values]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -904,7 +904,7 @@ considered as blank identifier which you need not to define and you can
 assign anything to it.  See the example written below to print each
 string ignoring the index.
 
-\begin{lstlisting}[caption=Range loop with index ignored]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -921,7 +921,7 @@ func main() {
 If you just want to get the index without value, you can use just use
 one variable to the left of range clause as give below.
 
-\begin{lstlisting}[caption=Range loop without index]
+\begin{lstlisting}
 package main
 
 import "fmt"

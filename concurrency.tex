@@ -43,7 +43,7 @@ runtime.
 
 To understand the Goroutine better let's look at a simple program:
 
-\lstinputlisting[caption=Goroutine with explicit sleep]{code/concurrency/goroutinesleep.go}
+\lstinputlisting{code/concurrency/goroutinesleep.go}
 
 In the above program, \textit{setMessage} function is invoked as a
 goroutine in line no 15 using the \textit{go} keyword.  If you run
@@ -94,7 +94,7 @@ the code will block the execution.
 
 Here is an example:
 
-\lstinputlisting[caption=Goroutine with channels]{code/concurrency/goroutinechannel.go}
+\lstinputlisting{code/concurrency/goroutinechannel.go}
 
 In the above example, an int channel is assigned to a global variable
 named \texttt{c}.  In line number 17, immediately after calling
@@ -118,7 +118,7 @@ goroutines are completed.
 Here is a modified version of the previous example
 using \textit{Waitgroups}.
 
-\lstinputlisting[caption=Goroutine with Waitgroups]{code/concurrency/goroutinewg.go}
+\lstinputlisting{code/concurrency/goroutinewg.go}
 
 In the above example, the \texttt{Add} method at line number 17 make
 one item to wait for.  The next line invoke the goroutine.  The line
@@ -129,7 +129,7 @@ a \texttt{Done} call at line number 13.
 
 Here is another example:
 
-\lstinputlisting[caption=Goroutine with Waitgroups]{code/concurrency/wg1.go}
+\lstinputlisting{code/concurrency/wg1.go}
 
 \section{Select}
 
@@ -195,7 +195,7 @@ make(chan int, 100)
 
 Consider the below example:
 
-\begin{lstlisting}[caption=Buffered Channel]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -221,7 +221,7 @@ direction helps to increases the type-safety of the program.
 
 Here is an example:
 
-\lstinputlisting[caption=Channel channel]{code/concurrency/direction.go}
+\lstinputlisting{code/concurrency/direction.go}
 
 In the above example, the \texttt{sendOnly} function define a channel
 variable which can be only used for sending data.  If you tried to

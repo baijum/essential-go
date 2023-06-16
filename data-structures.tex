@@ -27,7 +27,7 @@ When you declare a variable using the \texttt{var}
 integers and floats, empty string for strings, and false for boolean. To
 demonstrate this, here is an example:
 
-\begin{lstlisting}[caption=Zero values]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -55,7 +55,7 @@ access anywhere within the same package.
 
 Here is an example:
 
-\begin{lstlisting}[caption=Package level variable]
+\begin{lstlisting}
 package main
 
 import (
@@ -83,7 +83,7 @@ use \texttt{=} instead of \texttt{:=} syntax.
 
 If you run the below program, it's going to throw an error:
 
-\begin{lstlisting}[caption=Changing value with wrong syntax]
+\begin{lstlisting}
 package main
 
 import (
@@ -105,7 +105,7 @@ $ go run update.go
 
 The above can be fixed like this:
 
-\begin{lstlisting}[caption=Changing value with wrong syntax]
+\begin{lstlisting}
 package main
 
 import (
@@ -129,7 +129,7 @@ $ go run update.go
 Using the \textit{reflect} package\index{reflect}, you can identify
 the type of a variable:
 
-\begin{lstlisting}[caption=Identifying type of a variable]
+\begin{lstlisting}
 package main
 
 import (
@@ -175,7 +175,7 @@ are the three logical operators that can be used with boolean values:
 
 Here is an example:
 
-\lstinputlisting[caption=Logical operators]{code/data-structures/logical.go}
+\lstinputlisting{code/data-structures/logical.go}
 
 The output of the above logical operators are like this:
 
@@ -494,7 +494,7 @@ array.
 
 Consider this complete example:
 
-\lstinputlisting[caption=Array example]{code/data-structures/colors.go}
+\lstinputlisting{code/data-structures/colors.go}
 
 If you save the above program in a file named \texttt{colors.go} and
 run it, you will get output like this:
@@ -561,7 +561,7 @@ called \texttt{nil}.
 
 Consider this complete example:
 
-\lstinputlisting[caption=Nil slice example]{code/data-structures/nilslice.go}
+\lstinputlisting{code/data-structures/nilslice.go}
 
 In the above example, the value of slice \texttt{v} is \texttt{nil}.
 Since the slice is nil, values cannot be accessed or set using the
@@ -597,13 +597,13 @@ values.  The append function will increase the length of the slice.
 
 Consider this example:
 
-\lstinputlisting[caption=Append to slice]{code/data-structures/appendslice.go}
+\lstinputlisting{code/data-structures/appendslice.go}
 
 In the above example, the slice length is increased by one after
 append.  It is possible to add more values using \texttt{append}.  See
 this example:
 
-\lstinputlisting[caption=Append more values to slice]{code/data-structures/appendslicemore.go}
+\lstinputlisting{code/data-structures/appendslicemore.go}
 
 The above example append two values.  Though you can provide any
 number of values to append.
@@ -611,7 +611,7 @@ number of values to append.
 You can use the "..." operator to expand a slice.  This can be used to
 append one slice to another slice.  See this example:
 
-\lstinputlisting[caption=Append a slice to another]{code/data-structures/appendsliceanother.go}
+\lstinputlisting{code/data-structures/appendsliceanother.go}
 
 In the above example, the first slice is appended by all items in another slice.
 
@@ -622,7 +622,7 @@ for loop, there is one optimization related that you need to be aware.
 
 Consider this example:
 
-\lstinputlisting[caption=Append to a slice inside a loop]{code/data-structures/appendfor.go}
+\lstinputlisting{code/data-structures/appendfor.go}
 
 If you run the above program, it's going to take few seconds to
 execute.  To explain this, some understanding of internal structure of
@@ -975,7 +975,7 @@ fmt.Printf("%v\n", *b)
 
 Here is a complete example:
 
-\lstinputlisting[caption=Pass by value vs reference]{code/data-structures/pointervalue.go}
+\lstinputlisting{code/data-structures/pointervalue.go}
 
 A typical output will be like this:
 

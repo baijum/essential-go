@@ -64,7 +64,7 @@ related to certain ideas.
 Consider this file named \texttt{circle1.go} which belongs to
 package \texttt{main}:
 
-\begin{lstlisting}[caption=circle1.go]
+\begin{lstlisting}
 package main
 
 const pi float64 = 3.14
@@ -76,7 +76,7 @@ type Circle struct {
 
 Another file named \texttt{circle2.go} in the same directory:
 
-\begin{lstlisting}[caption=circle2.go]
+\begin{lstlisting}
 package main
 
 func (c Circle) Area() float64 {
@@ -86,7 +86,7 @@ func (c Circle) Area() float64 {
 
 Yet another file named \texttt{circle3.go}:
 
-\begin{lstlisting}[caption=circle3.go]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -148,7 +148,7 @@ possible for initializing variables with complex expressions, that is
 by using the special \textit{init} function.  The Go runtime executes
 the \textit{init} function only once.  Here is an example:
 
-\lstinputlisting[caption=Configuration initialization]{code/packages/config/config.go}
+\lstinputlisting{code/packages/config/config.go}
 
 The \textit{init} function cannot be called or even referred from the
 program -- it's going to produce a compile error.  Also,

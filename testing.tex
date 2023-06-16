@@ -17,7 +17,7 @@ as input and returns another string.  The expected output string
 should start with "Hello," and ends with the input value followed by
 an exclamation.
 
-\lstinputlisting[caption=Test for Hello]{code/testing/hello/hello_test.go}
+\lstinputlisting{code/testing/hello/hello_test.go}
 
 In the first line, the package name is \texttt{hello} which is the
 same as the package where the function is going to be defined.  Since
@@ -59,7 +59,7 @@ The test is going to pass or fail based on the implementation of
 the \texttt{Hello} function.  Here is an implementation of the
 function to satisfy the test:
 
-\lstinputlisting[caption=Hello function]{code/testing/hello/hello.go}
+\lstinputlisting{code/testing/hello/hello.go}
 
 As you can see in the above function definition, it takes a string as
 an input argument.  A new string is getting constructed as per the
@@ -195,7 +195,7 @@ as failed before skipping, that particular test is yet considered to
 have failed.  The \texttt{SkipNow} function doesn't accept any
 argument.  Here is a simple example:
 
-\lstinputlisting[caption=Skipping test]{code/testing/skip/hello_skip_test.go}
+\lstinputlisting{code/testing/skip/hello_skip_test.go}
 
 If you run the above code on a Linux system, you can see the test has
 skipped.  The output is going to be something like this:

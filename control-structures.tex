@@ -27,7 +27,7 @@ with a conditional expression which evaluates to a boolean value.  If
 the boolean value is true, the statements within the block will be
 executed.  Consider this example:
 
-\begin{lstlisting}[caption=If example program]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -56,7 +56,7 @@ the \texttt{else}\index{if!else} block for that.
 
 Consider this example with else block:
 
-\begin{lstlisting}[caption=If with else block]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -79,7 +79,7 @@ Now we will go through a complete example, the task is to identify the
 given number is even or odd.  The input can be given as a command line
 argument.
 
-\begin{lstlisting}[caption=If with else example]
+\begin{lstlisting}
 package main
 
 import (
@@ -149,7 +149,7 @@ blocks based on the requirements.
 Look at this example where we have three choices based on the age
 group.
 
-\begin{lstlisting}[caption=if example program output]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -184,7 +184,7 @@ statement}
 Here is an example where a variable named \texttt{money} is declared
 along with the If control structure.
 
-\begin{lstlisting}[caption=If with initialization statement]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -207,7 +207,7 @@ It is possible to make any valid Go statement as part of the If
 control structure.  For example, it is possible to call a function
 like this:
 
-\begin{lstlisting}[caption=Variable initialization in If]
+\begin{lstlisting}
     if money := someFunction(); money > 15000 {
 \end{lstlisting}
 
@@ -221,7 +221,7 @@ few syntax variants.
 
 Consider a program to print few names.
 
-\begin{lstlisting}[caption=For loop example (forbasic.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -270,7 +270,7 @@ executed.
 Let's alter the previous program to stop printing after the
 name \texttt{Polly} found.
 
-\begin{lstlisting}[caption=For loop with break]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -301,7 +301,7 @@ To understand this better, let's consider an example.  The problem is
 to to change print the name given the slice until a word
 with \texttt{u} found.
 
-\begin{lstlisting}[caption=For loop with break and label]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -336,7 +336,7 @@ proceed loop without executing further statements.
 Let's modify the previous problem to print all names
 except \texttt{Polly}.
 
-\begin{lstlisting}[caption=For loop with continue]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -363,7 +363,7 @@ one.
 Let's consider an example where you need to print names which doesn't
 have character \texttt{u} in it.
 
-\begin{lstlisting}[caption=For loop with continue and label]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -398,7 +398,7 @@ moved inside loop.
 
 The previous example can be changed like this:
 
-\begin{lstlisting}[caption=For without initialization and increment]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -431,7 +431,7 @@ outside the loop.  Conditions can be added inside the loop.
 
 The previous example can be changed like this:
 
-\begin{lstlisting}[caption=Infinite For loop]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -459,7 +459,7 @@ is a copy of the element at that index.
 The previous example \texttt{for} loop can be simplified using
 the \texttt{range} clause like this:
 
-\begin{lstlisting}[caption=Range loop with slice]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -478,7 +478,7 @@ be assigned to the underscore.
 
 The range loop can be used with map.  Here is an example:
 
-\begin{lstlisting}[caption=Range loop with map]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -508,7 +508,7 @@ handled in the branch instructions.
 The below program use a switch case to print number names based on the
 value.
 
-\begin{lstlisting}[caption=Switch case example]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -551,7 +551,7 @@ The \texttt{fallthrough} must be the last statement within the case.
 
 Here is a modified version with \texttt{fallthrough}
 
-\begin{lstlisting}[caption=Switch case with fallthrough]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -592,7 +592,7 @@ using \texttt{break} statements.
 
 Here is an example:
 
-\begin{lstlisting}[caption=Switch case with break]
+\begin{lstlisting}
 package main
 
 import (
@@ -631,7 +631,7 @@ comma-separated lists.
 
 Here is an example.
 
-\lstinputlisting[caption=Switch with multiple cases]{code/control-structures/switchmultiple.go}
+\lstinputlisting{code/control-structures/switchmultiple.go}
 
 In this example, if any of the value is matched in the given list,
 that case will be executed.
@@ -644,7 +644,7 @@ switches on true.  This is useful to write an if-else-if-else chain.
 Let's take the example program used earlier when Else If was
 introduced:
 
-\lstinputlisting[caption=Switch without expression]{code/control-structures/switchnoexpression.go}
+\lstinputlisting{code/control-structures/switchnoexpression.go}
 
 \section{Defer Statements}
 
@@ -660,7 +660,7 @@ various clean-up actions.
 
 Here is a simple example:
 
-\begin{lstlisting}[caption=Defer usage]
+\begin{lstlisting}
 package main
 
 import (
@@ -682,7 +682,7 @@ last-in-first-out (LIFO) order.
 
 Here is a simple example to demonstrate it:
 
-\begin{lstlisting}[caption=Defer usage]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -708,7 +708,7 @@ The arguments passed the the deferred call are evaluated immediately.
 But the deferred call itself is not executed until the function
 returns.  Here is a simple example to demonstrate it:
 
-\begin{lstlisting}[caption=Defer argument evaluation]
+\begin{lstlisting}
 package main
 
 import (
@@ -749,7 +749,7 @@ Few important points about defer, panic, and recover:
 
 Here is an example:
 
-\lstinputlisting[caption=deferred panic recover]{code/control-structures/panic.go}
+\lstinputlisting{code/control-structures/panic.go}
 
 \section{Goto}
 
@@ -759,7 +759,7 @@ is specified using label statements.  The \textit{goto} statement and
 the corresponding label should be within the same function.
 The \textit{goto} cannot jump to a label inside another code block.
 
-\begin{lstlisting}[caption=Goto example program (goto.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -776,7 +776,7 @@ Marker:
 You can save the above program in a file named \texttt{goto1.go} and
 run it like this:
 
-\begin{lstlisting}[caption=Goto example program output]
+\begin{lstlisting}
 $ go run goto1.go
 Value of num: 10
 \end{lstlisting}

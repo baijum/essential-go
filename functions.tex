@@ -72,7 +72,7 @@ closing bracket can be in a line by its own.
 
 Here is a complete example with usage of the Area function.
 
-\begin{lstlisting}[caption=Function to calculate area of circle (area.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -112,7 +112,7 @@ in the declaration of a function.  Where as
 argument\index{parameter!argument} is the actual value of this
 variable that gets passed to function.  Consider this example:
 
-\begin{lstlisting}[caption=Function without any parameters]
+\begin{lstlisting}
 package main
 
 import (
@@ -142,7 +142,7 @@ message: \texttt{too many arguments in call to TimeNow}.
 
 A function can accepts more arguments of same or different types.
 
-\begin{lstlisting}[caption=Function with two parameters]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -175,7 +175,7 @@ can use underscore as the variable name for others.
 
 Here is an example function which return two values:
 
-\begin{lstlisting}[caption=Function with two return values]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -226,7 +226,7 @@ parameters\index{return!named parameter}.  These variables can be used
 to assign values.  With named output parameters, return statement need
 not to explicitly specify the variables.
 
-\begin{lstlisting}[caption=Function with named output parameters]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -253,7 +253,7 @@ The \texttt{fmt.Println} is a commonly used variadic function.
 
 Here is a complete example:
 
-\begin{lstlisting}[caption=Variadic Function (variadic.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -295,7 +295,7 @@ name\index{function!anonymous}.  These type of functions can be used
 to create function closures.  A closure is an anonymous function that
 access variables from outside its body.
 
-\begin{lstlisting}[caption=Anonymous Function (anonfunc.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -313,7 +313,7 @@ func main() {
 Function is a first class citizen\index{function!value} in Go, so it
 can be passed as an argument and return as a value.
 
-\begin{lstlisting}[caption=Function as value (funcvalue.go)]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -420,7 +420,7 @@ Declaring a method on built-in type is also illegal.
 
 Here is an example:
 
-\begin{lstlisting}[caption=Method]
+\begin{lstlisting}
 package main
 
 import "fmt"
@@ -447,7 +447,7 @@ circle.
 The receiver could be pointer also.  Here is a modified example with
 pointer receiver:
 
-\lstinputlisting[caption=Method with pointer receiver]{code/functions/pointer1.go}
+\lstinputlisting{code/functions/pointer1.go}
 
 In the above example, the \texttt{Area} method is using a pointer
 receiver.  When creating object, you can create a normal value or a

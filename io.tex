@@ -64,7 +64,7 @@ Consider there exists a file named \texttt{poem.txt} with this text:
 
 Here is a program to read the the whole file and print:
 
-\lstinputlisting[caption=Read whole file]{code/io/readpoem/readpoem.go}
+\lstinputlisting{code/io/readpoem/readpoem.go}
 
 When you run this program, you will get the whole text as output. In the line
 number 10, the \texttt{Open} function from the \texttt{os} package is called to open
@@ -78,7 +78,7 @@ when end of file is reached. This is used as the condition to break the loop.
 
 Here is a program to write some text to a file:
 
-\lstinputlisting[caption=Write to file]{code/io/writefile/writefile.go}
+\lstinputlisting{code/io/writefile/writefile.go}
 
 In th line number 9, the \textit{Create} function from the \textit{os} package
 is called open the file for writing. It returns a file descriptor and error. In
@@ -106,7 +106,7 @@ interactively\index{input!scanf}.
 
 Here is an example:
 
-\lstinputlisting[caption=Read name and print]{code/io/readprint.go}
+\lstinputlisting{code/io/readprint.go}
 
 The \textit{Scanf} function reads the standard input. The first argument is the
 format and the second one is the pointer variable. The value read from standard
@@ -140,7 +140,7 @@ Consider a use case to convert everything that comes to standard input to
 convert to upper case. This can be achieved by reading all standard input
 using \texttt{io.ReadAll} and converting to upper case.  Here is code:
 
-\lstinputlisting[caption=Convert standard input to upper case]{code/io/uppercase/uppercase.go}
+\lstinputlisting{code/io/uppercase/uppercase.go}
 
 You can run this program similar to how you did with the previous program.
 
@@ -215,7 +215,7 @@ get the default format of any value, you can use \texttt{\%v} as the
 format string.  Here is an example which print formatted values
 using \texttt{\%v}:
 
-\lstinputlisting[caption=Default format]{code/io/formatting/default.go}
+\lstinputlisting{code/io/formatting/default.go}
 
 The \texttt{\%T} shows the type of the value.  The output of the above
 program will be like this.
@@ -233,7 +233,7 @@ Value: (1+6i), Type: complex128
 If you use a \texttt{\%+v} as the format string for struct it shows
 the field names.  See this example:
 
-\lstinputlisting[caption=Default format for struct]{code/io/formatting/defaultstruct.go}
+\lstinputlisting{code/io/formatting/defaultstruct.go}
 
 If you run the above program, the output is going to be like this:
 
@@ -251,7 +251,7 @@ The \texttt{\%\#v} shows the representation of the value. Here is a
 modified version of above program to print few values of primitive
 type.
 
-\lstinputlisting[caption=Representation format]{code/io/formatting/defaultrepr.go}
+\lstinputlisting{code/io/formatting/defaultrepr.go}
 
 \begin{lstlisting}[numbers=none]
 Value: "Baiju", Type: string
@@ -288,7 +288,7 @@ a \texttt{String} function which return a string.  Now the value
 printed will be whatever returned by that function.  Here is an
 example:
 
-\lstinputlisting[caption=Custom representation using Stringer]{code/io/custom/custom.go}
+\lstinputlisting{code/io/custom/custom.go}
 
 The output of the above program will be like this:
 
